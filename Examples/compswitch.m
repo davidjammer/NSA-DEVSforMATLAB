@@ -37,7 +37,7 @@ switch testcase
 end
 
 simout = [];
-DEBUGLEVEL = 0;           % simulator debug level
+DEBUGLEVEL = 1;           % simulator debug level
 epsilon = 1e-6;
 
 tVec = [1, 3, 7, 8, 9];
