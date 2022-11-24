@@ -5,7 +5,7 @@ classdef terminator < handle
 %  inputs: 
 %    in        incoming value
 %  outputs: 
-%    none
+%    n
 %% States
 %  s:        running
 %  E:        last incoming value
@@ -16,6 +16,7 @@ classdef terminator < handle
 
   properties
     s
+    n
     E
     name
     epsilon = get_epsilon;
@@ -27,6 +28,7 @@ classdef terminator < handle
     function obj = terminator(name,tau, debug)
       obj.name = name;
       obj.s = "idle";
+	 obj.n = 0;
       obj.debug = debug;
       obj.tau = tau;
     end
@@ -35,8 +37,11 @@ classdef terminator < handle
       if obj.debug
         fprintf("%-8s delta in, E=%2d\n", obj.name, obj.E)
       end
+      if ~isempty(x) && isfield(x,"in")
+		obj.n = obj.n + 1;
+		obj.E = x.in;
+	 end
       
-      obj.E = x.in;
 
       if obj.debug
         fprintf("%-8s delta out, E=%2d\n", obj.name, obj.E)
@@ -45,6 +50,9 @@ classdef terminator < handle
         
     function y=lambda(obj,e,x)
       y=[];
+	 if ~isempty(x) && isfield(x,"in")
+		y.n = obj.n + 1;
+	 end
 
       if obj.debug
         fprintf("%-8s lambda, in=%2d, out=[]\n", obj.name, x.in);
