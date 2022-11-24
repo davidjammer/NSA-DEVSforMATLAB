@@ -12,6 +12,8 @@ classdef coordinator < handle
 	   EIC     %external to internal coupling
 	   IEC     %internal to external coupling
 	   
+	   R_IC
+	   
 	   eventlist
 	   receivers
 	   IMM     %imminent children
@@ -36,6 +38,7 @@ classdef coordinator < handle
 		  obj.IC = [];
 		  obj.EIC = [];
 		  obj.IEC = [];
+		  obj.R_IC = {};
 		  obj.receivers=[];
 		  obj.debug_level = get_debug_level();
 		  obj.epsilon = get_epsilon();
@@ -113,6 +116,38 @@ classdef coordinator < handle
 		  
 	   end
 	   %% get methods
+	   function n = get_deep(obj)
+		 n = 0;
+		 for i=1:length(obj.D)
+			if isa(obj.D{i}, "coordinator")
+			   n = max(n, obj.D{i}.get_deep()); 
+			end
+		 end
+		 n = n + 1;
+	   end
+	   
+	   function n = get_number_of_devs(obj)
+		  n = 0;
+		  for i=1:length(obj.D)
+			 if isa(obj.D{i}, "devs")
+				n = n + 1;
+			 elseif isa(obj.D{i}, "coordinator")
+				n = n + obj.D{i}.get_number_of_devs();
+			 end
+			 
+		  end 
+	   end
+	   
+	   function n = get_number_of_coordinator(obj)
+		  n = 1;
+		  for i=1:length(obj.D)
+			 if isa(obj.D{i}, "coordinator")
+				n = n + obj.D{i}.get_number_of_coordinator();
+			 end
+			 
+		  end 
+	   end
+	   
 	   function tn = get_tn(obj)
 		  tn = obj.tn;
 	   end
@@ -125,11 +160,14 @@ classdef coordinator < handle
 		  name = obj.name;
 	   end
 	   %%
-	   function create_eventlist(obj)
-		  obj.eventlist=[];
-		  for d=1:length(obj.D)
-			 obj.eventlist = [obj.eventlist;d,obj.D{d}.get_tn,obj.D{d}.get_tl];
-		  end
+	   function update_eventlist(obj, tn, tl, name)
+		 idx = find_mdl_in_D(obj.D, name);
+		 i = find(obj.eventlist(:,1) == idx);
+		 obj.eventlist(i,2:3) = tn;
+		 obj.eventlist(i,4:5) = tl;
+	   end
+	   
+	   function sort_eventlist(obj)
 		  obj.eventlist = sortrows(obj.eventlist,2);
 		  
 		  d=1;
@@ -141,7 +179,18 @@ classdef coordinator < handle
 			 
 			 d=x(end)+1;
 		  end
-		  
+	   end
+	   
+	   function create_eventlist(obj)
+		  %obj.eventlist=[];
+		  %obj.eventlist = zeros(length(obj.D), 5);
+		  for d=1:length(obj.D)
+			 %obj.eventlist = [obj.eventlist;d,obj.D{d}.get_tn,obj.D{d}.get_tl];
+			 %obj.eventlist(d,:) = [d,obj.D{d}.get_tn,obj.D{d}.get_tl];
+			 obj.eventlist(d,1) = d;
+			 obj.eventlist(d,2:3) = obj.D{d}.tn;
+			 obj.eventlist(d,4:5) = obj.D{d}.tl;
+		  end
 	   end
 	   
 	   
@@ -160,6 +209,7 @@ classdef coordinator < handle
 		  end
 		  
 		  obj.create_eventlist();
+		  obj.sort_eventlist();
 		  
 		  obj.tl = [obj.eventlist(end,4), obj.eventlist(end,5)];
 		  obj.tn = [obj.eventlist(1,2), obj.eventlist(1,3)];
@@ -177,13 +227,17 @@ classdef coordinator < handle
 			 disp(['time of next event: ' num2str(obj.tn)]);
 			 pause();
 		  end
-		  id = find_tn(obj.eventlist,obj.tn);
+		  
+		  copy_of_eventlist = obj.eventlist;
+		  
+		  id = find_tn(copy_of_eventlist,obj.tn);
 		  
 		  obj.IMM = {};
+		  
 		  while ~isempty(id)
-			 obj.IMM = {obj.IMM{:},obj.D{ obj.eventlist(id(1),1) } };
-			 obj.eventlist(id(1),:) = [];
-			 id = find_tn(obj.eventlist,obj.tn);
+			 obj.IMM = {obj.IMM{:},obj.D{ copy_of_eventlist(id(1),1) } };
+			 copy_of_eventlist(id(1),:) = [];
+			 id = find_tn(copy_of_eventlist,obj.tn);
 		  end
 		  
 		  for r=1:length(obj.IMM)
@@ -294,10 +348,12 @@ classdef coordinator < handle
 			 
 			 
 			 %Alle Komponenten die nicht von EIC abhängig sind werden hier bearbeitet!
-			 R_IC={};
-			 for r=1:length(obj.D)
-				if~(any(arrayfun(@(x) strcmp(x.to_mdl,obj.D{r}.get_name()),obj.EIC)))
-				    R_IC={R_IC{:},obj.D{r}};
+			 %obj.R_IC={};
+			 if isempty(obj.R_IC)
+				for r=1:length(obj.D)
+				    if~(any(arrayfun(@(x) strcmp(x.to_mdl,obj.D{r}.get_name()),obj.EIC)))
+					   obj.R_IC={obj.R_IC{:},obj.D{r}};
+				    end
 				end
 			 end
 			 
@@ -308,14 +364,16 @@ classdef coordinator < handle
 			 %Komponenten die ein Event empfangen und in IC als
 			 %Empfaenger vorhanden sind
 			 for r=1:length(obj.receivers)
-				idx = find_mdl_in_D(R_IC, obj.receivers(r).name);
+				idx = find_mdl_in_D(obj.R_IC, obj.receivers(r).name);
 				if(~isempty(idx))
 				    if obj.debug_level == 1
-					   disp(['coordinator: ' obj.name ' send x-messages to child: ' R_IC{idx}.get_name ' value: ']);
+					   disp(['coordinator: ' obj.name ' send x-messages to child: ' obj.R_IC{idx}.get_name ' value: ']);
 					   disp(obj.receivers(r).x);
 				    end
-				    R_IC{idx}.xmessage(obj.receivers(r).x,t);
-				    otn = R_IC{idx}.tn;
+				    obj.R_IC{idx}.xmessage(obj.receivers(r).x,t);
+				    otn = obj.R_IC{idx}.tn;
+				    
+				    obj.update_eventlist(otn, t, obj.receivers(r).name);
 				    
 				    idx = find_mdl_in_D(obj.IMM, obj.receivers(r).name);
 				    if(~isempty(idx))
@@ -350,15 +408,16 @@ classdef coordinator < handle
 			 
 			 %Komponenten die in IMM sind und kein Event bekommen haben
 			 %und in IC als Empaenger vorhanden sind
-			 for d=1:length(R_IC)
-				idx = find_mdl_in_D(obj.IMM, R_IC{d}.get_name);
+			 for d=1:length(obj.R_IC)
+				idx = find_mdl_in_D(obj.IMM, obj.R_IC{d}.get_name);
 				if(~isempty(idx))
 				    if obj.debug_level == 1
 					   disp(['coordinator: ' obj.name ' send empty x-messages to child: ' obj.IMM{idx}.get_name]);
 				    end
 				    obj.IMM{idx}.xmessage([],t);
+				    otn = obj.IMM{idx}.tn;
+				    obj.update_eventlist(otn, t, obj.IMM{idx}.get_name);
 				    if obj.debug_level == 1
-					   otn = obj.IMM{idx}.tn;
 					   sequenceaddlink(sprintf("(d,%4.2f+%4.2f\\epsilon)",otn(1),otn(2)),obj.get_name);
 				    end
 				    obj.IMM{idx}={};
@@ -367,7 +426,7 @@ classdef coordinator < handle
 			 
 			 obj.mail = [];
 			 
-			 obj.create_eventlist();
+			 obj.sort_eventlist();
 			 obj.tl = t;
 			 obj.tn = [obj.eventlist(1,2),obj.eventlist(1,3)];
 			 
@@ -429,6 +488,9 @@ classdef coordinator < handle
 				    disp(obj.receivers(r).x);
 				end
 				obj.D{idx}.xmessage(obj.receivers(r).x,t);
+				
+				otn = obj.D{idx}.tn;
+				obj.update_eventlist(otn, t, obj.D{idx}.get_name());
 				if obj.debug_level == 1
 				    sequenceaddlink('done',obj.get_name);
 				end
@@ -455,6 +517,8 @@ classdef coordinator < handle
 				    disp(['coordinator: ' obj.name ' send empty x-messages to child: ' obj.IMM{d}.get_name]);
 				end
 				obj.IMM{d}.xmessage([],t);
+				otn = obj.IMM{d}.tn;
+				obj.update_eventlist(otn, t, obj.IMM{d}.get_name());
 				if obj.debug_level == 1
 				    sequenceaddlink('done',obj.get_name);
 				end
@@ -464,7 +528,7 @@ classdef coordinator < handle
 		  obj.mail = [];
 		  obj.IMM={};
 		  obj.receivers=[];
-		  obj.create_eventlist();
+		  obj.sort_eventlist();
 		  obj.tl = t;
 		  obj.tn = [obj.eventlist(1,2),obj.eventlist(1,3)];
 	   end
