@@ -1,39 +1,38 @@
-classdef smallestin3 < handle
+classdef smallestin4 < handle
 %% Description
-%  outputs index of smallest input value among 3 inputs
+%  outputs index of smallest input value among 4 inputs
 %% Ports
 %  inputs: 
-%    in1, in2, in3   incoming values
+%    in1, in2, in3 , in4  incoming values
 %  outputs: 
 %    out      index of smallest input
 %% States
 %  s: running
-%  n1,n2,n3: arrived values
+%  n1,n2,n3,n4: arrived values
 %% System Parameters
 %  name:  object name
-%  val0:  initial value of all inputs
 %  debug: flag to enable debug information
-%  tau:   infinitesimal delay
+%  tau:     infinitesimal delay
  
   properties
     s
     n1
     n2
     n3
+    n4
     name
-    val0
     debug
     tau
   end
   
   methods
-    function obj = smallestin3(name, val0, tau, debug)
+      function obj = smallestin4(name, tau, debug)
       obj.s = "running";
-      obj.n1 = val0;
-      obj.n2 = val0;
-      obj.n3 = val0;
+      obj.n1 = 0;
+      obj.n2 = 0;
+      obj.n3 = 0;
+      obj.n4 = 0;
       obj.name = name;
-      obj.val0 = val0;
       obj.debug = debug;
       obj.tau = tau;
     end
@@ -53,7 +52,10 @@ classdef smallestin3 < handle
       if isfield(x, "in3")
         obj.n3 = x.in3;
       end
-        
+      if isfield(x, "in4")
+        obj.n4 = x.in4;
+      end
+
       if obj.debug
         fprintf("%-8s leaving delta\n", obj.name)
         showState(obj)
@@ -61,7 +63,7 @@ classdef smallestin3 < handle
     end
     
     function y = lambda(obj,e,x)
-      vals = [obj.n1, obj.n2, obj.n3];
+      vals = [obj.n1, obj.n2, obj.n3, obj.n4];
       if isfield(x, "in1")
         vals(1) = x.in1;
       end
@@ -70,6 +72,9 @@ classdef smallestin3 < handle
       end
       if isfield(x, "in3")
         vals(3) = x.in3;
+      end
+      if isfield(x, "in4")
+        vals(4) = x.in4;
       end
       [~, y.out] = min(vals);
       
@@ -84,8 +89,8 @@ classdef smallestin3 < handle
  
     function showState(obj)
       % debug function, prints current state
-      fprintf("  phase=%s n1/2/3=%2d/%2d/%2d\n", ...
-        obj.s, obj.n1, obj.n2, obj.n3);
+      fprintf("  phase=%s n1/2/3/4=%2d/%2d/%2d/%2d\n", ...
+        obj.s, obj.n1, obj.n2, obj.n3, obj.n4);
     end  
 
   end

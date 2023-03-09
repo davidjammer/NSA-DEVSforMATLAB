@@ -6,7 +6,7 @@ function [out] = model1(tend)
     global mi
     mi = 0.000;
     simout = [];
-    DEBUGLEVEL = 0;
+    DEBUGLEVEL = 1;
     epsilon = 1e-6;
 
     if(nargin ~= 1)

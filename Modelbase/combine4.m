@@ -1,9 +1,9 @@
-classdef combine3 < handle
+classdef combine4 < handle
 %% Description
 %  combines entities from three inputs into one output
 %% Ports
 %  inputs: 
-%    in1, in2, in3   incoming entities
+%    in1, in2, in3, in4  incoming entities
 %  outputs: 
 %    out      outgoing entities
 %% States
@@ -11,7 +11,6 @@ classdef combine3 < handle
 %  q: vector of arrived entities
 %% System Parameters
 %  name:  object name
-%  tD:    delay time of the go state
 %  debug: flag to enable debug information
 %  tau:     infinitesimal delay
     
@@ -19,17 +18,15 @@ classdef combine3 < handle
     s
     q
     name
-    tD
     debug
     tau
   end
   
   methods
-    function obj = combine3(name, tau, tD, debug)
+    function obj = combine4(name, tau, debug)
       obj.s ="idle"; 
       obj.q = [];
       obj.name = name;
-      obj.tD = tD;
       obj.debug = debug;
       obj.tau = tau;
     end
@@ -48,6 +45,9 @@ classdef combine3 < handle
       end
       if isfield(x, "in3")
         obj.q = [obj.q, x.in3];
+      end
+      if isfield(x, "in4")
+        obj.q = [obj.q, x.in4];
       end
 
       switch obj.s
@@ -77,16 +77,6 @@ classdef combine3 < handle
       if ~isempty(obj.q)
         y.out = obj.q(1);
       end
-      
-      if obj.debug
-        fprintf("%-8s lambda, ", obj.name)
-        if isfield(y, "out")
-          fprintf("out=%2d\n", y.out)
-        else
-          fprintf("\n")
-        end
-      end
-      
     end
  
     function t = ta(obj)
@@ -94,7 +84,7 @@ classdef combine3 < handle
         case "idle"
           t = [inf, 0];
         case "go"
-          t = obj.tD;
+          t = obj.tau;
         otherwise
           fprintf("wrong phase %s in %s\n", obj.s, obj.name);
       end
