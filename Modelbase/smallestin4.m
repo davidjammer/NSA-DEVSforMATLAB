@@ -21,18 +21,20 @@ classdef smallestin4 < handle
     n3
     n4
     name
+    val0
     debug
     tau
   end
   
   methods
-      function obj = smallestin4(name, tau, debug)
+      function obj = smallestin4(name, val0, tau, debug)
       obj.s = "running";
-      obj.n1 = 0;
-      obj.n2 = 0;
-      obj.n3 = 0;
-      obj.n4 = 0;
+      obj.n1 = val0;
+      obj.n2 = val0;
+      obj.n3 = val0;
+      obj.n4 = val0;
       obj.name = name;
+      obj.val0 = val0;
       obj.debug = debug;
       obj.tau = tau;
     end
