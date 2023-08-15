@@ -22,7 +22,7 @@ nAdd2 = name + "/Add2";
 nQnOut = name + "/QnOut";
 nqnOut = name + "_qnOut";
 
-Queue = devs(queue(nQueue, 3*tau, debug));
+Queue = devs(queue(nQueue, tau, debug, 2*tau));
 Server = devs(server(nServer, tS, tau, debug));
 Add2 = devs(add2(nAdd2, tau, debug));
 QnOut = devs(toworkspace(nQnOut, nqnOut, 0, tauOut));

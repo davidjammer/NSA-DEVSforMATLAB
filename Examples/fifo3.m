@@ -10,7 +10,7 @@ DEBUGLEVEL = 0;           % simulator debug level
 epsilon = 1e-6;
 
 if(nargin ~= 1)
-   tend = 38;
+   tend = 25;
 end
 
 nG = 13;

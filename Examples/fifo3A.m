@@ -13,12 +13,12 @@ if(nargin ~= 1)
    tend = 25;
 end
 
-nG = 20;
+nG = 13;
 tG = 1;
 tS = 4.5;
 mdebug = false;
-rOut = 100;
-rDist = 4;
+rOut = 6;
+rDist = 3;
 
 N1 = coordinator("N1");
 

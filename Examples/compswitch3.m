@@ -93,7 +93,9 @@ function [out] = compswitch3(tend)
     title("Switch");
 
     sTitle = sprintf("Demo with rOut = %4.2f, mi = %4.2f", rOut, mi);
-    sgtitle(sTitle)
+    if(compare_release("R2018b"))
+        sgtitle(sTitle)
+    end
     
     out = simout;
 end
