@@ -11,8 +11,8 @@ classdef add4 < handle
 %  u1,u2,u3,u4: current input values
 %% System Parameters
 %  name:  object name
+%  tau:   input delay
 %  debug: flag to enable debug information
-%  tau:     infinitesimal delay
 
   properties
     s
@@ -31,8 +31,8 @@ classdef add4 < handle
       obj.u1 = 0;
       obj.u2 = 0;
       obj.u3 = 0;
-	 obj.u4 = 0;
-	 obj.name = name;
+      obj.u4 = 0;
+      obj.name = name;
       obj.debug = debug;
       obj.tau = tau;
     end

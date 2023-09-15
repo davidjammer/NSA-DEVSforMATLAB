@@ -9,12 +9,12 @@ classdef jkflipflop < handle
 %% States
 %  s: running
 %  j, k, clk: store inputs
-%  q: actual state of the flipflop
+%  q: current state of the flipflop
 %% System Parameters
-%  q0: initial state
 %  name:  object name
+%  q0:    initial state
 %  debug: model debug level
-%  tau:     infinitesimal delay
+%  tau:   input delay
   
   properties
     s

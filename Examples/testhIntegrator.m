@@ -20,7 +20,7 @@ function [out] = testhIntegrator(tend)
     N1 = coordinator("N1");
 
     Vectorgen1 = devs(vectorgen("Vectorgen1", tVec1, yVec1, [0, 1], mdebug));
-    hInt = devs(hIntegrator("hInt", [0, 1], mdebug, 0.01, 0.001));
+    hInt = devs(hIntegrator("hInt", 0.01, 0.001, 0.0, [0, 1], mdebug));
     Terminator1 = devs(terminator1("Terminator1", "tOut", 0, [0, rOut]));
     Gen1out = devs(toworkspace("Gen1out", "gen1Out", 0, [0, rOut]));
     hIntout = devs(toworkspace("hIntout", "hIntOut", 0, [0, rOut]));

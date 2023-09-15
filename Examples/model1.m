@@ -15,10 +15,10 @@ function [out] = model1(tend)
     
     N1 = coordinator('N1');
 
-    Generator = devs(generator('Generator',1.0,[0, 1]));
+    Generator = devs(generator('Generator',1.0,0,Inf,[0, 1],0));
     Pipe = devs(pipe('Pipe',[0, 2]));
     Terminator = devs(terminator('Terminator',[0, 3], 0));
-    ToWorkspace = devs(toworkspace('logpipe','pipe',0,[0, 100]));
+    ToWorkspace = devs(toworkspace('logpipe','pipe',0,"vector",[0, 100],0));
 
     N1.add_model(Generator);
     N1.add_model(Pipe);

@@ -19,7 +19,7 @@ rOut = 0.0;
 
 N1 = coordinator("N1");
 
-Generator = devs(generator1("Generator", tG, n0, nG, [0, 1], mdebug));
+Generator = devs(generator("Generator", tG, n0, nG, [0, 1], mdebug));
 Vectorgen = devs(vectorgen("Vectorgen", tVec, yVec, [0, 1], mdebug));
 Queue = devs(queue("Queue", [0, 1], mdebug));
 Terminator = devs(terminator("Terminator", [0, 1], mdebug));

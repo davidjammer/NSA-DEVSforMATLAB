@@ -57,10 +57,10 @@ function [out] = compswitch(tend, testcase)
     Outputswitch = devs(outputswitch("Outputswitch", 1, [0, rSwitch], mdebug));
     Terminator1 = devs(terminator("Terminator1", [0, 1], mdebug));
     Terminator2 = devs(terminator("Terminator2", [0, 1], mdebug));
-    VGenout = devs(toworkspace("VGenout", "vgenOut", 0, [0, rOut]));
-    Compout = devs(toworkspace("Compout", "compOut", 0, [0, rOut]));
-    Switchout1 = devs(toworkspace("Switchout1", "sw1Out", 0, [0, rOut]));
-    Switchout2 = devs(toworkspace("Switchout2", "sw2Out", 0, [0, rOut]));
+    VGenout = devs(toworkspace("VGenout", "vgenOut", 0,"vector", [0, rOut],0));
+    Compout = devs(toworkspace("Compout", "compOut", 0,"vector", [0, rOut],0));
+    Switchout1 = devs(toworkspace("Switchout1", "sw1Out", 0,"vector", [0, rOut],0));
+    Switchout2 = devs(toworkspace("Switchout2", "sw2Out", 0,"vector", [0, rOut],0));
 
     N1.add_model(Vectorgen);
     N1.add_model(Comparator);

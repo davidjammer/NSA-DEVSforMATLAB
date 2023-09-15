@@ -6,17 +6,17 @@ classdef bingenerator < handle
 %% Ports
 %  inputs: none
 %  outputs: 
-%    out      next binary value
+%    out      binary values
 %% States
 %  s          running
 %  z          internal state
 %  index      index of next time value
 %% System Parameters
-%  z0:    initial state
-%  tVec:  vector of output times 
 %  name:  object name
+%  z0:    initial state
+%  tVec:  vector of output times
 %  debug: flag to enable debug information
-%  tau:     infinitesimal delay
+%  tau:   input delay
 
   properties
     s

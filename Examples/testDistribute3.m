@@ -22,17 +22,17 @@ function [out] = testDistribute3(tend)
 
     N1 = coordinator("N1");
 
-    Generator1 = devs(generator1("Generator1", tG, 1, nG, [0, 1], mdebug));
+    Generator1 = devs(generator("Generator1", tG, 1, nG, [0, 1], mdebug));
     Vectorgen = devs(vectorgen("Vectorgen", tVec, yVec, [0, 1], mdebug));
     Distribute3 = devs(distribute3("Distribute3", 1, [0, 1], mdebug));
     Terminator1 = devs(terminator("Terminator1", [0, 1], mdebug));
     Terminator2 = devs(terminator("Terminator2", [0, 1], mdebug));
     Terminator3 = devs(terminator("Terminator3", [0, 1], mdebug));
-    Genout = devs(toworkspace("Genout", "genOut", 0, [0, rOut]));
-    VGenout = devs(toworkspace("VGenout", "vgenOut", 0, [0, rOut]));
-    Distout1 = devs(toworkspace("Distout1", "dist1Out", 0, [0, rOut]));
-    Distout2 = devs(toworkspace("Distout2", "dist2Out", 0, [0, rOut]));
-    Distout3 = devs(toworkspace("Distout3", "dist3Out", 0, [0, rOut]));
+    Genout = devs(toworkspace("Genout", "genOut", 0, "vector", [0, rOut], 0));
+    VGenout = devs(toworkspace("VGenout", "vgenOut", 0, "vector", [0, rOut], 0));
+    Distout1 = devs(toworkspace("Distout1", "dist1Out", 0, "vector", [0, rOut], 0));
+    Distout2 = devs(toworkspace("Distout2", "dist2Out", 0, "vector", [0, rOut], 0));
+    Distout3 = devs(toworkspace("Distout3", "dist3Out", 0, "vector", [0, rOut], 0));
 
     N1.add_model(Generator1);
     N1.add_model(Vectorgen);

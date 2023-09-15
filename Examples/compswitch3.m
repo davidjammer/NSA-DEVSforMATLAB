@@ -27,10 +27,10 @@ function [out] = compswitch3(tend)
     Gain = devs(gain("D", 1, [0, rD], mdebug));   % additional delay
     Terminator1 = devs(terminator("T1", [0, 1], mdebug));
     Terminator2 = devs(terminator("T2", [0, 1], mdebug));
-    VGenout = devs(toworkspace("VGenout", "vgenOut", 0, [0, rOut]));
-    Compout = devs(toworkspace("Compout", "compOut", 0, [0, rOut]));
-    Switchout1 = devs(toworkspace("Switchout1", "sw1Out", 0, [0, rOut]));
-    Switchout2 = devs(toworkspace("Switchout2", "sw2Out", 0, [0, rOut]));
+    VGenout = devs(toworkspace("VGenout", "vgenOut", 0,"vector", [0, rOut],0));
+    Compout = devs(toworkspace("Compout", "compOut", 0,"vector", [0, rOut],0));
+    Switchout1 = devs(toworkspace("Switchout1", "sw1Out", 0, "vector",[0, rOut],0));
+    Switchout2 = devs(toworkspace("Switchout2", "sw2Out",0,"vector",[0, rOut],0));
 
     N.add_model(Vectorgen);
     N.add_model(Comparator);
@@ -93,9 +93,7 @@ function [out] = compswitch3(tend)
     title("Switch");
 
     sTitle = sprintf("Demo with rOut = %4.2f, mi = %4.2f", rOut, mi);
-    if(compare_release("R2018b"))
-        sgtitle(sTitle)
-    end
+    sgtitle(sTitle)
     
     out = simout;
 end

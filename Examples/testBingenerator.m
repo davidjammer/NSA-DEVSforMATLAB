@@ -21,7 +21,7 @@ function [out] = testBingenerator(tend)
 
     Bingenerator = devs(bingenerator("Bingenerator", s0, tVec, [0,1], mdebug));
     Terminator = devs(terminator1("Terminator", "termOut", 0, [0,rOut]));
-    Binout = devs(toworkspace("Binout", "binOut", 0, [0,rOut]));
+    Binout = devs(toworkspace("Binout", "binOut", 0, "vector", [0,rOut], 0));
 
     N1.add_model(Bingenerator);
     N1.add_model(Terminator);

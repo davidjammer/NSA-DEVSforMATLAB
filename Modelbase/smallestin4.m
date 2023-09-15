@@ -11,8 +11,9 @@ classdef smallestin4 < handle
 %  n1,n2,n3,n4: arrived values
 %% System Parameters
 %  name:  object name
+%  val0:  initial output index
+%  tau:   input delay
 %  debug: flag to enable debug information
-%  tau:     infinitesimal delay
  
   properties
     s

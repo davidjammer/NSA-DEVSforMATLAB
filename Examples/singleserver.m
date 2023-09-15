@@ -53,14 +53,14 @@ function [out] = singleserver(tend, testcase)
     get_mi()
     N1 = coordinator("N1");
 
-    Generator = devs(generator1("Generator", tG, 1, nG, [0,1], mdebug));
-    Queue = devs(queue("Queue", [0,rQ], mdebug, [0,rD]));
+    Generator = devs(generator("Generator", tG, 1, nG, [0,1], mdebug));
+    Queue = devs(queue("Queue", [0,rD], [0,rQ], mdebug));
     Server = devs(server("Server", tS, [0,rS], mdebug));
     Terminator = devs(terminator("Terminator",[0,1], mdebug));
-    GenOut = devs(toworkspace("GenOut", "genOut", 0,[0,rOut]));
-    QueOut = devs(toworkspace("QueOut", "queOut", 0,[0,rOut]));
-    QueNOut = devs(toworkspace("QueNOut", "quenOut", 0,[0,rOut]));
-    SrvOut = devs(toworkspace("SrvOut", "srvOut", 0,[0,rOut]));
+    GenOut = devs(toworkspace("GenOut", "genOut", 0, "vector",[0,rOut],0));
+    QueOut = devs(toworkspace("QueOut", "queOut", 0, "vector",[0,rOut],0));
+    QueNOut = devs(toworkspace("QueNOut", "quenOut", 0, "vector",[0,rOut],0));
+    SrvOut = devs(toworkspace("SrvOut", "srvOut", 0, "vector",[0,rOut],0));
 
     N1.add_model(Generator);
     N1.add_model(Queue);
@@ -98,7 +98,7 @@ function [out] = singleserver(tend, testcase)
     stem(simout.queOut.t,simout.queOut.y);
     grid("on");
     xlim([0 tend]);
-    ylim([0, 20])
+    ylim([0, 10])
     ylabel("out");
     xlabel("t");
     title("Queue");
@@ -108,7 +108,7 @@ function [out] = singleserver(tend, testcase)
     %hold("on");plot(simout.quenOut.t,simout.quenOut.y, "*");hold("off");
     grid("on");
     xlim([0 tend]);
-    ylim([0, max(simout.quenOut.y)+1])
+    ylim([0, 4])
     ylabel("nq");
     xlabel("t");
     title("Queue");
@@ -117,7 +117,7 @@ function [out] = singleserver(tend, testcase)
     stem(simout.srvOut.t,simout.srvOut.y);
     grid("on");
     xlim([0 tend]);
-    ylim([0, 20])
+    ylim([0, 10])
     ylabel("out");
     xlabel("t");
     title("Server");

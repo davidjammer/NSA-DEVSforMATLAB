@@ -54,8 +54,8 @@ function [out] = singleserver1(tend, simulatorDebug, testcase)
     get_mi();
     N1 = coordinator("N1");
 
-    Generator = devs(generator1("Generator", tG, 1, nG, [0,1], mdebug));
-    Queue = devs(queue("Queue", [0,rQ], mdebug, [0,rD]));
+    Generator = devs(generator("Generator", tG, 1, nG, [0,1], mdebug));
+    Queue = devs(queue("Queue", [0,rD], [0,rQ], mdebug));
     Server = devs(server("Server", tS, [0,rS], mdebug));
     Terminator = devs(terminator("Terminator",[0,1], false));
 

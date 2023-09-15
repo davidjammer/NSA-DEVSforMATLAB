@@ -1,20 +1,20 @@
 function [N1] = queue_en(name, tau)
 %% Description
-%  
+%  queue with additionable enable input
 %% Ports
 %  inputs: 
-%  in
-%  enable
-%  bl
+%    in      incoming entities
+%    enable  enable = 0 -> output is generally blocked
+%    bl      blocking input: denotes "out = blocked"
 %  outputs: 
-%  out
-%  nq
+%    out     outgoing entities
+%    nq      number of entities in queue
 %%
 N1 = coordinator(name);
 
-Fifo1 = devs(queue("fifo",tau, 0, tau)); 
-or1 = devs(or_devs("or1",[0,1],0,0,0));
-not1 = devs(not_devs("not1",[0,1],0));
+Fifo1 = devs(queue("fifo",tau, tau, 0)); 
+or1 = devs(or_devs("or1", 0, 0, [0,1], 0));
+not1 = devs(not_devs("not1", [0,1], 0));
 
 N1.add_model(Fifo1);
 N1.add_model(or1);

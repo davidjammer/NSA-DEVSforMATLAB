@@ -17,7 +17,7 @@ rOut = 1.0;
 
 N1 = coordinator("N1");
 
-Generator1 = devs(generator1("Generator1", tG, 1, 100, [0, 1], mdebug));
+Generator1 = devs(generator("Generator1", tG, 1, 100, [0, 1], mdebug));
 Vectorgen = devs(vectorgen("Vectorgen", tVec, yVec, [0, 1], mdebug));
 Outputswitch = devs(outputswitch("Outputswitch", 1, [0, 1], mdebug));
 Terminator1 = devs(terminator("Terminator1", [0, 1], mdebug));

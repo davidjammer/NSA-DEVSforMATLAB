@@ -1,6 +1,6 @@
 classdef gain < handle
 %% Description
-%  multiplies its input with a parameter
+%  multiplies its input with a parameter value
 %% Ports
 %  inputs: 
 %    in       incoming value
@@ -9,10 +9,10 @@ classdef gain < handle
 %% States
 %  s:   running
 %% System Parameters
-%  g:     gain factor
 %  name:  object name
-%  debug: flag to enable debug information
+%  g:     gain factor
 %  tau:     infinitesimal delay
+%  debug: flag to enable debug information
     
   properties
     s

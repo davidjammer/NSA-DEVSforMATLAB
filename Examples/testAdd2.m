@@ -25,9 +25,9 @@ function [out] = testAdd2(tend)
     Vectorgen2 = devs(vectorgen("Vectorgen2", tVec2, yVec2, [0, 1], mdebug));
     Add2 = devs(add2("Add2", [0, 1], mdebug));
     Terminator1 = devs(terminator1("Terminator1", "tOut", 0, [0, rOut]));
-    Gen1out = devs(toworkspace("Gen1out", "gen1Out", 0, [0, rOut]));
-    Gen2out = devs(toworkspace("Gen2out", "gen2Out", 0, [0, rOut]));
-    Addout = devs(toworkspace("Addout", "addOut", 0, [0, rOut]));
+    Gen1out = devs(toworkspace("Gen1out", "gen1Out", 0, "vector", [0, rOut],0));
+    Gen2out = devs(toworkspace("Gen2out", "gen2Out", 0, "vector", [0, rOut],0));
+    Addout = devs(toworkspace("Addout", "addOut", 0, "vector", [0, rOut],0));
 
     N1.add_model(Vectorgen1);
     N1.add_model(Vectorgen2);

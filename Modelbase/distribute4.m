@@ -1,6 +1,6 @@
 classdef distribute4 < handle
 %% Description
-%  routes entities to one of three outputs according to port input
+%  routes entities to one of four outputs according to port input
 %% Ports
 %  inputs: 
 %    in        incoming entities
@@ -12,9 +12,9 @@ classdef distribute4 < handle
 %  nextPort: output port of new in values
 %% System Parameters
 %  name:  object name
-%  port0: initial port
+%  port0: initial output port
+%  tau:   input delay
 %  debug: flag to enable debug information
-%  r:     infinitesimal delay
 
   properties
     s

@@ -22,15 +22,15 @@ function [out]= testCombine3(tend)
 
     N1 = coordinator("N1");
 
-    Generator1 = devs(generator1("Generator1", tG1, 1, nG, [0, 1], mdebug));
-    Generator2 = devs(generator1("Generator2", tG2, 21, nG, [0, 1], mdebug));
-    Generator3 = devs(generator1("Generator3", tG3, 41, nG, [0, 1], mdebug));
+    Generator1 = devs(generator("Generator1", tG1, 1, nG, [0, 1], mdebug));
+    Generator2 = devs(generator("Generator2", tG2, 21, nG, [0, 1], mdebug));
+    Generator3 = devs(generator("Generator3", tG3, 41, nG, [0, 1], mdebug));
     Combine3 = devs(combine3("Combine3", [0, 10], [0, 10], true));
     Terminator1 = devs(terminator1("Terminator1", "tOut", 0, [0, rOut]));
-    Gen1out = devs(toworkspace("Gen1out", "gen1Out", 0, [0, rOut]));
-    Gen2out = devs(toworkspace("Gen2out", "gen2Out", 0, [0, rOut]));
-    Gen3out = devs(toworkspace("Gen3out", "gen3Out", 0, [0, rOut]));
-    Combout = devs(toworkspace("Combout", "combOut", 0, [0, rOut]));
+    Gen1out = devs(toworkspace("Gen1out", "gen1Out", 0, "vector", [0, rOut],0));
+    Gen2out = devs(toworkspace("Gen2out", "gen2Out", 0, "vector", [0, rOut],0));
+    Gen3out = devs(toworkspace("Gen3out", "gen3Out", 0, "vector", [0, rOut],0));
+    Combout = devs(toworkspace("Combout", "combOut", 0, "vector", [0, rOut],0));
 
     N1.add_model(Generator1);
     N1.add_model(Generator2);

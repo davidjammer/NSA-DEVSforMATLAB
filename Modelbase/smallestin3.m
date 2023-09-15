@@ -12,8 +12,8 @@ classdef smallestin3 < handle
 %% System Parameters
 %  name:  object name
 %  val0:  initial value of all inputs
+%  tau:   input delay
 %  debug: flag to enable debug information
-%  tau:   infinitesimal delay
  
   properties
     s

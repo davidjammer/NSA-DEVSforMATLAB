@@ -10,11 +10,11 @@ classdef vectorgen < handle
 %  s          running
 %  index      index of next value 
 %% System Parameters
-%  tVec: vector of output times 
-%  yVec: vector of output values 
+%  tVec:  vector of output times 
+%  yVec:  vector of output values 
 %  name:  object name
+%  tau:   input delay
 %  debug: flag to enable debug information
-%  tau:     infinitesimal delay
 
   properties
     s

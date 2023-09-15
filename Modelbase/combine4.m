@@ -1,6 +1,6 @@
 classdef combine4 < handle
 %% Description
-%  combines entities from three inputs into one output
+%  combines entities from four inputs into one output
 %% Ports
 %  inputs: 
 %    in1, in2, in3, in4  incoming entities
@@ -11,22 +11,25 @@ classdef combine4 < handle
 %  q: vector of arrived entities
 %% System Parameters
 %  name:  object name
+%  tD:    delay time of the go state
 %  debug: flag to enable debug information
-%  tau:     infinitesimal delay
+%  tau:   input delay
     
   properties
     s
     q
     name
+    tD
     debug
     tau
   end
   
   methods
-    function obj = combine4(name, tau, debug)
+    function obj = combine4(name, tD, tau, debug)
       obj.s ="idle"; 
       obj.q = [];
       obj.name = name;
+      obj.tD = tD;
       obj.debug = debug;
       obj.tau = tau;
     end
@@ -77,6 +80,15 @@ classdef combine4 < handle
       if ~isempty(obj.q)
         y.out = obj.q(1);
       end
+
+      if obj.debug
+        fprintf("%-8s lambda, ", obj.name)
+        if isfield(y, "out")
+          fprintf("out=%2d\n", y.out)
+        else
+          fprintf("\n")
+        end
+      end
     end
  
     function t = ta(obj)
@@ -84,7 +96,7 @@ classdef combine4 < handle
         case "idle"
           t = [inf, 0];
         case "go"
-          t = obj.tau;
+          t = obj.tD;
         otherwise
           fprintf("wrong phase %s in %s\n", obj.s, obj.name);
       end

@@ -17,15 +17,14 @@ function [out] = model4(tend)
     N2 = coordinator('N2');
     N3 = coordinator('N3');
 
-
-    Generator11 = devs(generator('Generator11',1.00,[0, 1]));
+    Generator11 = devs(generator('Generator11',1.0,0,Inf,[0, 1],0));
     Pipe21 = devs(pipe('Pipe21',[0, 2]));
     Pipe31 = devs(pipe('Pipe31',[0, 2]));
     Pipe22 = devs(pipe('Pipe22',[0, 2]));
     Terminator11 = devs(terminator('Terminator11',[0, 3], 0));
-    ToWorkspace21 = devs(toworkspace('logpipe21','pipe21',0,[0, 100]));
-    ToWorkspace31 = devs(toworkspace('logpipe31','pipe31',0,[0, 100]));
-    ToWorkspace22 = devs(toworkspace('logpipe22','pipe22',0,[0, 100]));
+    ToWorkspace21 = devs(toworkspace('logpipe21','pipe21',0,"vector",[0, 100],0));
+    ToWorkspace31 = devs(toworkspace('logpipe31','pipe31',0,"vector",[0, 100],0));
+    ToWorkspace22 = devs(toworkspace('logpipe22','pipe22',0,"vector",[0, 100],0));
 
     N1.add_model(Generator11);
     N1.add_model(Terminator11);

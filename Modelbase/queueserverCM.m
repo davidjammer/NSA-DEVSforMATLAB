@@ -20,12 +20,12 @@ nQueue = name + "/Queue";
 nServer = name + "/Server";
 nAdd2 = name + "/Add2";
 nQnOut = name + "/QnOut";
-nqnOut = name + "_qnOut";
+nqnOut = name + "_qnOut";     % struct field name mustn't contain "/"!
 
-Queue = devs(queue(nQueue, tau, debug, 2*tau));
+Queue = devs(queue(nQueue, 2*tau, tau, debug));
 Server = devs(server(nServer, tS, tau, debug));
 Add2 = devs(add2(nAdd2, tau, debug));
-QnOut = devs(toworkspace(nQnOut, nqnOut, 0, tauOut));
+QnOut = devs(toworkspace(nQnOut, nqnOut, 0, "vector", tauOut, 0));
 
 N = coordinator(name);
 N.add_model(Queue);

@@ -3,7 +3,7 @@ classdef outputswitch < handle
 %  routes input to one of two outputs according to sw input
 %% Ports
 %  inputs: 
-%    in        incoming value
+%    in        incoming entities
 %    sw        output selector
 %  outputs: 
 %    out1/2    outgoing entities
@@ -12,9 +12,9 @@ classdef outputswitch < handle
 %  nextPort: output port of new in values
 %% System Parameters
 %  name:  object name
-%  port0: initial port
+%  port0: initial output port
+%  tau:   input delay
 %  debug: flag to enable debug information
-%  tau:     infinitesimal delay
 
   properties
     s

@@ -12,7 +12,7 @@ classdef add3 < handle
 %% System Parameters
 %  name:  object name
 %  debug: flag to enable debug information
-%  tau:     infinitesimal delay
+%  tau:   input delay
 
   properties
     s

@@ -12,8 +12,8 @@ classdef combine3 < handle
 %% System Parameters
 %  name:  object name
 %  tD:    delay time of the go state
+%  tau:   input delay
 %  debug: flag to enable debug information
-%  tau:     infinitesimal delay
     
   properties
     s
@@ -25,7 +25,7 @@ classdef combine3 < handle
   end
   
   methods
-    function obj = combine3(name, tau, tD, debug)
+    function obj = combine3(name, tD, tau, debug)
       obj.s ="idle"; 
       obj.q = [];
       obj.name = name;
@@ -85,8 +85,7 @@ classdef combine3 < handle
         else
           fprintf("\n")
         end
-      end
-      
+      end      
     end
  
     function t = ta(obj)

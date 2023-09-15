@@ -1,8 +1,9 @@
-function testQueueServerCM()
+function out = testQueueServerCM
 global simout
 global epsilon
 global DEBUGLEVEL
 global mi
+
 mi = 0.0;
 simout = [];
 DEBUGLEVEL = 0;           % simulator debug level
@@ -18,12 +19,12 @@ rOut = 3.0;
 N1 = coordinator("N1");
 N2 = queueserverCM("N2", tS, [0, 1], [0, rOut], mdebug);
 
-Generator = devs(generator1("Generator", tG, 1, nG, [0, 1], mdebug));
+Generator = devs(generator("Generator", tG, 1, nG, [0, 1], mdebug));
 Terminator1 = devs(terminator("Terminator1", [0, 1], mdebug));
 Terminator2 = devs(terminator("Terminator2", [0, 1], mdebug));
-Genout = devs(toworkspace("Genout", "genOut", 0, [0, rOut]));
-Qsout = devs(toworkspace("Qsout", "qsOut", 0, [0, rOut]));
-QsNout = devs(toworkspace("QsNout", "qsNOut", 0, [0, rOut]));
+Genout = devs(toworkspace("Genout", "genOut", 0, "vector", [0, rOut], 0));
+Qsout = devs(toworkspace("Qsout", "qsOut", 0, "vector", [0, rOut], 0));
+QsNout = devs(toworkspace("QsNout", "qsNOut", 0, "vector", [0, rOut], 0));
 
 N1.add_model(Generator);
 N1.add_model(N2);
@@ -40,7 +41,7 @@ N1.add_coupling("Generator","out","Genout","in");
 N1.add_coupling("N2","out","Qsout","in");
 N1.add_coupling("N2","n","QsNout","in");
 
-root = rootcoordinator("root",0,tEnd,N1,0);
+root = rootcoordinator("root",0,tEnd,N1,0,mdebug);
 root.sim();
 
 figure("name", "testQueueServerCM", "NumberTitle", "off", ...
@@ -67,3 +68,5 @@ xlim([0, tEnd])
 ylim([0, 3.2])
 ylabel("n");
 title("Queue-Server Load");
+
+out = simout;

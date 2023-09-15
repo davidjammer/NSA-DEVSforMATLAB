@@ -17,8 +17,8 @@ function [out] = model5(tend)
     N2 = coordinator('N2');
     N3 = coordinator('N3');
 
-    Generator11 = devs(generator('Generator11',1.00,[0, 1]));
-    Generator12 = devs(generator('Generator12',1.00,[0, 1]));
+    Generator11 = devs(generator('Generator11',1.0,0,Inf,[0, 1],0));
+    Generator12 = devs(generator('Generator12',1.0,0,Inf,[0, 1],0));
     Pipe21 = devs(pipe('Pipe21',[0, 2]));
     Pipe22 = devs(pipe('Pipe22',[0, 2]));
     Pipe23 = devs(pipe('Pipe23',[0, 2]));
@@ -27,12 +27,12 @@ function [out] = model5(tend)
     Pipe32 = devs(pipe('Pipe32',[0, 2]));
     Terminator11 = devs(terminator('Terminator11',[0, 3], 0));
     Terminator12 = devs(terminator('Terminator12',[0, 3], 0));
-    ToWorkspace21 = devs(toworkspace('logpipe21','pipe21',0,[0, 100]));
-    ToWorkspace22 = devs(toworkspace('logpipe22','pipe22',0,[0, 100]));
-    ToWorkspace23 = devs(toworkspace('logpipe23','pipe23',0,[0, 100]));
-    ToWorkspace24 = devs(toworkspace('logpipe24','pipe24',0,[0, 100]));
-    ToWorkspace31 = devs(toworkspace('logpipe31','pipe31',0,[0, 100]));
-    ToWorkspace32 = devs(toworkspace('logpipe32','pipe32',0,[0, 100]));
+    ToWorkspace21 = devs(toworkspace('logpipe21','pipe21',0,"vector",[0, 100],0));
+    ToWorkspace22 = devs(toworkspace('logpipe22','pipe22',0,"vector",[0, 100],0));
+    ToWorkspace23 = devs(toworkspace('logpipe23','pipe23',0,"vector",[0, 100],0));
+    ToWorkspace24 = devs(toworkspace('logpipe24','pipe24',0,"vector",[0, 100],0));
+    ToWorkspace31 = devs(toworkspace('logpipe31','pipe31',0,"vector",[0, 100],0));
+    ToWorkspace32 = devs(toworkspace('logpipe32','pipe32',0,"vector",[0, 100],0));
 
     N1.add_model(Generator11);
     N1.add_model(Generator12);

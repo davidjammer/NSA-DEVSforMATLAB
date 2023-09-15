@@ -15,10 +15,9 @@ classdef server < handle
 %% System Parameters
 %  name:  object name
 %  tS:    service time
-%  tau:   infinitesimal delay
+%  tau:   input delay
 %  debug: model debug level
-%  epsilon: assumed accuracy of time values
-%
+
   properties
     s
     E

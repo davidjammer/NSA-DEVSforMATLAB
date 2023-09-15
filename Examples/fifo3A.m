@@ -22,7 +22,7 @@ rDist = 3;
 
 N1 = coordinator("N1");
 
-Generator = devs(generator1("Generator", tG, 1, nG, [0, 1], mdebug));
+Generator = devs(generator("Generator", tG, 1, nG, [0, 1], mdebug));
 Distribute3 = devs(distribute3("Distribute3", 1, [0, rDist], mdebug));
 NQ1 = queueserverCM("NQ1", tS, [0, 1], [0, rOut], mdebug);
 NQ2 = queueserverCM("NQ2", tS, [0, 1], [0, rOut], mdebug);
@@ -30,10 +30,10 @@ NQ3 = queueserverCM("NQ3", tS, [0, 1], [0, rOut], mdebug);
 Combine3 = devs(combine3("Combine3", [0, 1], [0, 1], mdebug));
 Smallestin = devs(smallestin3("Smallestin", 0, [0, 1], mdebug));
 Terminator = devs(terminator("Terminator", [0, 1], mdebug));
-QsNout1 = devs(toworkspace("QsNout1", "qsNOut1", 0, [0, rOut]));
-QsNout2 = devs(toworkspace("QsNout2", "qsNOut2", 0, [0, rOut]));
-QsNout3 = devs(toworkspace("QsNout3", "qsNOut3", 0, [0, rOut]));
-Combout = devs(toworkspace("Combout", "combOut", 0, [0, rOut]));
+QsNout1 = devs(toworkspace("QsNout1", "qsNOut1", 0, "vector", [0, rOut],0));
+QsNout2 = devs(toworkspace("QsNout2", "qsNOut2", 0, "vector", [0, rOut],0));
+QsNout3 = devs(toworkspace("QsNout3", "qsNOut3", 0, "vector", [0, rOut],0));
+Combout = devs(toworkspace("Combout", "combOut", 0, "vector", [0, rOut],0));
 
 N1.add_model(Generator);
 N1.add_model(Distribute3);
@@ -109,7 +109,7 @@ subplot(2,2,4)
 stairs(t, yS);
 grid("on");
 xlim([0, tend])
-ylim([0, 6.2])
+ylim([0, 4.2])
 ylabel("n");
 title("total queue length");
 

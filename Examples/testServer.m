@@ -28,7 +28,7 @@ rOut = 3.0;
 
 N1 = coordinator("N1");
 
-Generator = devs(generator1("Generator", tG, 1, 5, [0, 1], mdebug));
+Generator = devs(generator("Generator", tG, 1, 5, [0, 1], mdebug));
 Server = devs(server("Server", tS, [0, 1], mdebug));
 Terminator = devs(terminator("Terminator", [0, 1], mdebug));
 GenOut = devs(toworkspace("GenOut", "genOut", 0, [0, rOut]));

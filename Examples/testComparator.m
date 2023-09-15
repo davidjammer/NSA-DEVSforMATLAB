@@ -23,8 +23,8 @@ function [out] = testComparator(tend)
     Vectorgen = devs(vectorgen("Vectorgen", tVec, yVec, [0, 1], mdebug));
     Comparator = devs(comparator("Comparator", [0, 1], mdebug));
     Terminator1 = devs(terminator1("Terminator1", "tOut", 0, [0, rOut]));
-    Genout = devs(toworkspace("Genout", "genOut", 0, [0, rOut]));
-    Compout = devs(toworkspace("Compout", "compOut", 0, [0, rOut]));
+    Genout = devs(toworkspace("Genout", "genOut", 0, "vector", [0, rOut],0));
+    Compout = devs(toworkspace("Compout", "compOut", 0, "vector", [0, rOut],0));
 
     N1.add_model(Vectorgen);
     N1.add_model(Comparator);

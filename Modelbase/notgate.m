@@ -10,8 +10,8 @@ classdef notgate < handle
 %  s: running
 %% System Parameters
 %  name:  object name
+%  tau:   input delay
 %  debug: flag to enable debug information
-%  tau:     infinitesimal delay
 
   properties
     s
