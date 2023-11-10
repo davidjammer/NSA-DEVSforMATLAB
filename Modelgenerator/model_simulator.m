@@ -5,6 +5,7 @@ function out = model_simulator(model, tEnd, clearFlag, displayFlag)
 %   model       name of model to run
 %   tEnd        end time of simulation
 %   clearFlag   true (default) -> out directory is removed
+%   displayFlag true -> show timestamps
 
 if nargin == 2
   clearFlag = true;
@@ -12,6 +13,7 @@ if nargin == 2
 end
 
 global simout
+
 simout = [];     % delete values from previous runs
 
 addpath(model);

@@ -78,7 +78,8 @@ classdef distribute3 < handle
       end
       
       if obj.debug
-        if isfield(x, "in")
+       showInput(obj, x)
+       if isfield(x, "in")
           fprintf("%-8s lambda, out=%2d at port %d\n", obj.name, x.in, port)
         end
       end
@@ -91,6 +92,18 @@ classdef distribute3 < handle
     function showState(obj)
       % debug function, prints current state
       fprintf("  phase=%s nextPort=%2d\n", obj.s, obj.nextPort);
+    end  
+
+    function showInput(obj, x)
+      % debug function, prints current input
+      fprintf("%-8s lambda, x: ", obj.name)
+      if isfield(x, "in")
+        fprintf(" in=%f", x.in);
+      end
+      if isfield(x, "port")
+        fprintf(" port=%2d", x.port);
+      end
+      fprintf("\n")
     end  
 
   end

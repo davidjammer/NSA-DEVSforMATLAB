@@ -66,6 +66,12 @@ classdef toworkspace < handle
           end
         end
       end
+
+      if obj.debug
+       if isfield(x, "in")
+          fprintf("%-8s delta, in=%f\n", obj.name, x.in)
+        end
+      end
     end
 
     function y=lambda(obj,e,x)

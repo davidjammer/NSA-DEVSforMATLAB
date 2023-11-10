@@ -121,7 +121,7 @@ classdef devs < handle
                    tb=[tb,0];
                end
                
-               if (tb(1)==0 & tb(2)==0)
+               if (tb(1)==0 && tb(2)==0)
                   tb = [0,obj.r];
                end
                if (tb(1) == 0)

@@ -27,9 +27,9 @@ Nand2 = nand4CM(nnand2, tau, debug);
 Nand3 = devs(nand2(nnand3, tau, debug));
 Nand4 = devs(nand2(nnand4, tau + [0, 1], debug));
 
-Not1 = notCM(nnot1,tau,debug);
-Not2 = notCM(nnot2,tau,debug);
-Not3 = notCM(nnot3,tau,debug);
+Not1 = notgate(nnot1,tau,debug);
+Not2 = notgate(nnot2,tau,debug);
+Not3 = notgate(nnot3,tau,debug);
 
 N = coordinator(name);
 N.add_model(Nand1);

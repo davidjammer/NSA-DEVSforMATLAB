@@ -6,7 +6,7 @@ function [out] = testFromworkspace(tend,in)
   global mi
   mi = 0.000;
   simout = [];
-  DEBUGLEVEL = 1;
+  DEBUGLEVEL = 0;
   epsilon = 1e-6;
 
   if nargin ~= 2
