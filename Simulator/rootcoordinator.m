@@ -46,6 +46,7 @@ classdef rootcoordinator
 		    simt = t(1);
             if obj.display == 1
                 disp(['t: ' num2str(simt)]);
+                disp(['t: ' num2str(t(1)) ' + ' num2str(t(2)) 'E']);
             end
             while (t(1) <= obj.tend(1))
                 obj.mdl.smessage(t);
@@ -61,6 +62,7 @@ classdef rootcoordinator
                 if obj.display == 1
                     simt = t(1);
                     disp(['t: ' num2str(simt)]);
+                    disp(['t: ' num2str(t(1)) ' + ' num2str(t(2)) 'E']);
                 end
                 if(obj.stepwise)
                     pause();
