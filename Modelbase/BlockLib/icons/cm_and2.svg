@@ -1,0 +1,18 @@
+<?xml-stylesheet href="defaultstyles.css" type="text/css"?>
+<svg xmlns="http://www.w3.org/2000/svg" xmlns:d="http://www.mathworks.com/blockgraphics" xmlns:xlink="http://www.w3.org/1999/xlink" version="1.1" id="svg_3" width="390" height="372" d:options="PreserveAspect:On;ScalingOnResizeMax:2.0;Rotate:Off;Resize:FitToBlock">
+	<defs>
+		<style>
+			.font-size-default {
+				font-size:60px;}
+					</style>
+	</defs>
+	<g id="layer_4" title="layer_0">
+		<rect id="rect_19" class="rect" x="120" y="36" width="150" height="300" rx="0" ry="0"/>
+		<line id="line_37" class="line" x1="0" y1="96" x2="120" y2="96"/>
+		<line id="line_55" class="line" x1="0" y1="276" x2="120" y2="276"/>
+		<line id="line_71" class="line" x1="390" y1="186" x2="270" y2="186"/>
+		<text id="text_72" class="text font-size-default" x="174.98" y="36">
+			<tspan dx="0" dy="54" x="174.98">&amp;</tspan>
+		</text>
+	</g>
+</svg>

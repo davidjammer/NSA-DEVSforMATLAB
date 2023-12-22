@@ -41,7 +41,7 @@ classdef triggeredserver < handle
           obj.s = "working";
         end
       else
-        if ~isempty(x) && isfield(x, "leaving") && x.leaving == 1
+        if ~isempty(x) && isfield(x, "leaving") && x.leaving == "1"
           obj.s = "idle";
           obj.E = [];
         end
@@ -53,13 +53,13 @@ classdef triggeredserver < handle
       y = [];
       if obj.s == "idle"
         if ~isempty(x) && isfield(x, "in")
-          y.entered = 1;
-          y.working = 1;
+          y.entered = "1";
+          y.working = "1";
         end
       else
-        if ~isempty(x) && isfield(x, "leaving") && x.leaving == 1
+        if ~isempty(x) && isfield(x, "leaving") && x.leaving == "1"
           y.out = obj.E;
-          y.working = 0;
+          y.working = "0";
         end
       end
 

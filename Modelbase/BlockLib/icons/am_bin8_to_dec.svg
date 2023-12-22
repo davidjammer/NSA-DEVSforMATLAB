@@ -1,0 +1,26 @@
+<?xml-stylesheet href="defaultstyles.css" type="text/css"?>
+<svg xmlns="http://www.w3.org/2000/svg" xmlns:d="http://www.mathworks.com/blockgraphics" xmlns:xlink="http://www.w3.org/1999/xlink" version="1.1" id="svg_3" width="390" height="348" d:options="PreserveAspect:On;ScalingOnResizeMax:2.0;Rotate:Off;Resize:FitToBlock">
+	<defs>
+		<style>
+			.font-size-default {
+				font-size:60px;}
+					</style>
+	</defs>
+	<g id="layer_4" title="layer_0">
+		<rect id="rect_24" class="rect" x="45" y="99" width="300" height="150" rx="0" ry="0"/>
+		<text id="text_25" class="text font-size-default" x="48.87" y="140.5">
+			<tspan dx="0" dy="54" x="48.87">CONVERT</tspan>
+		</text>
+		<line id="line_41" class="line" x1="32" y1="174" x2="45" y2="174"/>
+		<line id="line_51" class="line" x1="390" y1="174" x2="345" y2="174"/>
+		<line id="line_91" class="line" x1="32" y1="38.67" x2="32" y2="309.33"/>
+		<line id="line_99" class="line" x1="0" y1="309.33" x2="32" y2="309.33"/>
+		<line id="line_111" class="line" x1="0" y1="270.67" x2="32" y2="270.67"/>
+		<line id="line_123" class="line" x1="0" y1="232" x2="32" y2="232"/>
+		<line id="line_130" class="line" x1="0" y1="193.33" x2="32" y2="193.33"/>
+		<line id="line_141" class="line" x1="0" y1="154.67" x2="32" y2="154.67"/>
+		<line id="line_152" class="line" x1="0" y1="116" x2="32" y2="116"/>
+		<line id="line_161" class="line" x1="0" y1="77.33" x2="32" y2="77.33"/>
+		<line id="line_170" class="line" x1="0" y1="38.67" x2="32" y2="38.67"/>
+	</g>
+</svg>

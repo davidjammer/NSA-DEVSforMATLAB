@@ -4,12 +4,13 @@ function runTestTurningMachine()
   %   model_simulator(model, tEnd, false)
 
   model = "testTurningMachine";
- 
+  addpath("atomics");
   tEnd = 15000;
 
   model_generator(model);
   out = model_simulator(model, tEnd);
   plotResults(out, tEnd)
+  rmpath("atomics");
 end
 
 %---------------------------------------------------------------------------

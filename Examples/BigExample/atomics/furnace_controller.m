@@ -46,12 +46,12 @@ classdef furnace_controller < handle
     function delta(obj,e,x)
 
       if obj.s == "load"
-        if ~isempty(x) && isfield(x, "entered") && x.entered == 1
+        if ~isempty(x) && isfield(x, "entered") && x.entered == "1"
           obj.s = "heatup";
           obj.sigma = inf;
         end
       elseif obj.s == "heatup"
-        if ~isempty(x) && isfield(x, "heatupready") && x.heatupready == 1
+        if ~isempty(x) && isfield(x, "heatupready") && x.heatupready == "1"
           obj.s = "hold";
           obj.sigma = obj.holding_time;
         end
@@ -82,12 +82,12 @@ classdef furnace_controller < handle
       y = [];
 
       if obj.s == "load"
-        if ~isempty(x) && isfield(x, "entered") && x.entered == 1
+        if ~isempty(x) && isfield(x, "entered") && x.entered == "1"
           y.phase = "heatup";
           y.Tset = obj.Tsoll;
         end
       elseif obj.s == "heatup"
-        if ~isempty(x) && isfield(x, "heatupready") && x.heatupready == 1
+        if ~isempty(x) && isfield(x, "heatupready") && x.heatupready == "1"
           y.phase = "hold";
         end
       elseif obj.s == "hold"
@@ -97,7 +97,7 @@ classdef furnace_controller < handle
       elseif obj.s == "unload"
         if obj.sigma == e(1)
           y.phase = "load";
-          y.leaving = 1;
+          y.leaving = "1";
         end
       end
 

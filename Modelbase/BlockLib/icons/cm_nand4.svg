@@ -1,0 +1,21 @@
+<?xml-stylesheet href="defaultstyles.css" type="text/css"?>
+<svg xmlns="http://www.w3.org/2000/svg" xmlns:d="http://www.mathworks.com/blockgraphics" xmlns:xlink="http://www.w3.org/1999/xlink" version="1.1" id="svg_3" width="390" height="378" d:options="PreserveAspect:On;ScalingOnResizeMax:2.0;Rotate:Off;Resize:FitToBlock">
+	<defs>
+		<style>
+			.font-size-default {
+				font-size:60px;}
+					</style>
+	</defs>
+	<g id="layer_4" title="layer_0">
+		<rect id="rect_20" class="rect" x="120" y="39" width="150" height="300" rx="0" ry="0"/>
+		<line id="line_34" class="line" x1="0" y1="54" x2="120" y2="54"/>
+		<line id="line_51" class="line" x1="0" y1="144" x2="120" y2="144"/>
+		<line id="line_66" class="line" x1="0" y1="234" x2="120" y2="234"/>
+		<line id="line_99" class="line" x1="0" y1="324" x2="120" y2="324"/>
+		<ellipse id="ellipse_104" class="ellipse" cx="280" cy="204" rx="10" ry="10"/>
+		<line id="line_121" class="line" x1="390" y1="204" x2="290" y2="204"/>
+		<text id="text_122" class="text font-size-default" x="174.98" y="39">
+			<tspan dx="0" dy="54" x="174.98">&amp;</tspan>
+		</text>
+	</g>
+</svg>

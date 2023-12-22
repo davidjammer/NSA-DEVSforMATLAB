@@ -1,0 +1,11 @@
+<?xml-stylesheet href="defaultstyles.css" type="text/css"?>
+<svg xmlns="http://www.w3.org/2000/svg" xmlns:d="http://www.mathworks.com/blockgraphics" xmlns:xlink="http://www.w3.org/1999/xlink" version="1.1" id="svg_3" width="390" height="384" d:options="PreserveAspect:On;ScalingOnResizeMax:2.0;Rotate:Off;Resize:FitToBlock">
+	<g id="layer_4" title="layer_0">
+		<rect id="rect_19" class="rect" x="120" y="42" width="150" height="300" rx="0" ry="0"/>
+		<line id="line_36" class="line" x1="0" y1="102" x2="120" y2="102"/>
+		<line id="line_51" class="line" x1="0" y1="282" x2="120" y2="282"/>
+		<line id="line_69" class="line" x1="390" y1="192" x2="270" y2="192"/>
+		<math id="equation_70" class="equation" height="72" width="99.77" x="145.12" y="42" style="font-size:60px; scalingFactors:1">
+			$\geq1$		</math>
+	</g>
+</svg>

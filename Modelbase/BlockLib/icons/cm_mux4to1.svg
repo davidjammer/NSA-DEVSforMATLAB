@@ -1,0 +1,44 @@
+<?xml-stylesheet href="defaultstyles.css" type="text/css"?>
+<svg xmlns="http://www.w3.org/2000/svg" xmlns:d="http://www.mathworks.com/blockgraphics" xmlns:xlink="http://www.w3.org/1999/xlink" version="1.1" id="svg_3" width="384" height="366" d:options="PreserveAspect:On;ScalingOnResizeMax:2.0;Rotate:Off;Resize:FitToBlock">
+	<defs>
+		<style>
+			.font-size-default {
+				font-size:60px;}
+					</style>
+	</defs>
+	<g id="layer_4" title="layer_0">
+		<line id="line_35" class="line" x1="63" y1="25" x2="63" y2="341"/>
+		<line id="line_55" class="line" x1="176" y1="79" x2="176" y2="287"/>
+		<line id="line_74" class="line" x1="63" y1="341" x2="176" y2="287"/>
+		<line id="line_95" class="line" x1="63" y1="25" x2="176" y2="79"/>
+		<line id="line_109" class="line" x1="0" y1="54" x2="63" y2="54"/>
+		<line id="line_124" class="line" x1="0" y1="144" x2="63" y2="144"/>
+		<line id="line_141" class="line" x1="-5" y1="234" x2="63" y2="234"/>
+		<line id="line_156" class="line" x1="0" y1="324" x2="63" y2="324"/>
+		<line id="line_178" class="line" x1="384" y1="174" x2="176" y2="174"/>
+		<line id="line_194" class="line" x1="90" y1="366" x2="90" y2="324"/>
+		<line id="line_210" class="line" x1="270" y1="366" x2="270" y2="314"/>
+		<line id="line_225" class="line" x1="270" y1="314" x2="119.5" y2="314"/>
+		<text id="text_226" class="text font-size-default" x="11.48" y="-3">
+			<tspan dx="0" dy="54" x="11.48">A</tspan>
+		</text>
+		<text id="text_227" class="text font-size-default" x="11.48" y="83.5">
+			<tspan dx="0" dy="54" x="11.48">B</tspan>
+		</text>
+		<text id="text_228" class="text font-size-default" x="7.33" y="176.5">
+			<tspan dx="0" dy="54" x="7.33">C</tspan>
+		</text>
+		<text id="text_229" class="text font-size-default" x="9.83" y="264.5">
+			<tspan dx="0" dy="54" x="9.83">D</tspan>
+		</text>
+		<text id="text_230" class="text font-size-default" x="94" y="306.5">
+			<tspan dx="0" dy="54" x="94">a</tspan>
+		</text>
+		<text id="text_231" class="text font-size-default" x="280" y="306.5">
+			<tspan dx="0" dy="54" x="280">b</tspan>
+		</text>
+		<text id="text_232" class="text font-size-default" x="303" y="101">
+			<tspan dx="0" dy="54" x="303">Q</tspan>
+		</text>
+	</g>
+</svg>

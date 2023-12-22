@@ -12,6 +12,7 @@ function runTestFurnace(type, set)
   end
 
   model = "testFurnace";
+  addpath("atomics");
 
   if type == "HF"
     params.tNew = 500;
@@ -98,7 +99,7 @@ function runTestFurnace(type, set)
   tEnd = 1.5*tEnd;   % should be ready then
 
   load_system(model);
-  set_param("testFurnace/enabledgenerator", "tG", string(params.tNew), ...
+  set_param("testFurnace/am_enabledgenerator", "tG", string(params.tNew), ...
              "nG", string(params.nIn))
   hBlock = getSimulinkBlockHandle("testFurnace/furnace", true);
   set_param(hBlock, "PH", string(params.PH))
@@ -116,14 +117,15 @@ function runTestFurnace(type, set)
 
   out = model_simulator(model, tEnd);
   plotResults(out, tEnd)
+  rmpath("atomics");
 end
 
 %---------------------------------------------------------------------------
 function plotResults(out, tEnd)
   figure("name", "Count")
-  stairs(out.FIFO_n.t, out.FIFO_n.y)
+  stem(out.FIFO_n.t, out.FIFO_n.y)
   hold("on")
-  stairs(out.Term_n.t, [out.Term_n.y])
+  stem(out.Term_n.t, [out.Term_n.y])
   hold("off")
   xlim([0 tEnd]);
   title("entities");

@@ -14,10 +14,11 @@ function runProductionLine(nr)
     case 2
       tEnd = 6*86400;
   end
-
+  addpath("atomics");
   model_generator(model);
   out = model_simulator(model, tEnd);
   plotResults(out, tEnd, model)
+  rmpath("atomics");
 end
 
 %---------------------------------------------------------------------------

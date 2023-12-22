@@ -4,13 +4,13 @@ function runTestGrinding()
   %   model_simulator(model, tEnd, false)
 
   model = "testGrinding";
- 
+  addpath("atomics");
   tEnd = 20000;
 
   model_generator(model);
   out = model_simulator(model, tEnd);
   plotResults(out, tEnd, model)
-  
+  rmpath("atomics");
 end
 
 %---------------------------------------------------------------------------

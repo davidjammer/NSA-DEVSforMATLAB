@@ -1,0 +1,10 @@
+<?xml-stylesheet href="defaultstyles.css" type="text/css"?>
+<svg xmlns="http://www.w3.org/2000/svg" xmlns:d="http://www.mathworks.com/blockgraphics" xmlns:xlink="http://www.w3.org/1999/xlink" version="1.1" id="svg_3" width="390" height="372" d:options="PreserveAspect:On;ScalingOnResizeMax:2.0;Rotate:Off;Resize:FitToBlock">
+	<g id="layer_4" title="layer_0">
+		<rect id="rect_19" class="rect" x="120" y="36" width="150" height="300" rx="0" ry="0"/>
+		<line id="line_46" class="line" x1="390" y1="186" x2="270" y2="186"/>
+		<ellipse id="ellipse_51" class="ellipse" cx="110" cy="186" rx="10" ry="10"/>
+		<line id="line_66" class="line" x1="0" y1="186" x2="100" y2="186"/>
+		<path id="Triangle" class="path" style="fill:#ffffff;" transform="matrix(0,1,-1,0,326,46)" d=" M 140,166 L 160,206 L 120,206 L 140,166 Z"/>
+	</g>
+</svg>

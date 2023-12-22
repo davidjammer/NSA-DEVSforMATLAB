@@ -1,0 +1,11 @@
+<?xml-stylesheet href="defaultstyles.css" type="text/css"?>
+<svg xmlns="http://www.w3.org/2000/svg" xmlns:d="http://www.mathworks.com/blockgraphics" xmlns:xlink="http://www.w3.org/1999/xlink" version="1.1" id="svg_3" width="400" height="400">
+	<g id="layer_4" title="layer_0">
+		<rect id="rect_24" class="rect" x="125" y="50" width="150" height="300" rx="0" ry="0"/>
+		<line id="line_37" class="line" x1="0" y1="100" x2="125" y2="100"/>
+		<line id="line_57" class="line" x1="0" y1="300" x2="125" y2="300"/>
+		<line id="line_77" class="line" x1="400" y1="200" x2="275" y2="200"/>
+		<math id="equation_78" class="equation" height="72" width="99.77" x="150.12" y="50" style="font-size:60px; scalingFactors:1">
+			$\geq1$		</math>
+	</g>
+</svg>

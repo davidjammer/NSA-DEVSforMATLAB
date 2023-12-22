@@ -58,7 +58,12 @@ classdef rootcoordinator
                 if obj.display == 1
                     disp('-------------------------------------------------------------------------------');
                 end
-                t=obj.mdl.get_tn();
+                if ~check_tn(obj.mdl.get_tn(), t)
+                    disp("error: tn < t");
+                    pause;
+                else
+                    t=obj.mdl.get_tn();
+                end
                 if obj.display == 1
                     simt = t(1);
                     disp(['t: ' num2str(simt)]);

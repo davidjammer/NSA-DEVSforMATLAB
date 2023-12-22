@@ -6,10 +6,12 @@ function runTestTurning()
   model = "testTurning";
  
   tEnd = 15000;
+  addpath("atomics");
 
   model_generator(model);
   out = model_simulator(model, tEnd);
   plotResults(out, tEnd, model)
+  rmpath("atomics");
 end
 
 %---------------------------------------------------------------------------

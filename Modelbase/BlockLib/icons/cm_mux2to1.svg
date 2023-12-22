@@ -1,0 +1,31 @@
+<?xml-stylesheet href="defaultstyles.css" type="text/css"?>
+<svg xmlns="http://www.w3.org/2000/svg" xmlns:d="http://www.mathworks.com/blockgraphics" xmlns:xlink="http://www.w3.org/1999/xlink" version="1.1" id="svg_3" width="396" height="384" d:options="PreserveAspect:On;ScalingOnResizeMax:2.0;Rotate:Off;Resize:FitToBlock">
+	<defs>
+		<style>
+			.font-size-default {
+				font-size:60px;}
+					</style>
+	</defs>
+	<g id="layer_4" title="layer_0">
+		<line id="line_25" class="line" x1="168" y1="68.5" x2="168" y2="315.5"/>
+		<line id="line_52" class="line" x1="255" y1="102.25" x2="255" y2="281.75"/>
+		<line id="line_82" class="line" x1="168" y1="315.5" x2="255" y2="281.75"/>
+		<line id="line_98" class="line" x1="168" y1="68.5" x2="255" y2="102.25"/>
+		<line id="line_113" class="line" x1="0" y1="96" x2="168" y2="96"/>
+		<line id="line_131" class="line" x1="0" y1="276" x2="168" y2="276"/>
+		<line id="line_161" class="line" x1="396" y1="186" x2="255" y2="186"/>
+		<line id="line_209" class="line" x1="210" y1="384" x2="211.5" y2="298.62"/>
+		<text id="text_210" class="text font-size-default" x="63.98" y="35">
+			<tspan dx="0" dy="54" x="63.98">A</tspan>
+		</text>
+		<text id="text_211" class="text font-size-default" x="63.98" y="214.75">
+			<tspan dx="0" dy="54" x="63.98">B</tspan>
+		</text>
+		<text id="text_212" class="text font-size-default" x="302.16" y="119">
+			<tspan dx="0" dy="54" x="302.16">Q</tspan>
+		</text>
+		<text id="text_213" class="text font-size-default" x="221" y="312.5">
+			<tspan dx="0" dy="54" x="221">a</tspan>
+		</text>
+	</g>
+</svg>

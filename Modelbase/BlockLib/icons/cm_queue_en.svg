@@ -1,0 +1,32 @@
+<?xml-stylesheet href="defaultstyles.css" type="text/css"?>
+<svg xmlns="http://www.w3.org/2000/svg" xmlns:d="http://www.mathworks.com/blockgraphics" xmlns:xlink="http://www.w3.org/1999/xlink" version="1.1" id="svg_3" width="400" height="168" d:options="PreserveAspect:On;ScalingOnResizeMax:2.0;Rotate:Off;Resize:FitToBlock">
+	<defs>
+		<style>
+			.font-size-extra-small {
+				font-size:28px;}
+					</style>
+	</defs>
+	<g id="layer_4" title="layer_0">
+		<line id="line_24" class="line" x1="165.25" y1="53.39" x2="271.19" y2="53.39"/>
+		<line id="line_26" class="line" x1="165.25" y1="110.17" x2="271.19" y2="110.17"/>
+		<line id="line_41" class="line" style="stroke:#0000ff;stroke-width: 4;" x1="245.52" y1="63.24" x2="245.52" y2="104.76"/>
+		<line id="line_42" class="line" style="stroke:#0000ff;stroke-width: 4;" x1="237.26" y1="63.24" x2="237.26" y2="104.76"/>
+		<line id="line_43" class="line" style="stroke:#0000ff;stroke-width: 4;" x1="227.74" y1="63.24" x2="227.74" y2="104.76"/>
+		<line id="line_44" class="line" style="stroke:#0000ff;stroke-width: 4;" x1="218.98" y1="63.24" x2="218.98" y2="104.76"/>
+		<line id="line_72" class="line" x1="0" y1="84" x2="118.18" y2="84"/>
+		<line id="line_96" class="line" transform="matrix(0.7660444431,0.6427876097,-0.6427876097,0.7660444431,74.7679672595,-52.3432999133)" x1="97.69" y1="76.54" x2="120.89" y2="76.54"/>
+		<line id="line_97" class="line" transform="matrix(0.7660444431,-0.6427876097,0.6427876097,0.7660444431,-33.2139219185,91.6454934139)" x1="97.69" y1="91.45" x2="120.89" y2="91.45"/>
+		<line id="line_98" class="line" x1="281.83" y1="83.83" x2="400.01" y2="83.83"/>
+		<line id="line_99" class="line" transform="matrix(0.7660444431,0.6427876097,-0.6427876097,0.7660444431,140.6072413765,-233.5352219147)" x1="379.52" y1="76.39" x2="402.72" y2="76.39"/>
+		<line id="line_100" class="line" transform="matrix(0.7660444431,-0.6427876097,0.6427876097,0.7660444431,32.8310440373,272.7625497084)" x1="379.52" y1="91.28" x2="402.72" y2="91.28"/>
+		<text id="text_101" class="text font-size-extra-small" x="9" y="8.5">
+			<tspan dx="0" dy="25" x="9">enable</tspan>
+		</text>
+		<text id="text_102" class="text font-size-extra-small" x="9" y="128.5">
+			<tspan dx="0" dy="25" x="9">block</tspan>
+		</text>
+		<text id="text_103" class="text font-size-extra-small" x="184.42" y="0">
+			<tspan dx="0" dy="25" x="184.42">nq</tspan>
+		</text>
+	</g>
+</svg>

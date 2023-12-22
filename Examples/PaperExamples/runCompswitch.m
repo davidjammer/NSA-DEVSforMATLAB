@@ -29,11 +29,9 @@ ylabel("out");
 title("VectorGen");
 
 subplot(4,1,2)
-stairs(out.compOut.t,out.compOut.y);
-hold("on");plot(out.compOut.t,out.compOut.y, "*");hold("off");
+plot_ieee1164(out.compOut.t,out.compOut.y)
 grid("on");
 xlim([0, tEnd])
-ylim([-0.1, 1.1])
 ylabel("out");
 title("Comparator");
 

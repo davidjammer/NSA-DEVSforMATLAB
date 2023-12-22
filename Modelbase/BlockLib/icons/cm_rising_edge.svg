@@ -1,0 +1,9 @@
+<?xml-stylesheet href="defaultstyles.css" type="text/css"?>
+<svg xmlns="http://www.w3.org/2000/svg" xmlns:d="http://www.mathworks.com/blockgraphics" xmlns:xlink="http://www.w3.org/1999/xlink" version="1.1" id="svg_3" width="390" height="384" d:options="PreserveAspect:On;ScalingOnResizeMax:2.0;Rotate:Off;Resize:FitToBlock">
+	<g id="layer_4" title="layer_0">
+		<rect id="rect_21" class="rect" x="120" y="42" width="150" height="300" rx="0" ry="0"/>
+		<line id="line_42" class="line" x1="390" y1="192" x2="270" y2="192"/>
+		<line id="line_57" class="line" x1="0" y1="192" x2="120" y2="192"/>
+		<path id="Triangle" class="path" style="fill:#ffffff;" transform="matrix(-1e-10,1,-1,-1e-10,332.0000000001,52)" d=" M 140,172 L 160,212 L 120,212 L 140,172 Z"/>
+	</g>
+</svg>
