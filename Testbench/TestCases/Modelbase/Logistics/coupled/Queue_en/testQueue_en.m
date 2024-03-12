@@ -1,10 +1,11 @@
-function [out] = testQueue_en()
+function [out] = testQueue_en(showPlot)
     global simout
     global epsilon
     global DEBUGLEVEL
     global mi
+
     if nargin == 0
-      testcase = 1;
+      showPlot = false;
     end
     
     mi = 0.0;
@@ -58,7 +59,7 @@ function [out] = testQueue_en()
     root.sim();
     out = simout;
 
-    if 0
+    if showPlot
         % plot results
         figure("name", "testQueue_en", "NumberTitle", "off")
         subplot(5,1,1)

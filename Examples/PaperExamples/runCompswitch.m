@@ -29,7 +29,7 @@ ylabel("out");
 title("VectorGen");
 
 subplot(4,1,2)
-plot_ieee1164(out.compOut.t,out.compOut.y)
+plot_ieee1164(out.compOut.t,out.compOut.y, ["0","1"])
 grid("on");
 xlim([0, tEnd])
 ylabel("out");

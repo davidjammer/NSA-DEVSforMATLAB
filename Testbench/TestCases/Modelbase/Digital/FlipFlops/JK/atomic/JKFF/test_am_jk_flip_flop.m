@@ -1,5 +1,8 @@
-function [out] = test_am_jk_flip_flop()
-    
+function [out] = test_am_jk_flip_flop(showPlot)
+    if nargin == 0
+      showPlot = false;
+    end
+
     global simout
     global epsilon
     global DEBUGLEVEL
@@ -57,8 +60,8 @@ function [out] = test_am_jk_flip_flop()
     root.sim();
     out = simout;
 
-    if 0
-        figure("name", "testJKFlipFlop", "NumberTitle", "off", "Position", [1 1 450 500]);
+    if showPlot
+        figure("name", "testJKFlipFlop", "NumberTitle", "off", "Position", [1 1 450 700]);
         subplot(5,1,1)
         plot_ieee1164(simout.gen1Out.t, simout.gen1Out.y);
         title("j");

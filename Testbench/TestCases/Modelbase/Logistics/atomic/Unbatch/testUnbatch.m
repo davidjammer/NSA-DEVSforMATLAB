@@ -1,4 +1,7 @@
-function [out] = testUnbatch()
+function [out] = testUnbatch(showPlot)
+	if nargin == 0
+      showPlot = false;
+    end
 
     global simout
     global epsilon
@@ -39,7 +42,7 @@ function [out] = testUnbatch()
     root.sim();
     out = simout;
     
-    if 0
+    if showPlot
         figure
         stem(simout.out.t,simout.out.y); grid on;
         xlim([0 tend]);

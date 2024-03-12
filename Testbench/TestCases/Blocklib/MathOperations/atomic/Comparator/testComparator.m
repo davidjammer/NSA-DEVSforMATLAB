@@ -1,10 +1,13 @@
-function [out] = testComparator()
+function [out] = testComparator(showPlot)
+	if nargin == 0
+      showPlot = false;
+    end
 
     tEnd = 17;
 	model_generator("Comparator_Model");
 	out = model_simulator("Comparator_Model", tEnd);
 
-    if 0
+    if showPlot
         figure("name", "testComparator", "NumberTitle", "off", ...
 	     "Position", [1 1 450 500]);
         subplot(7,1,1)

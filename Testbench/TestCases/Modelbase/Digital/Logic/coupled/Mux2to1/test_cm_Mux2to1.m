@@ -1,4 +1,8 @@
-function [out] = test_cm_Mux2to1()
+function [out] = test_cm_Mux2to1(showPlot)
+	if nargin == 0
+      showPlot = false;
+    end
+
     global simout
     global epsilon
     global DEBUGLEVEL
@@ -50,7 +54,7 @@ function [out] = test_cm_Mux2to1()
     root.sim();
     out = simout;
 
-    if 0
+    if showPlot
         figure("name", "testMux2to1", "NumberTitle", "off", "Position", [1 1 450 500]);
         subplot(5,1,1)
         plot_ieee1164(simout.gen1Out.t, simout.gen1Out.y);

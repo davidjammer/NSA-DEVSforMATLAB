@@ -1,10 +1,13 @@
-function [out]=testSaturation()
+function [out]=testSaturation(showPlot)
+	if nargin == 0
+      showPlot = false;
+    end
 
     tEnd = 17;
 	model_generator("Saturation_Model");
 	out = model_simulator("Saturation_Model", tEnd);
 
-    if 0
+    if showPlot
         figure("name", "testSaturation", "NumberTitle", "off", "Position", [1 1 450 500]);
         subplot(2,1,1)
         stem(out.genOut.t,out.genOut.y);

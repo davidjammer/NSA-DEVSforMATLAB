@@ -1,4 +1,8 @@
-function [out]=testGain()
+function [out]=testGain(showPlot)
+	if nargin == 0
+      showPlot = false;
+    end
+
     global simout
     global epsilon
     global DEBUGLEVEL
@@ -39,7 +43,7 @@ function [out]=testGain()
     
     out = simout;
 
-    if 0
+    if showPlot
         figure("Position",[1 1 450 500]);
         subplot(2,1,1)
         stairs(simout.genOut.t,simout.genOut.y);

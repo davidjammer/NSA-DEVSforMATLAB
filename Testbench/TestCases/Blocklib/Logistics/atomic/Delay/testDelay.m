@@ -1,11 +1,14 @@
-function out = testDelay()
+function out = testDelay(showPlot)
+	if nargin == 0
+      showPlot = false;
+    end
 
 	tEnd = 21;
 	model_generator("Delay_Model");
 	out = model_simulator("Delay_Model", tEnd);
 	
 	
-	if 0
+	if showPlot
 		figure("Position",[1 1 450 500]);
 		subplot(2,1,1)
 		stairs(out.genOut.t,out.genOut.y);

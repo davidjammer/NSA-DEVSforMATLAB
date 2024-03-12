@@ -1,10 +1,13 @@
-function out = test_cm_and2()
+function out = test_cm_and2(showPlot)
+	if nargin == 0
+      showPlot = false;
+    end
 
     tEnd = 15;
 	model_generator("And2_Model");
 	out = model_simulator("And2_Model", tEnd);
     
-    if 0
+    if showPlot
         figure("name", "testAnd2", "NumberTitle", "off", "Position", [1 1 450 400]);
         subplot(3,1,1)
         plot_ieee1164(out.gen1Out.t, out.gen1Out.y);

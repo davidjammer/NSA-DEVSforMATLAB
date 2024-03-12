@@ -1,4 +1,8 @@
-function [out] = testVectorgen()
+function [out] = testVectorgen(showPlot)
+	if nargin == 0
+      showPlot = false;
+    end
+
     global simout
     global epsilon
     global DEBUGLEVEL
@@ -31,7 +35,7 @@ function [out] = testVectorgen()
     root.sim();
     out = simout;
 
-    if 0
+    if showPlot
         figure("name","testVectorgen", "NumberTitle","off");
         stairs(simout.genOut.t,simout.genOut.y);
         hold("on");plot(simout.genOut.t,simout.genOut.y, "*");hold("off");

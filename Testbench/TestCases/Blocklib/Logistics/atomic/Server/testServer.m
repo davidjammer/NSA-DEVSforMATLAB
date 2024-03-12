@@ -1,9 +1,11 @@
-function [out] = testServer(testcase)
+function [out] = testServer(testcase,showPlot)
 
-    if nargin == 0
+    if ~exist('testcase','var')
       testcase = 1;
     end
-
+	if ~exist('showPlot','var')
+      showPlot = 0;
+    end
     
     switch testcase
       case 1   % generator too fast -> loosing entities
@@ -22,7 +24,7 @@ function [out] = testServer(testcase)
 	model_generator("Server_Model");
 	out = model_simulator("Server_Model", tEnd);
 
-    if 0
+    if showPlot
         % plot results
         figure("name", "testServer", "NumberTitle", "off")
         subplot(3,1,1)

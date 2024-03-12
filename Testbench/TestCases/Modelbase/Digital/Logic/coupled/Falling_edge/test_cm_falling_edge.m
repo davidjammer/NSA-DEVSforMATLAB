@@ -1,5 +1,8 @@
-function [out] = test_cm_falling_edge()
-    
+function [out] = test_cm_falling_edge(showPlot)
+	if nargin == 0
+      showPlot = false;
+    end
+
     global simout
     global epsilon
     global DEBUGLEVEL
@@ -38,7 +41,7 @@ function [out] = test_cm_falling_edge()
     root.sim();
     out = simout;
 
-    if 0
+    if showPlot
         figure("name", "test falling edge", "NumberTitle", "off", "Position", [1 1 450 500]);
         subplot(2,1,1)
         plot_ieee1164(simout.gen1Out.t, simout.gen1Out.y);

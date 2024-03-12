@@ -1,4 +1,8 @@
-function [out] = testOutputswitch()
+function [out] = testOutputswitch(showPlot)
+	if nargin == 0
+      showPlot = false;
+    end
+
     global simout
     global epsilon
     global DEBUGLEVEL
@@ -50,7 +54,7 @@ function [out] = testOutputswitch()
     root.sim();
     out = simout;
 
-    if 0
+    if showPlot
         figure("Position",[1 1 450 600]);
         subplot(4,1,1)
         stairs(simout.genOut.t,simout.genOut.y);

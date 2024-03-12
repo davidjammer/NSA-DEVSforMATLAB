@@ -1,10 +1,13 @@
-function [out] = test_cm_fulladder()
-    
+function [out] = test_cm_fulladder(showPlot)
+    if nargin == 0
+      showPlot = false;
+    end
+
     tEnd = 15;
 	model_generator("Fulladder_Model");
 	out = model_simulator("Fulladder_Model", tEnd);
     
-    if 0
+    if showPlot
         figure("name", "testfulladder", "NumberTitle", "off", "Position", [1 1 450 500]);
         subplot(5,1,1)
         plot_ieee1164(out.gen1Out.t, out.gen1Out.y);

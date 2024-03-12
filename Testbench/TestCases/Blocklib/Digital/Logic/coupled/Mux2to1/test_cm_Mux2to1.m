@@ -1,10 +1,13 @@
-function [out] = test_cm_Mux2to1()
+function [out] = test_cm_Mux2to1(showPlot)
+	if nargin == 0
+      showPlot = false;
+    end
 
     tEnd = 30;
 	model_generator("Mux2to1_Model");
 	out = model_simulator("Mux2to1_Model", tEnd);
 
-    if 0
+    if showPlot
         figure("name", "testMux2to1", "NumberTitle", "off", "Position", [1 1 450 500]);
         subplot(5,1,1)
         plot_ieee1164(out.gen1Out.t, out.gen1Out.y);

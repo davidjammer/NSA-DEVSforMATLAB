@@ -1,4 +1,8 @@
-function [out] = testGate()
+function [out] = testGate(showPlot)
+	if nargin == 0
+      showPlot = false;
+    end
+
     global simout
     global epsilon
     global DEBUGLEVEL
@@ -46,7 +50,7 @@ function [out] = testGate()
     root.sim();
     out = simout;
     
-    if 0
+    if showPlot
         figure("name", "testGate", "NumberTitle", "off")
         subplot(3,1,1)
 		plot_ieee1164(simout.bingenOut.t, simout.bingenOut.y);

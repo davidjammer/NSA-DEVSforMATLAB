@@ -1,6 +1,6 @@
 function [N1] = cm_queue_server(name, ts, tau, debug)
 %% Description
-%  queue with additionable enable input
+%  queue+server with outputs for entity numbers in queue and total 
 %% Ports
 %  inputs: 
 %    in      incoming entities

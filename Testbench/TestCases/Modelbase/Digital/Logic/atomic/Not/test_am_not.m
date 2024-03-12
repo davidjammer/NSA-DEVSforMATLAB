@@ -1,4 +1,8 @@
-function [out] = test_am_not()
+function [out] = test_am_not(showPlot)
+	if nargin == 0
+      showPlot = false;
+    end
+
     global simout
     global epsilon
     global DEBUGLEVEL
@@ -37,7 +41,7 @@ function [out] = test_am_not()
     root = rootcoordinator("root",0,tEnd,N1,0,0);
     root.sim();
     out = simout;
-    if 0
+    if showPlot
         figure("name", "testNotgate", "NumberTitle", "off")
         subplot(2,1,1)
         plot_ieee1164(simout.gen1Out.t, simout.gen1Out.y);

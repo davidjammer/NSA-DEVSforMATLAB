@@ -1,10 +1,13 @@
-function out = test_am_or2()
+function out = test_am_or2(showPlot)
+	if nargin == 0
+      showPlot = false;
+    end
 
     tEnd = 15;
 	model_generator("Or2_Model");
 	out = model_simulator("Or2_Model", tEnd);
     
-    if 0
+    if showPlot
         figure("name", "testOr2", "NumberTitle", "off", "Position", [1 1 450 400]);
         subplot(3,1,1)
         plot_ieee1164(out.gen1Out.t, out.gen1Out.y);

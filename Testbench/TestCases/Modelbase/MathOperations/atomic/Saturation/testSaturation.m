@@ -1,4 +1,8 @@
-function [out]=testSaturation()
+function [out]=testSaturation(showPlot)
+	if nargin == 0
+      showPlot = false;
+    end
+
     global simout
     global epsilon
     global DEBUGLEVEL
@@ -39,7 +43,7 @@ function [out]=testSaturation()
     
     out = simout;
 
-    if 0
+    if showPlot
         figure("name", "testSaturation", "NumberTitle", "off", "Position", [1 1 450 500]);
         subplot(2,1,1)
         stem(simout.genOut.t,simout.genOut.y);

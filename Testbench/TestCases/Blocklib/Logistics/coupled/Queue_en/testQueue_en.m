@@ -1,10 +1,13 @@
-function [out] = testQueue_en()
+function [out] = testQueue_en(showPlot)
+	if nargin == 0
+      showPlot = false;
+    end
 
     tEnd = 200;
     model_generator("Queue_en_Model");
 	out = model_simulator("Queue_en_Model", tEnd);
 
-    if 0
+    if showPlot
         % plot results
         figure("name", "testQueue_en", "NumberTitle", "off")
         subplot(5,1,1)

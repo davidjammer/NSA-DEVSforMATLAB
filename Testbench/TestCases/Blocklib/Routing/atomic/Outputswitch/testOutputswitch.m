@@ -1,10 +1,13 @@
-function [out] = testOutputswitch()
+function [out] = testOutputswitch(showPlot)
+	if nargin == 0
+      showPlot = false;
+    end
 
     tEnd = 17.5;
 	model_generator("Outputswitch_Model");
 	out = model_simulator("Outputswitch_Model", tEnd);
 
-    if 0
+    if showPlot
         figure("Position",[1 1 450 600]);
         subplot(4,1,1)
         stairs(out.genOut.t,out.genOut.y);

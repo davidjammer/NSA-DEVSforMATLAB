@@ -1,10 +1,13 @@
-function [out] = test_am_jk_flip_flop()
+function [out] = test_am_jk_flip_flop(showPlot)
+	if nargin == 0
+      showPlot = false;
+    end
 
     tEnd = 30;%50;
 	model_generator("JKFF_Model");
 	out = model_simulator("JKFF_Model", tEnd);
 
-    if 0
+    if showPlot
         figure("name", "testJKFlipFlop", "NumberTitle", "off", "Position", [1 1 450 500]);
         subplot(5,1,1)
         plot_ieee1164(out.gen1Out.t, out.gen1Out.y);

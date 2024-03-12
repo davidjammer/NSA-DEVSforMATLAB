@@ -1,4 +1,8 @@
-function [out] = testBatch()
+function [out] = testBatch(showPlot)
+	if nargin == 0
+      showPlot = false;
+    end
+
     global simout
     global epsilon
     global DEBUGLEVEL
@@ -39,7 +43,7 @@ function [out] = testBatch()
     root = rootcoordinator("root",0,tend,N1,0,0);
     root.sim();
 
-    if 0
+    if showPlot
         figure('Position',[1 1 550 350])
         subplot(2,1,1)
         stem(simout.genOut.t,simout.genOut.y); 

@@ -1,9 +1,14 @@
-function [out] = test_cm_queue_server()
+function [out] = test_cm_queue_server(showPlot)
  
     global simout
     global epsilon
     global DEBUGLEVEL
     global mi
+
+	if nargin == 0
+      showPlot = false;
+    end
+
     mi = 0.001;
     simout = [];
     DEBUGLEVEL = 0;           % simulator debug level
@@ -48,7 +53,7 @@ function [out] = test_cm_queue_server()
     root.sim();
     out = simout;
 
-    if 0
+    if showPlot
         figure("name", "testQueueServer", "NumberTitle", "off", "Position", [1 1 450 500]);
         subplot(5,1,1)
         stem(out.genout.t,out.genout.y,'-*');

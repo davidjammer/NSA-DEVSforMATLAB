@@ -1,5 +1,9 @@
-function [out] = testBatch()
-    global simout
+function [out] = testBatch(showPlot)
+    if nargin == 0
+      showPlot = false;
+    end
+
+	global simout
     global epsilon
     global DEBUGLEVEL
     global mi
@@ -8,7 +12,7 @@ function [out] = testBatch()
     model_generator("Batch_Model");
     out = model_simulator("Batch_Model", tend);
 
-    if 0
+    if showPlot
         figure('Position',[1 1 550 350])
         subplot(2,1,1)
         stem(out.genOut.t,out.genOut.y); 

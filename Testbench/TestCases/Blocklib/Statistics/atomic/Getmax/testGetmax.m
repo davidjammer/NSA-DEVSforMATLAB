@@ -1,4 +1,8 @@
-function [out] = testGetmax()
+function [out] = testGetmax(showPlot)
+	if nargin == 0
+      showPlot = false;
+    end
+
 	global simin
 
 	tend = 10;
@@ -8,7 +12,7 @@ function [out] = testGetmax()
 	model_generator("Getmax_Model");
 	out = model_simulator("Getmax_Model", tend);
 	
-	if 0
+	if showPlot
 		figure()
 		subplot(2,1,1)
 		stem(out.genout.t,out.genout.y); grid on;

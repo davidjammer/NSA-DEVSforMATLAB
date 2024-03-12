@@ -1,10 +1,13 @@
-function [out] = testVectorgen()
+function [out] = testVectorgen(showPlot)
+	if nargin == 0
+      showPlot = false;
+    end
 
     tEnd = 17;
 	model_generator("Vectorgen_Model");
 	out = model_simulator("Vectorgen_Model", tEnd);
 
-    if 0
+    if showPlot
         figure("name","testVectorgen", "NumberTitle","off");
         stairs(out.genOut.t,out.genOut.y);
         hold("on");plot(out.genOut.t,out.genOut.y, "*");hold("off");

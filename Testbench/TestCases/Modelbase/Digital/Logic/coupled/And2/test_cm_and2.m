@@ -1,4 +1,8 @@
-function out = test_cm_and2()
+function out = test_cm_and2(showPlot)
+	if nargin == 0
+      showPlot = false;
+    end
+
     global simout
     global epsilon
     global DEBUGLEVEL
@@ -45,7 +49,7 @@ function out = test_cm_and2()
     root.sim();
     out = simout;
     
-    if 0
+    if showPlot
         figure("name", "testAnd2", "NumberTitle", "off", "Position", [1 1 450 400]);
         subplot(3,1,1)
         plot_ieee1164(simout.gen1Out.t, simout.gen1Out.y);

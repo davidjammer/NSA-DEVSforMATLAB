@@ -1,10 +1,13 @@
-function out = test_am_nand4()
+function out = test_am_nand4(showPlot)
+	if nargin == 0
+      showPlot = false;
+    end
 
     tEnd = 30;
 	model_generator("Nand4_Model");
 	out = model_simulator("Nand4_Model", tEnd);
     
-    if 0
+    if showPlot
         figure("name", "testNand4", "NumberTitle", "off", "Position", [1 1 450 400]);
         subplot(5,1,1)
         plot_ieee1164(out.gen1Out.t, out.gen1Out.y);

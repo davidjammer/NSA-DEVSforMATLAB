@@ -1,8 +1,9 @@
-function [out] = testFromworkspace()
+function [out] = testFromworkspace(showPlot)
+	if nargin == 0
+      showPlot = false;
+    end
 
 	global simin
-	
-	
 	
 	tend = 10;
 	simin.in.t = [0,  1, 2, 3, 4, 5];
@@ -11,7 +12,7 @@ function [out] = testFromworkspace()
 	model_generator("Fromworkspace_Model");
 	out = model_simulator("Fromworkspace_Model", tend);
 	
-	if 0
+	if showPlot
 		figure()
 		stem(out.out.t,out.out.y); grid on;
 		xlim([0 tend]);

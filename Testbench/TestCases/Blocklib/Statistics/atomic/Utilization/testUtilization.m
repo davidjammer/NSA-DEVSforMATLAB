@@ -1,10 +1,13 @@
-function [out] = testUtilization()
-    
+function [out] = testUtilization(showPlot)
+    if nargin == 0
+      showPlot = false;
+    end
+
     tEnd = 1000;
 	model_generator("Utilization_Model");
 	out = model_simulator("Utilization_Model", tEnd);
     
-    if 0
+    if showPlot
         % plot results
         figure('Position',[1 1 550 350])
         subplot(2,2,1)

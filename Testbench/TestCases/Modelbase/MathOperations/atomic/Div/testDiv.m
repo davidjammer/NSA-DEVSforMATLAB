@@ -1,4 +1,8 @@
-function [out] = testDiv()
+function [out] = testDiv(showPlot)
+	if nargin == 0
+      showPlot = false;
+    end
+
     global simout
     global epsilon
     global DEBUGLEVEL
@@ -48,7 +52,7 @@ function [out] = testDiv()
     root.sim();
     out = simout;
 
-    if 0
+    if showPlot
         figure("name", "testDiv", "NumberTitle", "off", "Position", [1 1 450 500]);
         subplot(3,1,1)
         stem(simout.gen1Out.t,simout.gen1Out.y);

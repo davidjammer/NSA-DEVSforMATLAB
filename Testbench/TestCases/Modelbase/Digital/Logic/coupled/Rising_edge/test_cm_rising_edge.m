@@ -1,4 +1,7 @@
-function [out] = test_cm_rising_edge()
+function [out] = test_cm_rising_edge(showPlot)
+	if nargin == 0
+      showPlot = false;
+    end
 
     global simout
     global epsilon
@@ -37,7 +40,7 @@ function [out] = test_cm_rising_edge()
     root = rootcoordinator("root",0,tEnd,N1,0,0);
     root.sim();
     out = simout;
-    if 0
+    if showPlot
         figure("name", "test rising edge", "NumberTitle", "off", "Position", [1 1 450 500]);
         subplot(2,1,1)
         plot_ieee1164(simout.gen1Out.t, simout.gen1Out.y);

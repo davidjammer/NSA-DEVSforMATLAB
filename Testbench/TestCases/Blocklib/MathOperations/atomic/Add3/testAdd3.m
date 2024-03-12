@@ -1,11 +1,14 @@
-function [out] = testAdd3()
- 
+function [out] = testAdd3(showPlot)
+	if nargin == 0
+      showPlot = false;
+    end
+
 	tend = 11.9;
 	model_generator("Add3_Model");
 	out = model_simulator("Add3_Model", tend);
 
 
-    if 0
+    if showPlot
         figure("name", "testAdd3", "NumberTitle", "off", "Position", [1 1 450 500]);
         subplot(4,1,1)
         stem(out.gen1Out.t,out.gen1Out.y);

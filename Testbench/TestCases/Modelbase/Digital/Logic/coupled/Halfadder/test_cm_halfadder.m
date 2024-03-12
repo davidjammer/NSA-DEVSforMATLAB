@@ -1,4 +1,7 @@
-function [out] = test_cm_halfadder()
+function [out] = test_cm_halfadder(showPlot)
+	if nargin == 0
+      showPlot = false;
+    end
 
     global simout
     global epsilon
@@ -52,7 +55,7 @@ function [out] = test_cm_halfadder()
     root.sim();
     out = simout;
 
-    if 0
+    if showPlot
         figure("name", "testhalfadder", "NumberTitle", "off", "Position", [1 1 450 500]);
         subplot(4,1,1)
         plot_ieee1164(simout.gen1Out.t, simout.gen1Out.y);

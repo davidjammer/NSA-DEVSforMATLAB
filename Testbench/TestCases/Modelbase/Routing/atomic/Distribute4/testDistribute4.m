@@ -1,4 +1,8 @@
-function [out] = testDistribute4()
+function [out] = testDistribute4(showPlot)
+	if nargin == 0
+      showPlot = false;
+    end
+
     global simout
     global epsilon
     global DEBUGLEVEL
@@ -67,7 +71,7 @@ function [out] = testDistribute4()
     root.sim();
     out = simout;
 
-    if 0
+    if showPlot
         figure("name", "testDistribute4", "NumberTitle", "off", ...
 	     "Position",[1 1 550 575]);
         subplot(4,2,1)

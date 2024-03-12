@@ -1,10 +1,13 @@
-function [out]= testCombine3()
+function [out]= testCombine3(showPlot)
+	if nargin == 0
+      showPlot = false;
+    end
 
     tend = 15;
 	model_generator("Combine3_Model");
 	out = model_simulator("Combine3_Model", tend);
 
-    if 0
+    if showPlot
         figure("name", "testCombine3", "NumberTitle", "off", ...
 	     "Position", [1 1 450 500]);
         subplot(4,1,1)

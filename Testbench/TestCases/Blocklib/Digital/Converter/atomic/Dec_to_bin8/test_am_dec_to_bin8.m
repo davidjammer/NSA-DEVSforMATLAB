@@ -1,11 +1,13 @@
-function [out] = test_am_dec_to_bin8()
- 
+function [out] = test_am_dec_to_bin8(showPlot)
+	if nargin == 0
+      showPlot = false;
+    end
     
     tEnd = 256;
 	model_generator("Dec_to_bin8_Model");
 	out = model_simulator("Dec_to_bin8_Model", tEnd);
 
-    if 0
+    if showPlot
         figure("name", "testNand2", "NumberTitle", "off", "Position", [1 1 450 500]);
         subplot(9,1,1)
         stairs(out.gen1Out.t,out.gen1Out.y,'-*');

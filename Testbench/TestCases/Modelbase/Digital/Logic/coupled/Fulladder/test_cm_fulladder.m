@@ -1,4 +1,7 @@
-function [out] = test_cm_fulladder()
+function [out] = test_cm_fulladder(showPlot)
+	if nargin == 0
+      showPlot = false;
+    end
 
     global simout
     global epsilon
@@ -63,7 +66,7 @@ function [out] = test_cm_fulladder()
     root.sim();
     out = simout;
     
-    if 0
+    if showPlot
         figure("name", "testfulladder", "NumberTitle", "off", "Position", [1 1 450 500]);
         subplot(5,1,1)
         plot_ieee1164(simout.gen1Out.t, simout.gen1Out.y);

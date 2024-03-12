@@ -1,11 +1,13 @@
-function [out] = test_cm_queue_server()
- 
+function [out] = test_cm_queue_server(showPlot)
+	if nargin == 0
+      showPlot = false;
+    end
     
     tEnd = 100;
 	model_generator("Queue_server_Model");
 	out = model_simulator("Queue_server_Model", tEnd);
 
-    if 0
+    if showPlot
         figure("name", "testQueueServer", "NumberTitle", "off", "Position", [1 1 450 500]);
         subplot(5,1,1)
         stem(out.genout.t,out.genout.y,'-*');

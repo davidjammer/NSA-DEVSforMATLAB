@@ -1,4 +1,7 @@
-function [out]= testCombine4()
+function [out]= testCombine4(showPlot)
+	if nargin == 0
+      showPlot = false;
+    end
 
     global simout
     global epsilon
@@ -60,7 +63,7 @@ function [out]= testCombine4()
     root = rootcoordinator("root",0,tend,N1,0,0);
     root.sim();
 
-    if 0
+    if showPlot
         figure("name", "testCombine4", "NumberTitle", "off", ...
 	     "Position", [1 1 450 500]);
         subplot(5,1,1)

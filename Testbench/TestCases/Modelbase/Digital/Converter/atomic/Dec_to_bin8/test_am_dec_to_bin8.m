@@ -1,5 +1,8 @@
-function [out] = test_am_dec_to_bin8()
-    
+function [out] = test_am_dec_to_bin8(showPlot)
+    if nargin == 0
+      showPlot = false;
+    end
+
     global simout
     global epsilon
     global DEBUGLEVEL
@@ -62,7 +65,7 @@ function [out] = test_am_dec_to_bin8()
     root.sim();
     out = simout;
 
-    if 0
+    if showPlot
         figure("name", "testNand2", "NumberTitle", "off", "Position", [1 1 450 500]);
         subplot(9,1,1)
         stairs(simout.gen1Out.t,simout.gen1Out.y,'-*');

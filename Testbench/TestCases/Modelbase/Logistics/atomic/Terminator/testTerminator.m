@@ -1,4 +1,8 @@
-function [out] = testTerminator()
+function [out] = testTerminator(showPlot)
+	if nargin == 0
+      showPlot = false;
+    end
+
     global simout
     global epsilon
     global DEBUGLEVEL
@@ -33,7 +37,7 @@ function [out] = testTerminator()
     root.sim();
     out = simout;
     
-    if 0
+    if showPlot
         figure("name", "testTerminator", "NumberTitle", "off")
         
         subplot(1,1,1)

@@ -1,4 +1,8 @@
-function out = test_am_nand3()
+function out = test_am_nand3(showPlot)
+	if nargin == 0
+      showPlot = false;
+    end
+
     global simout
     global epsilon
     global DEBUGLEVEL
@@ -53,7 +57,7 @@ function out = test_am_nand3()
     root.sim();
     out = simout;
     
-    if 0
+    if showPlot
         figure("name", "testNand3", "NumberTitle", "off", "Position", [1 1 450 400]);
         subplot(4,1,1)
         plot_ieee1164(simout.gen1Out.t, simout.gen1Out.y);

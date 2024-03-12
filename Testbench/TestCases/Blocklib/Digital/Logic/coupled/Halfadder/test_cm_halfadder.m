@@ -1,10 +1,13 @@
-function [out] = test_cm_halfadder()
+function [out] = test_cm_halfadder(showPlot)
+	if nargin == 0
+      showPlot = false;
+    end
 
     tEnd = 15;
 	model_generator("Halfadder_Model");
 	out = model_simulator("Halfadder_Model", tEnd);
 
-    if 0
+    if showPlot
         figure("name", "testhalfadder", "NumberTitle", "off", "Position", [1 1 450 500]);
         subplot(4,1,1)
         plot_ieee1164(out.gen1Out.t, out.gen1Out.y);

@@ -1,11 +1,13 @@
-function [out] = test_am_bin_to_double()
-
+function [out] = test_am_bin_to_double(showPlot)
+	if nargin == 0
+      showPlot = false;
+    end
     
     tEnd = 10;
 	model_generator("bin_to_double_Model");
 	out = model_simulator("bin_to_double_Model", tEnd);
 
-    if 0
+    if showPlot
         figure("name", "testNand2", "NumberTitle", "off", "Position", [1 1 450 500]);
         
         

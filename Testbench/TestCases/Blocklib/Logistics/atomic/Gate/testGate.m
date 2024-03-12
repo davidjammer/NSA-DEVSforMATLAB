@@ -1,10 +1,13 @@
-function [out] = testGate()
+function [out] = testGate(showPlot)
+	if nargin == 0
+      showPlot = false;
+    end
 
     tEnd = 19;
 	model_generator("Gate_Model");
 	out = model_simulator("Gate_Model", tEnd);
     
-    if 0
+    if showPlot
         figure("name", "testGate", "NumberTitle", "off")
         subplot(3,1,1)
 		plot_ieee1164(out.bingenOut.t, out.bingenOut.y);

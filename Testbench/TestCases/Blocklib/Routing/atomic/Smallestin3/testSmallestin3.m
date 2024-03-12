@@ -1,10 +1,13 @@
-function [out] = testSmallestin3()
+function [out] = testSmallestin3(showPlot)
+	if nargin == 0
+      showPlot = false;
+    end
 
     tEnd = 11.6;
 	model_generator("Smallestin3_Model");
 	out = model_simulator("Smallestin3_Model", tEnd);
    
-    if 0
+    if showPlot
         figure("name", "testSmallestin3", "NumberTitle", "off", ...
           "Position", [1 1 450 500]);
         subplot(4,1,1)

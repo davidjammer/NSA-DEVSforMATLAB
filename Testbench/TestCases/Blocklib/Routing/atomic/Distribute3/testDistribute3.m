@@ -1,11 +1,13 @@
-function [out] = testDistribute3()
-
+function [out] = testDistribute3(showPlot)
+	if nargin == 0
+      showPlot = false;
+    end
     
 	tend = 15;
 	model_generator("Distribute3_Model");
 	out = model_simulator("Distribute3_Model", tend);
 
-    if 0
+    if showPlot
         figure("name", "testDistribute3", "NumberTitle", "off", ...
 	     "Position",[1 1 550 575]);
         subplot(3,2,1)

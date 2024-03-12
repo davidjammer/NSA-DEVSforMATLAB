@@ -1,4 +1,7 @@
-function [out] = test_cm_carry_ripple_adder_8bit()
+function [out] = test_cm_carry_ripple_adder_8bit(showPlot)
+	if nargin == 0
+      showPlot = false;
+    end
 
     global simout
     global epsilon
@@ -97,7 +100,7 @@ function [out] = test_cm_carry_ripple_adder_8bit()
     out = simout;
 
 
-    if 0
+    if showPlot
         figure("name", "testcarryrippleadder", "NumberTitle", "off", "Position", [1 1 450 500]);
         subplot(5,1,1)
         stairs(simout.gen1Out.t,simout.gen1Out.y,'-*');

@@ -1,10 +1,13 @@
-function [out] = testUnbatch()
+function [out] = testUnbatch(showPlot)
+	if nargin == 0
+      showPlot = false;
+    end
 
     tEnd = 40;
     model_generator("Unbatch_Model");
 	out = model_simulator("Unbatch_Model", tEnd);
     
-    if 0
+    if showPlot
         figure
         stem(out.out.t,out.out.y); grid on;
         xlim([0 tEnd]);

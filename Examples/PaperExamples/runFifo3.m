@@ -4,7 +4,6 @@ function runFifo3
 %   set global DEBUGLEVEL
 %   model_simulator(model, tEnd, false)
 model = "fifo3";
-
 tEnd = 25;
 
 model_generator(model); 
@@ -18,20 +17,46 @@ qAll = combineQueueLengths(out.nq1,out.nq2, out.nq3);
 
 tPlot = out.output.t';
 idPlot = out.output.y';
-tEnd = tPlot(end);
-  
-figure("name", "fifo3", "NumberTitle", "off", "Position", [1 1 600 250]);
-subplot(1,2,1);
+tEnd = 25;
+
+figure("name", "fifo3", "NumberTitle", "off", "Position", [1 1 600 600]);
+subplot(2,2,1);
 stem(tPlot, idPlot)
-xlim([0, tEnd+1])
+grid("on");
+xlim([0, tEnd])
 ylim([0, 15])
 title('outgoing entities')
 ylabel('ids')
   
-subplot(1,2,2);
+subplot(2,2,2);
+stairs(out.nq1.t, out.nq1.y)
+hold("on")
+stairs(out.nq2.t, out.nq2.y)
+stairs(out.nq3.t, out.nq3.y)
+hold("off")
+grid("on");
+xlim([0, tEnd])
+ylim([0, 2.2])
+title('queue lengths')  
+ylabel('n_{q}')
+
+subplot(2,2,3);
+stairs(out.nqs1.t, out.nqs1.y)
+hold("on")
+stairs(out.nqs2.t, out.nqs2.y)
+stairs(out.nqs3.t, out.nqs3.y)
+hold("off")
+grid("on");
+xlim([0, tEnd])
+ylim([0, 3.2])
+title('queue+server loads')  
+ylabel('n')
+
+subplot(2,2,4);
 stairs(qAll(:,1), qAll(:,2))
-xlim([0, tEnd+1])
-ylim([0, 4.3])
+grid("on");
+xlim([0, tEnd])
+ylim([0, 4.2])
 title('total queue length')  
 ylabel('l_{qt}')
 end

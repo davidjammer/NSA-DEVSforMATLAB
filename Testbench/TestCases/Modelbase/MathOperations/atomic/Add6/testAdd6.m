@@ -1,4 +1,8 @@
-function [out] = testAdd6()
+function [out] = testAdd6(showPlot)
+	if nargin == 0
+      showPlot = false;
+    end
+
     global simout
     global epsilon
     global DEBUGLEVEL
@@ -80,7 +84,7 @@ function [out] = testAdd6()
     root.sim();
     out = simout;
 
-    if 0
+    if showPlot
         figure("name", "testAdd6", "NumberTitle", "off", "Position", [1 1 450 500]);
         subplot(7,1,1)
         stem(simout.gen1Out.t,simout.gen1Out.y);

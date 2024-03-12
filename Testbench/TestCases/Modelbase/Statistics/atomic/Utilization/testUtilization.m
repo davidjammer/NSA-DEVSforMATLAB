@@ -1,4 +1,8 @@
-function [out] = testUtilization()
+function [out] = testUtilization(showPlot)
+	if nargin == 0
+      showPlot = false;
+    end
+
     global simout
     global epsilon
     global DEBUGLEVEL
@@ -59,7 +63,7 @@ function [out] = testUtilization()
     root.sim();
     out = simout;
     
-    if 0
+    if showPlot
         % plot results
         figure('Position',[1 1 550 350])
         subplot(2,2,1)

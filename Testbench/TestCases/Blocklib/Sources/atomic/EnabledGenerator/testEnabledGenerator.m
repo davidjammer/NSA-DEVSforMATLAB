@@ -1,10 +1,13 @@
-function [out] = testEnabledGenerator()
+function [out] = testEnabledGenerator(showPlot)
+	if nargin == 0
+      showPlot = false;
+    end
 
     tEnd = 19;
 	model_generator("EnabledGenerator_Model");
 	out = model_simulator("EnabledGenerator_Model", tEnd);
     
-    if 0
+    if showPlot
         figure("name", "testEnabledGenerator", "NumberTitle", "off")
         subplot(2,1,1)
 		plot_ieee1164(out.bingenOut.t, out.bingenOut.y);

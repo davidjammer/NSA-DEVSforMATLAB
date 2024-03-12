@@ -1,4 +1,8 @@
-function [out]=testGenerator()
+function [out]=testGenerator(showPlot)
+	if nargin == 0
+      showPlot = false;
+    end
+
     global simout
     global epsilon
     global DEBUGLEVEL
@@ -32,7 +36,7 @@ function [out]=testGenerator()
     root.sim();
     out = simout;
     
-    if 0
+    if showPlot
         figure("name", "testGenerator1", "NumberTitle", "off")
         stem(simout.genOut.t,simout.genOut.y); grid on;
         xlim([0 tEnd]);

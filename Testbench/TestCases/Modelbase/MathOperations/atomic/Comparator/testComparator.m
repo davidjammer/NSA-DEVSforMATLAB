@@ -1,4 +1,8 @@
-function [out] = testComparator()
+function [out] = testComparator(showPlot)
+	if nargin == 0
+      showPlot = false;
+    end
+
     global simout
     global epsilon
     global DEBUGLEVEL
@@ -85,7 +89,7 @@ function [out] = testComparator()
     root = rootcoordinator("root",0,tEnd,N1,0,0);
     root.sim();
 
-    if 0
+    if showPlot
         figure("name", "testComparator", "NumberTitle", "off", ...
 	     "Position", [1 1 450 500]);
         subplot(7,1,1)

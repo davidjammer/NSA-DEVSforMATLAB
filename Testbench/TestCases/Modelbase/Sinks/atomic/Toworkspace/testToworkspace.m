@@ -1,4 +1,8 @@
-function [out] = testToworkspace()
+function [out] = testToworkspace(showPlot)
+	if nargin == 0
+      showPlot = false;
+    end
+
     global simout
     global simin
     global epsilon
@@ -32,7 +36,7 @@ function [out] = testToworkspace()
     root.sim();
     out = simout;
     
-    if 0
+    if showPlot
         figure()
         stem(simout.out1.t,simout.out1.y); grid on;
         xlim([0 tend]);

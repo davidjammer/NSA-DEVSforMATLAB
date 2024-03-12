@@ -1,11 +1,14 @@
-function [out] = test_cm_carry_ripple_adder_8bit()
+function [out] = test_cm_carry_ripple_adder_8bit(showPlot)
+	if nargin == 0
+      showPlot = false;
+    end
 
     tEnd = 15;
 	model_generator("Carry_ripple_adder_8bit_Model");
 	out = model_simulator("Carry_ripple_adder_8bit_Model", tEnd);
 
 
-    if 0
+    if showPlot
         figure("name", "testcarryrippleadder", "NumberTitle", "off", "Position", [1 1 450 500]);
         subplot(5,1,1)
         stairs(out.gen1Out.t,out.gen1Out.y,'-*');

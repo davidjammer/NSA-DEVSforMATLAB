@@ -1,4 +1,8 @@
-function [out] = testSmallestin3()
+function [out] = testSmallestin3(showPlot)
+	if nargin == 0
+      showPlot = false;
+    end
+
     global simout
     global epsilon
     global DEBUGLEVEL
@@ -53,7 +57,7 @@ function [out] = testSmallestin3()
     root.sim();
     out = simout;
    
-    if 0
+    if showPlot
         figure("name", "testSmallestin3", "NumberTitle", "off", ...
           "Position", [1 1 450 500]);
         subplot(4,1,1)

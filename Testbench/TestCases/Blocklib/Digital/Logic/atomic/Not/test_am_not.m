@@ -1,10 +1,13 @@
-function [out] = test_am_not()
+function [out] = test_am_not(showPlot)
+	if nargin == 0
+      showPlot = false;
+    end
 
     tEnd = 14;
 	model_generator("Not_Model");
 	out = model_simulator("Not_Model", tEnd);
 
-    if 0
+    if showPlot
         figure("name", "testNotgate", "NumberTitle", "off")
         subplot(2,1,1)
         plot_ieee1164(out.gen1Out.t, out.gen1Out.y);

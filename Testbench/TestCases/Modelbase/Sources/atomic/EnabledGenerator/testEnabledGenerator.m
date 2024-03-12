@@ -1,4 +1,8 @@
-function [out] = testEnabledGenerator()
+function [out] = testEnabledGenerator(showPlot)
+	if nargin == 0
+      showPlot = false;
+    end
+
     global simout
     global epsilon
     global DEBUGLEVEL
@@ -40,7 +44,7 @@ function [out] = testEnabledGenerator()
     root.sim();
     out = simout;
     
-    if 0
+    if showPlot
         figure("name", "testEnabledGenerator", "NumberTitle", "off")
         subplot(2,1,1)
 		plot_ieee1164(simout.bingenOut.t, simout.bingenOut.y);

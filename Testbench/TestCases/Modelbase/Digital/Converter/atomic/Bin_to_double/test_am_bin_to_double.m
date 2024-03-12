@@ -1,5 +1,8 @@
-function [out] = test_am_bin_to_double()
-    
+function [out] = test_am_bin_to_double(showPlot)
+    if nargin == 0
+      showPlot = false;
+    end
+
     global simout
     global epsilon
     global DEBUGLEVEL
@@ -41,7 +44,7 @@ function [out] = test_am_bin_to_double()
     root.sim();
     out = simout;
 
-    if 0
+    if showPlot
         figure("name", "testNand2", "NumberTitle", "off", "Position", [1 1 450 500]);
         
         

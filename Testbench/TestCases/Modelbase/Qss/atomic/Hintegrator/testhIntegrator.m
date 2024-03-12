@@ -1,4 +1,8 @@
-function [out] = testhIntegrator()
+function [out] = testhIntegrator(showPlot)
+	if nargin == 0
+      showPlot = false;
+    end
+
     global simout
     global epsilon
     global DEBUGLEVEL
@@ -38,7 +42,7 @@ function [out] = testhIntegrator()
     root.sim();
     out = simout;
 
-    if 0
+    if showPlot
         figure
         stairs(simout.gen1Out.t,simout.gen1Out.y); hold on;
         stairs(simout.hIntOut.t,simout.hIntOut.y); hold off;

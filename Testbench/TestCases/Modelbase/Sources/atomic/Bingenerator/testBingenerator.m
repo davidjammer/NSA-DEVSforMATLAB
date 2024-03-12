@@ -1,4 +1,8 @@
-function [out] = testBingenerator()
+function [out] = testBingenerator(showPlot)
+	if nargin == 0
+      showPlot = false;
+    end
+
     global simout
     global epsilon
     global DEBUGLEVEL
@@ -32,7 +36,7 @@ function [out] = testBingenerator()
     root.sim();
     out = simout;
 
-    if 0
+    if showPlot
         figure("name", "testBingenerator", "NumberTitle", "off")
 		plot_ieee1164(simout.binOut.t, simout.binOut.y);
         grid("on");
