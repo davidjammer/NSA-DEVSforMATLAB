@@ -29,7 +29,10 @@ classdef rootcoordinator
            
         end
         function sim(obj)
-            
+			global t, 
+			global stop
+
+			stop = true;
             t=obj.tstart;
             if obj.debug_level == 1
                 sequencestart('NSA-DEVS');
@@ -48,7 +51,7 @@ classdef rootcoordinator
                 disp(['t: ' num2str(simt)]);
                 disp(['t: ' num2str(t(1)) ' + ' num2str(t(2)) 'E']);
             end
-            while (t(1) <= obj.tend(1))
+            while (t(1) <= obj.tend(1) && stop)
                 obj.mdl.smessage(t);
                 if obj.debug_level == 1
                   otn = obj.mdl.tn;
