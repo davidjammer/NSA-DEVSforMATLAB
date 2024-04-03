@@ -2,7 +2,7 @@ function tests = test_models
 	tests = functiontests(localfunctions);
 end
 
-%Run the models in the Examplex directory and compare the results 
+%Run the models in the Example directory and compare the results 
 %with the saved results.
 %
 % run with: run(test_models)
@@ -172,6 +172,13 @@ function test_combine4(testCase)
 	load('testCombine4_out.mat');
 	verifyEqual(testCase, act_out, testCombine4_out)
 	rmpath("TestCases/Modelbase/Routing/atomic/Combine4");
+end
+function test_distribute2(testCase)
+    addpath("TestCases/Modelbase/Routing/atomic/Distribute2");
+	act_out = testDistribute2();
+	load('testDistribute2_out.mat');
+	verifyEqual(testCase, act_out, testDistribute2_out)
+	rmpath("TestCases/Modelbase/Routing/atomic/Distribute2");
 end
 function test_distribute3(testCase)
     addpath("TestCases/Modelbase/Routing/atomic/Distribute3");
@@ -645,6 +652,13 @@ function test_blocklibcombine4(testCase)
 	load('testCombine4_out.mat');
 	verifyEqual(testCase, act_out, testCombine4_out)
 	rmpath("TestCases/Blocklib/Routing/atomic/Combine4");
+end
+function test_blocklibdistribute2(testCase)
+    addpath("TestCases/Blocklib/Routing/atomic/Distribute2");
+	act_out = testDistribute2();
+	load('testDistribute2_out.mat');
+	verifyEqual(testCase, act_out, testDistribute2_out)
+	rmpath("TestCases/Blocklib/Routing/atomic/Distribute2");
 end
 function test_blocklibdistribute3(testCase)
     addpath("TestCases/Blocklib/Routing/atomic/Distribute3");
