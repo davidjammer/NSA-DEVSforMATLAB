@@ -19,8 +19,8 @@ classdef am_add2 < handle
     in1
     in2
     name
-    debug
     tau
+    debug
   end
 
   methods

@@ -37,7 +37,7 @@ classdef am_terminator < handle
       if obj.debug
         fprintf("%-8s delta in, E=%2d\n", obj.name, obj.E)
       end
-      if ~isempty(x) && isfield(x,"in")
+      if ~isempty(x) && isfield(x,"in") && ~isempty(x.in)
         obj.n = obj.n + 1;
         obj.E = x.in;
       end
@@ -49,7 +49,7 @@ classdef am_terminator < handle
 
     function y=lambda(obj,e,x)
       y=[];
-      if ~isempty(x) && isfield(x,"in")
+      if ~isempty(x) && isfield(x,"in") && ~isempty(x.in)
         y.n = obj.n + 1;
       end
 

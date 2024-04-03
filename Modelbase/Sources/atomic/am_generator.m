@@ -61,7 +61,11 @@ classdef am_generator < handle
     
     function t = ta(obj)
       if obj.id - obj.n0 < obj.nG 
-        t = [obj.tG, 0];
+        if obj.tG == 0
+          t = obj.tau;
+        else
+          t = [obj.tG, 0];
+        end
       else
         t = [inf, 0];
       end

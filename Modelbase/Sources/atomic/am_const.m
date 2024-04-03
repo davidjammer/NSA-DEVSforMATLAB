@@ -38,6 +38,14 @@ classdef am_const < handle
 
     function y = lambda(obj,e,x)
       y.out = obj.value;
+
+      if obj.debug
+        fprintf("%-8s lambda, ", obj.name);
+        if isfield(y, "out")
+          fprintf("out=%2d ", y.out);
+        end
+        fprintf("\n")
+      end
     end
 
     function t = ta(obj)

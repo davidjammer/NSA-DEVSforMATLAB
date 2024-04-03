@@ -61,9 +61,9 @@ classdef am_server < handle
             end
           case "busy"
             if ~isempty(x.in)
-              fprintf("delta: in phase %s in %s - dropping input %2d\n", ...
-                 obj.s, obj.name, x.in)
-               obj.sig = obj.sig - e;   % adjust waiting time
+              fprintf("%s, in delta, phase %s - dropping input %2d\n", ...
+                 obj.name, obj.s, x.in)
+              obj.sig = obj.sig - e;   % adjust waiting time
             end
           otherwise
             fprintf("delta: wrong phase %s in %s\n", obj.s, obj.name);
