@@ -40,13 +40,18 @@ classdef am_utilization < handle
     function delta(obj,e,x)
       obj.time = obj.time + e(1);
       if ~isempty(x)
-        if isfield(x, "in") && x.in == "1"
+        % convert to numeric, if necessary
+        if isfield(x, "in") 
+          inVal = input2double(obj, x.in);
+        end
+
+        if isfield(x, "in") && inVal == 1
           if obj.s == "idle"
             obj.total_time = obj.total_time + obj.time;
             obj.s = "working";
             obj.time = 0;
           end
-        elseif isfield(x, "in") && x.in == "0"
+        elseif isfield(x, "in") && inVal == 0
           if obj.s == "working"
             obj.total_time = obj.total_time + obj.time;
             obj.active_time = obj.active_time + obj.time;
@@ -63,11 +68,16 @@ classdef am_utilization < handle
       active_time = obj.active_time;
 
       if ~isempty(x)
-        if isfield(x, "in") && x.in == "1"
+        % convert to numeric, if necessary
+        if isfield(x, "in") 
+          inVal = input2double(obj, x.in);
+        end
+
+        if isfield(x, "in") && inVal == 1
           if obj.s == "idle"
             total_time = obj.total_time + t;
           end
-        elseif isfield(x, "in") && x.in == "0"
+        elseif isfield(x, "in") && inVal == 0
           if obj.s == "working"
             total_time = obj.total_time + t;
             active_time = obj.active_time + t;
@@ -81,7 +91,15 @@ classdef am_utilization < handle
       t = [inf, 0];
     end
 
-
+    % internal functions
+    function val = input2double(obj, inVal)
+      % converts inVal to double, if necessary
+      if isnumeric(inVal)
+        val = inVal;
+      else
+        val = str2double(inVal);
+      end
+    end
 
   end
 end
