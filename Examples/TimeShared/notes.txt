@@ -1,0 +1,68 @@
+Beispiel timeShared
+===================
+
+Modell:
+- nach [1], Kap. 2.5 (S.108-120)
+- vgl. [2]
+- Implementierung in SimEvents5 s. tbmBeispiele/simevents5
+
+Beispiel timeSharedS:
+- Parameter
+  N = 3;         number of terminals
+  tW = 7;        waiting time (exp. distributed)
+  tS = 5;        mean service time (exp. distributed)
+  q = 1;         time slice
+  tau = 0.1;     swap time
+  NJ = 10;       total number of jobs
+
+NSA_DEVS_Lib:
+- generator (zunächst lokal als am_generator1)
+  tau umgenannt in tD mit Standardwert [0,2]
+  bei tG = 0 wird tD benutzt statt [0,1]
+- combine2 neu
+- combine3/4
+  Standardwert tD = [0,2]
+
+TimeSharedLib:
+- generator1
+  Testversion, soll später nach NSA_DEVS_Lib
+- expserver
+  Server mit exponentieller Wartezeit
+- nserver
+  Server mit N Plätzen
+    Array geht nicht (da Zahlen oder Strukturen kommen), also Cellarray
+  Vorsicht bei confluent und vollem Server:
+    generell S raus vor S rein
+	 dafür bei working -> emitting E freiräumen
+  Es könnte auch S raus um eps später sein -> rein wird abgewiesen
+	 Lösung: Block vor Server-In bekommt größeres tau
+  Vorsicht bei Ausgabe
+    es können mehrere Werte gleichzeitig frei werden!
+	 vereinzeln mit Zwischenzustand und tD
+  Achtung: Während der Ausgabe könnten weitere Entitäten fertig werden!
+	 wird nach Rückgang auf working durch neue emitting-Phase erledigt
+- adddata
+  liest eingehende Entity und erzeugt Struktur mit vorgegebenen Feldern
+  eingehender Wert wird in Feld der Struktur kopiert
+- writedata
+  ändert Werte eines Eingangsfelds
+
+Lit:
+1. Law AM. Simulation Modeling and Analysis. McGraw-Hill, New York, 5.ed. 2014
+2. Austermann, L., Junglas, P., Schmidt, J., Tiekmann, C., Conceptional
+  problems of transaction-based modeling and its implementation in SimEvents
+  4.4, SNE Simulation Notes Europe 27/3 (2017), 137-142.
+
+TODO:
+- Small-Version
+  NServer mit tS vom field als CM
+  Ids statt count zum Terminal zurückliefern
+  Stop gibt optional Message aus
+  am_writedata mit cellarray für in -> verschiedene Datentypen möglich
+    -> alle Beispiele mit writedata von in(1) auf in{1} umbauen!
+- Test machen für t_D-trains am nserver-Eingang während "emitting"
+  zB. Server mit Batch/Unbatch vor dem Nserver
+- debug-Mode aller Blöcke testen (insbesondere bei Entities)
+- get_time + stop_simulation von Simulator -> Utilities
+- Idee: Elternklasse Atomic mit properties s, name, debug, tau und
+  methods delta, lambda, tau.
