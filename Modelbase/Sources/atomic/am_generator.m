@@ -1,35 +1,35 @@
 classdef am_generator < handle
 %% Description
-%  generates entities with fixed interarrival times
+%  generates entities with fixed interarrival times and increasing id's
 %% Ports
 %  inputs: none
 %  outputs: 
-%    out      generated entities
+%    out  generated entities
 %% States
-%  s:  prod  (fix)  
-%  id: number of workpieces generated
+%  s:     prod  (fix)  
+%  id:    number of next generated entity 
 %% System Parameters
 %  tG:    time interval between new entities
 %  n0:    id of first entity
 %  nG:    total number of entities created
 %  name:  object name
-%  tau:   input delay
+%  tD:    delay between entities, when tG = 0
 %  debug: flag to enable debug information
 
   properties
-    tau
     s
     id
     name
     tG
     n0
     nG
+    tD
     debug
     epsilon
   end
   
   methods
-    function obj = am_generator(name, tG, n0, nG, tau, debug)
+    function obj = am_generator(name, tG, n0, nG, tD, debug)
       obj.name = name;
       obj.tG = tG;
       obj.n0 = n0;
@@ -38,7 +38,7 @@ classdef am_generator < handle
       obj.s = "prod";
       obj.id = n0;
       obj.epsilon = get_epsilon();
-      obj.tau = tau;
+      obj.tD = tD;
     end
     
     function delta(obj,e,x)
@@ -62,7 +62,7 @@ classdef am_generator < handle
     function t = ta(obj)
       if obj.id - obj.n0 < obj.nG 
         if obj.tG == 0
-          t = obj.tau;
+          t = obj.tD;
         else
           t = [obj.tG, 0];
         end

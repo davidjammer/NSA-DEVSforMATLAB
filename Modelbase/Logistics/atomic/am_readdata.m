@@ -45,7 +45,8 @@ classdef am_readdata < handle
       end
 
       if obj.debug
-        fprintf("%-8s lambda, in=%2d, out=%2d\n", obj.name, x.in, y.out);
+        fprintf("%-8s lambda, val=%s\n", obj.name, getDescription(y.val));
+        fprintf("    out=%s\n", getDescription(y.out));
       end
     end
     

@@ -28,7 +28,7 @@ function [out] = testUtilization(showPlot)
     
     Generator = devs(am_generator("Generator", tG, 1, nG, [0,1], mdebug));
     Queue = devs(am_queue("Queue", [0,2], [0,2], mdebug));
-    Server = devs(am_server("Server", tS, [0,1], mdebug));
+    Server = devs(am_server("Server", tS, "", [0,1], mdebug));
     Terminator = devs(am_terminator("Terminator",[0,1], mdebug));
     GenOut = devs(am_toworkspace("GenOut", "genOut", 0,"vector", [0,rOut], 0));
     QueOut = devs(am_toworkspace("QueOut", "queOut", 0,"vector",[0,rOut], 0));

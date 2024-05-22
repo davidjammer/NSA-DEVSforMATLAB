@@ -24,7 +24,7 @@ function [out] = testQueue_en(showPlot)
     
     Generator = devs(am_generator("Generator", tG, 1, 50, [0, 1], mdebug));
     Buffer = cm_queue_en("Buffer", [0, 1], mdebug);
-    Server = devs(am_server("Server", tS, [0, 1], mdebug));
+    Server = devs(am_server("Server", tS, "", [0, 1], mdebug));
     Terminator = devs(am_terminator("Terminator", [0, 1], mdebug));
     Bingenerator = devs(am_bingenerator("Bingenerator", "1", tEnable, [0, 1], mdebug));
     BufferNQ = devs(am_toworkspace("BufferNQ", "bufferNQ", 0, "vector", [0, rOut], mdebug));

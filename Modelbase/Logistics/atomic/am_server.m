@@ -1,6 +1,7 @@
 classdef am_server < handle
 %% Description
 %  processes one entity in time tS
+%  tS is given as parameter or via an input field.
 %% Ports
 %  inputs: 
 %    in   incoming entities
@@ -15,6 +16,7 @@ classdef am_server < handle
 %% System Parameters
 %  name:  object name
 %  tS:    service time
+%  tsField: name of input field containing tS ("": use parameter)
 %  tau:   input delay
 %  debug: model debug level
 
@@ -24,18 +26,20 @@ classdef am_server < handle
     sig
     name
     tS
+    tsField
     tau
     debug
     epsilon
   end
   
   methods
-    function obj = am_server(name, tS, tau, debug)
+    function obj = am_server(name, tS, tsField, tau, debug)
       obj.s = "idle";
       obj.E = [];
       obj.sig = [inf,0];
       obj.name = name;
       obj.tS = tS;
+      obj.tsField = tsField;
       obj.debug = debug;
       obj.epsilon = get_epsilon();
       obj.tau = tau;
@@ -57,7 +61,11 @@ classdef am_server < handle
             if ~isempty(x.in)
               obj.s = "busy";
               obj.E = x.in;
-              obj.sig = [obj.tS,0];
+              if obj.tsField == ""
+                obj.sig = [obj.tS,0];
+              else
+                obj.sig = [x.in.(obj.tsField),0];
+              end
             end
           case "busy"
             if ~isempty(x.in)
@@ -70,9 +78,13 @@ classdef am_server < handle
         end
       else   % confluent event
         if ~isempty(x.in)
-         obj.s = "busy";     % unnecessary, is busy anyhow
-         obj.E = x.in;
-         obj.sig = [obj.tS,0];
+          obj.s = "busy";     % unnecessary, is busy anyhow
+          obj.E = x.in;
+          if obj.tsField == ""
+            obj.sig = [obj.tS,0];
+          else
+            obj.sig = [x.in.(obj.tsField),0];
+          end
         end
       end
 

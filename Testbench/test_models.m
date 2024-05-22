@@ -1,8 +1,8 @@
 function tests = test_models
-	tests = functiontests(localfunctions);
+  tests = functiontests(localfunctions);
 end
 
-%Run the models in the Example directory and compare the results 
+%Run the models in the Example directory and compare the results
 %with the saved results.
 %
 % run with: run(test_models)
@@ -12,276 +12,283 @@ end
 %%%%%%%%%%%%%%%%%%%%Math operations%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %%atomic
 function test_add2(testCase)
-    addpath("TestCases/Modelbase/MathOperations/atomic/Add2");
-	act_out = testAdd2();
-	load('testAdd2_out.mat');
-	verifyEqual(testCase, act_out, testAdd2_out)
-	rmpath("TestCases/Modelbase/MathOperations/atomic/Add2");
+  addpath("TestCases/Modelbase/MathOperations/atomic/Add2");
+  act_out = testAdd2();
+  load('testAdd2_out.mat');
+  verifyEqual(testCase, act_out, testAdd2_out)
+  rmpath("TestCases/Modelbase/MathOperations/atomic/Add2");
 end
 function test_add3(testCase)
-    addpath("TestCases/Modelbase/MathOperations/atomic/Add3");
-	act_out = testAdd3();
-	load('testAdd3_out.mat');
-	verifyEqual(testCase, act_out, testAdd3_out)
-	rmpath("TestCases/Modelbase/MathOperations/atomic/Add3");
+  addpath("TestCases/Modelbase/MathOperations/atomic/Add3");
+  act_out = testAdd3();
+  load('testAdd3_out.mat');
+  verifyEqual(testCase, act_out, testAdd3_out)
+  rmpath("TestCases/Modelbase/MathOperations/atomic/Add3");
 end
 function test_add4(testCase)
-    addpath("TestCases/Modelbase/MathOperations/atomic/Add4");
-	act_out = testAdd4();
-	load('testAdd4_out.mat');
-	verifyEqual(testCase, act_out, testAdd4_out)
-	rmpath("TestCases/Modelbase/MathOperations/atomic/Add4");
+  addpath("TestCases/Modelbase/MathOperations/atomic/Add4");
+  act_out = testAdd4();
+  load('testAdd4_out.mat');
+  verifyEqual(testCase, act_out, testAdd4_out)
+  rmpath("TestCases/Modelbase/MathOperations/atomic/Add4");
 end
 function test_add6(testCase)
-    addpath("TestCases/Modelbase/MathOperations/atomic/Add6");
-	act_out = testAdd6();
-	load('testAdd6_out.mat');
-	verifyEqual(testCase, act_out, testAdd6_out)
-	rmpath("TestCases/Modelbase/MathOperations/atomic/Add6");
+  addpath("TestCases/Modelbase/MathOperations/atomic/Add6");
+  act_out = testAdd6();
+  load('testAdd6_out.mat');
+  verifyEqual(testCase, act_out, testAdd6_out)
+  rmpath("TestCases/Modelbase/MathOperations/atomic/Add6");
+end
+function test_bias(testCase)
+  addpath("TestCases/Modelbase/MathOperations/atomic/Bias");
+  act_out = testBias();
+  load('testBias_out.mat');
+  verifyEqual(testCase, act_out, testBias_out)
+  rmpath("TestCases/Modelbase/MathOperations/atomic/Bias");
 end
 function test_comparator(testCase)
-    addpath("TestCases/Modelbase/MathOperations/atomic/Comparator");
-	act_out = testComparator();
-	load('testComparator_out.mat');
-	verifyEqual(testCase, act_out, testComparator_out)
-	rmpath("TestCases/Modelbase/MathOperations/atomic/Comparator");
+  addpath("TestCases/Modelbase/MathOperations/atomic/Comparator");
+  act_out = testComparator();
+  load('testComparator_out.mat');
+  verifyEqual(testCase, act_out, testComparator_out)
+  rmpath("TestCases/Modelbase/MathOperations/atomic/Comparator");
 end
 function test_Gain(testCase)
-    addpath("TestCases/Modelbase/MathOperations/atomic/Gain");
-	act_out = testGain();
-	load('testGain_out.mat');
-	verifyEqual(testCase, act_out, testGain_out)
-	rmpath("TestCases/Modelbase/MathOperations/atomic/Gain");
+  addpath("TestCases/Modelbase/MathOperations/atomic/Gain");
+  act_out = testGain();
+  load('testGain_out.mat');
+  verifyEqual(testCase, act_out, testGain_out)
+  rmpath("TestCases/Modelbase/MathOperations/atomic/Gain");
 end
 function test_Div(testCase)
-    addpath("TestCases/Modelbase/MathOperations/atomic/Div");
-	act_out = testDiv();
-	load('testDiv_out.mat');
-	verifyEqual(testCase, act_out, testDiv_out)
-	rmpath("TestCases/Modelbase/MathOperations/atomic/Div");
+  addpath("TestCases/Modelbase/MathOperations/atomic/Div");
+  act_out = testDiv();
+  load('testDiv_out.mat');
+  verifyEqual(testCase, act_out, testDiv_out)
+  rmpath("TestCases/Modelbase/MathOperations/atomic/Div");
 end
 function test_multi2(testCase)
-    addpath("TestCases/Modelbase/MathOperations/atomic/Multi2");
-	act_out = testMulti2();
-	load('testMulti2_out.mat');
-	verifyEqual(testCase, act_out, testMulti2_out)
-	rmpath("TestCases/Modelbase/MathOperations/atomic/Multi2");
+  addpath("TestCases/Modelbase/MathOperations/atomic/Multi2");
+  act_out = testMulti2();
+  load('testMulti2_out.mat');
+  verifyEqual(testCase, act_out, testMulti2_out)
+  rmpath("TestCases/Modelbase/MathOperations/atomic/Multi2");
 end
 function test_multi3(testCase)
-    addpath("TestCases/Modelbase/MathOperations/atomic/Multi3");
-	act_out = testMulti3();
-	load('testMulti3_out.mat');
-	verifyEqual(testCase, act_out, testMulti3_out)
-	rmpath("TestCases/Modelbase/MathOperations/atomic/Multi3");
+  addpath("TestCases/Modelbase/MathOperations/atomic/Multi3");
+  act_out = testMulti3();
+  load('testMulti3_out.mat');
+  verifyEqual(testCase, act_out, testMulti3_out)
+  rmpath("TestCases/Modelbase/MathOperations/atomic/Multi3");
 end
 function test_saturation(testCase)
-    addpath("TestCases/Modelbase/MathOperations/atomic/Saturation");
-	act_out = testSaturation();
-	load('testSaturation_out.mat');
-	verifyEqual(testCase, act_out, testSaturation_out)
-	rmpath("TestCases/Modelbase/MathOperations/atomic/Saturation");
+  addpath("TestCases/Modelbase/MathOperations/atomic/Saturation");
+  act_out = testSaturation();
+  load('testSaturation_out.mat');
+  verifyEqual(testCase, act_out, testSaturation_out)
+  rmpath("TestCases/Modelbase/MathOperations/atomic/Saturation");
 end
 %%coupled
 
 %%%%%%%%%%%%%%%%%%%%Logistics%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %%atomic
 function test_batch(testCase)
-    addpath("TestCases/Modelbase/Logistics/atomic/Batch");
-	act_out = testBatch();
-	load('testBatch_out.mat');
-	verifyEqual(testCase, act_out, testBatch_out)
-	rmpath("TestCases/Modelbase/Logistics/atomic/Batch");
+  addpath("TestCases/Modelbase/Logistics/atomic/Batch");
+  act_out = testBatch();
+  load('testBatch_out.mat');
+  verifyEqual(testCase, act_out, testBatch_out)
+  rmpath("TestCases/Modelbase/Logistics/atomic/Batch");
 end
 function test_delay(testCase)
-    addpath("TestCases/Modelbase/Logistics/atomic/Delay");
-	act_out = testDelay();
-	load('testDelay_out.mat');
-	verifyEqual(testCase, act_out, testDelay_out)
-	rmpath("TestCases/Modelbase/Logistics/atomic/Delay");
+  addpath("TestCases/Modelbase/Logistics/atomic/Delay");
+  act_out = testDelay();
+  load('testDelay_out.mat');
+  verifyEqual(testCase, act_out, testDelay_out)
+  rmpath("TestCases/Modelbase/Logistics/atomic/Delay");
 end
 function test_queue(testCase)
-    addpath("TestCases/Modelbase/Logistics/atomic/Queue");
-	act_out = testQueue();
-	load('testQueue_out.mat');
-	verifyEqual(testCase, act_out, testQueue_out)
-	rmpath("TestCases/Modelbase/Logistics/atomic/Queue");
+  addpath("TestCases/Modelbase/Logistics/atomic/Queue");
+  act_out = testQueue();
+  load('testQueue_out.mat');
+  verifyEqual(testCase, act_out, testQueue_out)
+  rmpath("TestCases/Modelbase/Logistics/atomic/Queue");
 end
 function test_server_case1(testCase)
-    addpath("TestCases/Modelbase/Logistics/atomic/Server");
-	act_out = testServer(1);
-	load('testServer_out1.mat');
-	verifyEqual(testCase, act_out, testServer_out)
-	rmpath("TestCases/Modelbase/Logistics/atomic/Server");
+  addpath("TestCases/Modelbase/Logistics/atomic/Server");
+  act_out = testServer(1);
+  load('testServer_out1.mat');
+  verifyEqual(testCase, act_out, testServer_out)
+  rmpath("TestCases/Modelbase/Logistics/atomic/Server");
 end
 function test_server_case2(testCase)
-    addpath("TestCases/Modelbase/Logistics/atomic/Server");
-	act_out = testServer(2);
-	load('testServer_out2.mat');
-	verifyEqual(testCase, act_out, testServer_out)
-	rmpath("TestCases/Modelbase/Logistics/atomic/Server");
+  addpath("TestCases/Modelbase/Logistics/atomic/Server");
+  act_out = testServer(2);
+  load('testServer_out2.mat');
+  verifyEqual(testCase, act_out, testServer_out)
+  rmpath("TestCases/Modelbase/Logistics/atomic/Server");
 end
 function test_unbatch(testCase)
-    addpath("TestCases/Modelbase/Logistics/atomic/Unbatch");
-	act_out = testUnbatch();
-	load('testUnbatch_out.mat');
-	verifyEqual(testCase, act_out, testUnbatch_out)
-	rmpath("TestCases/Modelbase/Logistics/atomic/Unbatch");
+  addpath("TestCases/Modelbase/Logistics/atomic/Unbatch");
+  act_out = testUnbatch();
+  load('testUnbatch_out.mat');
+  verifyEqual(testCase, act_out, testUnbatch_out)
+  rmpath("TestCases/Modelbase/Logistics/atomic/Unbatch");
 end
 
 function test_terminator(testCase)
-    addpath("TestCases/Modelbase/Logistics/atomic/Terminator");
-	act_out = testTerminator();
-	load('testTerminator_out.mat');
-	verifyEqual(testCase, act_out, testTerminator_out)
-	rmpath("TestCases/Modelbase/Logistics/atomic/Terminator");
+  addpath("TestCases/Modelbase/Logistics/atomic/Terminator");
+  act_out = testTerminator();
+  load('testTerminator_out.mat');
+  verifyEqual(testCase, act_out, testTerminator_out)
+  rmpath("TestCases/Modelbase/Logistics/atomic/Terminator");
 end
 function test_gate(testCase)
-    addpath("TestCases/Modelbase/Logistics/atomic/Gate");
-	act_out = testGate();
-	load('testGate_out.mat');
-	verifyEqual(testCase, act_out, testGate_out)
-	rmpath("TestCases/Modelbase/Logistics/atomic/Gate");
+  addpath("TestCases/Modelbase/Logistics/atomic/Gate");
+  act_out = testGate();
+  load('testGate_out.mat');
+  verifyEqual(testCase, act_out, testGate_out)
+  rmpath("TestCases/Modelbase/Logistics/atomic/Gate");
 end
 %%coupled
 function test_queue_en(testCase)
-    addpath("TestCases/Modelbase/Logistics/coupled/Queue_en");
-	act_out = testQueue_en();
-	load('testQueue_en_out.mat');
-	verifyEqual(testCase, act_out, testQueue_en_out)
-	rmpath("TestCases/Modelbase/Logistics/coupled/Queue_en");
+  addpath("TestCases/Modelbase/Logistics/coupled/Queue_en");
+  act_out = testQueue_en();
+  load('testQueue_en_out.mat');
+  verifyEqual(testCase, act_out, testQueue_en_out)
+  rmpath("TestCases/Modelbase/Logistics/coupled/Queue_en");
 end
 function test_queue_server(testCase)
-    addpath("TestCases/Modelbase/Logistics/coupled/Queue_server");
-	act_out = test_cm_queue_server();
-	load('test_cm_queue_server_out.mat');
-	verifyEqual(testCase, act_out, test_cm_queue_server_out)
-	rmpath("TestCases/Modelbase/Logistics/coupled/Queue_server");
+  addpath("TestCases/Modelbase/Logistics/coupled/Queue_server");
+  act_out = test_cm_queue_server();
+  load('test_cm_queue_server_out.mat');
+  verifyEqual(testCase, act_out, test_cm_queue_server_out)
+  rmpath("TestCases/Modelbase/Logistics/coupled/Queue_server");
 end
 %%%%%%%%%%%%%%%%%%%%Routing%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %%atomic
 function test_combine3(testCase)
-    addpath("TestCases/Modelbase/Routing/atomic/Combine3");
-	act_out = testCombine3();
-	load('testCombine3_out.mat');
-	verifyEqual(testCase, act_out, testCombine3_out)
-	rmpath("TestCases/Modelbase/Routing/atomic/Combine3");
+  addpath("TestCases/Modelbase/Routing/atomic/Combine3");
+  act_out = testCombine3();
+  load('testCombine3_out.mat');
+  verifyEqual(testCase, act_out, testCombine3_out)
+  rmpath("TestCases/Modelbase/Routing/atomic/Combine3");
 end
 function test_combine4(testCase)
-    addpath("TestCases/Modelbase/Routing/atomic/Combine4");
-	act_out = testCombine4();
-	load('testCombine4_out.mat');
-	verifyEqual(testCase, act_out, testCombine4_out)
-	rmpath("TestCases/Modelbase/Routing/atomic/Combine4");
+  addpath("TestCases/Modelbase/Routing/atomic/Combine4");
+  act_out = testCombine4();
+  load('testCombine4_out.mat');
+  verifyEqual(testCase, act_out, testCombine4_out)
+  rmpath("TestCases/Modelbase/Routing/atomic/Combine4");
 end
 function test_distribute2(testCase)
-    addpath("TestCases/Modelbase/Routing/atomic/Distribute2");
-	act_out = testDistribute2();
-	load('testDistribute2_out.mat');
-	verifyEqual(testCase, act_out, testDistribute2_out)
-	rmpath("TestCases/Modelbase/Routing/atomic/Distribute2");
+  addpath("TestCases/Modelbase/Routing/atomic/Distribute2");
+  act_out = testDistribute2();
+  load('testDistribute2_out.mat');
+  verifyEqual(testCase, act_out, testDistribute2_out)
+  rmpath("TestCases/Modelbase/Routing/atomic/Distribute2");
 end
 function test_distribute3(testCase)
-    addpath("TestCases/Modelbase/Routing/atomic/Distribute3");
-	act_out = testDistribute3();
-	load('testDistribute3_out.mat');
-	verifyEqual(testCase, act_out, testDistribute3_out)
-	rmpath("TestCases/Modelbase/Routing/atomic/Distribute3");
+  addpath("TestCases/Modelbase/Routing/atomic/Distribute3");
+  act_out = testDistribute3();
+  load('testDistribute3_out.mat');
+  verifyEqual(testCase, act_out, testDistribute3_out)
+  rmpath("TestCases/Modelbase/Routing/atomic/Distribute3");
 end
 function test_distribute4(testCase)
-    addpath("TestCases/Modelbase/Routing/atomic/Distribute4");
-	act_out = testDistribute4();
-	load('testDistribute4_out.mat');
-	verifyEqual(testCase, act_out, testDistribute4_out)
-	rmpath("TestCases/Modelbase/Routing/atomic/Distribute4");
+  addpath("TestCases/Modelbase/Routing/atomic/Distribute4");
+  act_out = testDistribute4();
+  load('testDistribute4_out.mat');
+  verifyEqual(testCase, act_out, testDistribute4_out)
+  rmpath("TestCases/Modelbase/Routing/atomic/Distribute4");
 end
 function test_outputswitch(testCase)
-    addpath("TestCases/Modelbase/Routing/atomic/Outputswitch");
-	act_out = testOutputswitch();
-	load('testOutputswitch_out.mat');
-	verifyEqual(testCase, act_out, testOutputswitch_out)
-	rmpath("TestCases/Modelbase/Routing/atomic/Outputswitch");
+  addpath("TestCases/Modelbase/Routing/atomic/Outputswitch");
+  act_out = testOutputswitch();
+  load('testOutputswitch_out.mat');
+  verifyEqual(testCase, act_out, testOutputswitch_out)
+  rmpath("TestCases/Modelbase/Routing/atomic/Outputswitch");
 end
 function test_smallestin3(testCase)
-    addpath("TestCases/Modelbase/Routing/atomic/Smallestin3");
-	act_out = testSmallestin3();
-	load('testSmallestin3_out.mat');
-	verifyEqual(testCase, act_out, testSmallestin3_out)
-	rmpath("TestCases/Modelbase/Routing/atomic/Smallestin3");
+  addpath("TestCases/Modelbase/Routing/atomic/Smallestin3");
+  act_out = testSmallestin3();
+  load('testSmallestin3_out.mat');
+  verifyEqual(testCase, act_out, testSmallestin3_out)
+  rmpath("TestCases/Modelbase/Routing/atomic/Smallestin3");
 end
 function test_smallestin4(testCase)
-    addpath("TestCases/Modelbase/Routing/atomic/Smallestin4");
-	act_out = testSmallestin4();
-	load('testSmallestin4_out.mat');
-	verifyEqual(testCase, act_out, testSmallestin4_out)
-	rmpath("TestCases/Modelbase/Routing/atomic/Smallestin4");
+  addpath("TestCases/Modelbase/Routing/atomic/Smallestin4");
+  act_out = testSmallestin4();
+  load('testSmallestin4_out.mat');
+  verifyEqual(testCase, act_out, testSmallestin4_out)
+  rmpath("TestCases/Modelbase/Routing/atomic/Smallestin4");
 end
 %%coupled
 
 %%%%%%%%%%%%%%%%%%%%Sinks%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %%atomic
 function test_toworkspace(testCase)
-    addpath("TestCases/Modelbase/Sinks/atomic/Toworkspace");
-	act_out = testToworkspace();
-	load('testToworkspace_out.mat');
-	verifyEqual(testCase, act_out, testToworkspace_out)
-	rmpath("TestCases/Modelbase/Sinks/atomic/Toworkspace");
+  addpath("TestCases/Modelbase/Sinks/atomic/Toworkspace");
+  act_out = testToworkspace();
+  load('testToworkspace_out.mat');
+  verifyEqual(testCase, act_out, testToworkspace_out)
+  rmpath("TestCases/Modelbase/Sinks/atomic/Toworkspace");
 end
 %%coupled
 
 %%%%%%%%%%%%%%%%%%%%Sources%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %%atomic
 function test_fromworkspace(testCase)
-    addpath("TestCases/Modelbase/Sources/atomic/Fromworkspace");
-	act_out = testFromworkspace();
-	load('testFromworkspace_out.mat');
-	verifyEqual(testCase, act_out, testFromworkspace_out)
-	rmpath("TestCases/Modelbase/Sources/atomic/Fromworkspace");
+  addpath("TestCases/Modelbase/Sources/atomic/Fromworkspace");
+  act_out = testFromworkspace();
+  load('testFromworkspace_out.mat');
+  verifyEqual(testCase, act_out, testFromworkspace_out)
+  rmpath("TestCases/Modelbase/Sources/atomic/Fromworkspace");
 end
 function test_Generator(testCase)
-    addpath("TestCases/Modelbase/Sources/atomic/Generator");
-	act_out = testGenerator();
-	load('testGenerator_out.mat');
-	verifyEqual(testCase, act_out, testGenerator_out)
-	rmpath("TestCases/Modelbase/Sources/atomic/Generator");
+  addpath("TestCases/Modelbase/Sources/atomic/Generator");
+  act_out = testGenerator();
+  load('testGenerator_out.mat');
+  verifyEqual(testCase, act_out, testGenerator_out)
+  rmpath("TestCases/Modelbase/Sources/atomic/Generator");
 end
 function test_vectorgen(testCase)
-    addpath("TestCases/Modelbase/Sources/atomic/Vectorgen");
-	act_out = testVectorgen();
-	load('testVectorgen_out.mat');
-	verifyEqual(testCase, act_out, testVectorgen_out)
-	rmpath("TestCases/Modelbase/Sources/atomic/Vectorgen");
+  addpath("TestCases/Modelbase/Sources/atomic/Vectorgen");
+  act_out = testVectorgen();
+  load('testVectorgen_out.mat');
+  verifyEqual(testCase, act_out, testVectorgen_out)
+  rmpath("TestCases/Modelbase/Sources/atomic/Vectorgen");
 end
 function test_bingenerator(testCase)
-    addpath("TestCases/Modelbase/Sources/atomic/Bingenerator");
-	act_out = testBingenerator();
-	load('testBingenerator_out.mat');
-	verifyEqual(testCase, act_out, testBingenerator_out)
-	rmpath("TestCases/Modelbase/Sources/atomic/Bingenerator");
+  addpath("TestCases/Modelbase/Sources/atomic/Bingenerator");
+  act_out = testBingenerator();
+  load('testBingenerator_out.mat');
+  verifyEqual(testCase, act_out, testBingenerator_out)
+  rmpath("TestCases/Modelbase/Sources/atomic/Bingenerator");
 end
 function test_Const(testCase)
-    addpath("TestCases/Modelbase/Sources/atomic/Const");
-	act_out = testConst();
-	load('testConst_out.mat');
-	verifyEqual(testCase, act_out, testConst_out)
-	rmpath("TestCases/Modelbase/Sources/atomic/Const");
+  addpath("TestCases/Modelbase/Sources/atomic/Const");
+  act_out = testConst();
+  load('testConst_out.mat');
+  verifyEqual(testCase, act_out, testConst_out)
+  rmpath("TestCases/Modelbase/Sources/atomic/Const");
 end
 function test_enabledgenerator(testCase)
-    addpath("TestCases/Modelbase/Sources/atomic/EnabledGenerator");
-	act_out = testEnabledGenerator();
-	load('testEnabledGenerator_out.mat');
-	verifyEqual(testCase, act_out, testEnabledGenerator_out)
-	rmpath("TestCases/Modelbase/Sources/atomic/EnabledGenerator");
+  addpath("TestCases/Modelbase/Sources/atomic/EnabledGenerator");
+  act_out = testEnabledGenerator();
+  load('testEnabledGenerator_out.mat');
+  verifyEqual(testCase, act_out, testEnabledGenerator_out)
+  rmpath("TestCases/Modelbase/Sources/atomic/EnabledGenerator");
 end
 %%coupled
 
 %%%%%%%%%%%%%%%%%%%%QSS%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %%atomic
 function test_hIntegrator(testCase)
-    addpath("TestCases/Modelbase/Qss/atomic/Hintegrator");
-	act_out = testhIntegrator();
-	load('testhIntegrator_out.mat');
-	verifyEqual(testCase, act_out, testhIntegrator_out)
-	rmpath("TestCases/Modelbase/Qss/atomic/Hintegrator");
+  addpath("TestCases/Modelbase/Qss/atomic/Hintegrator");
+  act_out = testhIntegrator();
+  load('testhIntegrator_out.mat');
+  verifyEqual(testCase, act_out, testhIntegrator_out)
+  rmpath("TestCases/Modelbase/Qss/atomic/Hintegrator");
 end
 %%coupled
 
@@ -289,178 +296,178 @@ end
 %%Converter
 %atomic
 function am_bin8_to_dec_test(testCase)
-    addpath("TestCases/Modelbase/Digital/Converter/atomic/Bin8_to_dec");
-	act_out = test_am_bin8_to_dec();
-	load('test_am_bin8_to_dec_out.mat');
-	verifyEqual(testCase, act_out, test_am_bin8_to_dec_out)
-	rmpath("TestCases/Modelbase/Digital/Converter/atomic/Bin8_to_dec");
+  addpath("TestCases/Modelbase/Digital/Converter/atomic/Bin8_to_dec");
+  act_out = test_am_bin8_to_dec();
+  load('test_am_bin8_to_dec_out.mat');
+  verifyEqual(testCase, act_out, test_am_bin8_to_dec_out)
+  rmpath("TestCases/Modelbase/Digital/Converter/atomic/Bin8_to_dec");
 end
 function am_dec_to_bin8_test(testCase)
-    addpath("TestCases/Modelbase/Digital/Converter/atomic/Dec_to_bin8");
-	act_out = test_am_dec_to_bin8();
-	load('test_am_dec_to_bin8_out.mat');
-	verifyEqual(testCase, act_out, test_am_dec_to_bin8_out)
-	rmpath("TestCases/Modelbase/Digital/Converter/atomic/Dec_to_bin8");
+  addpath("TestCases/Modelbase/Digital/Converter/atomic/Dec_to_bin8");
+  act_out = test_am_dec_to_bin8();
+  load('test_am_dec_to_bin8_out.mat');
+  verifyEqual(testCase, act_out, test_am_dec_to_bin8_out)
+  rmpath("TestCases/Modelbase/Digital/Converter/atomic/Dec_to_bin8");
 end
 function am_bin_to_double_test(testCase)
-    addpath("TestCases/Modelbase/Digital/Converter/atomic/Bin_to_double");
-	act_out = test_am_bin_to_double();
-	load('test_am_bin_to_double_out.mat');
-	verifyEqual(testCase, act_out, test_am_bin_to_double_out)
-	rmpath("TestCases/Modelbase/Digital/Converter/atomic/Bin_to_double");
+  addpath("TestCases/Modelbase/Digital/Converter/atomic/Bin_to_double");
+  act_out = test_am_bin_to_double();
+  load('test_am_bin_to_double_out.mat');
+  verifyEqual(testCase, act_out, test_am_bin_to_double_out)
+  rmpath("TestCases/Modelbase/Digital/Converter/atomic/Bin_to_double");
 end
 %coupled
 
 %%Logic
 %atomic
 function am_nand2_test(testCase)
-    addpath("TestCases/Modelbase/Digital/Logic/atomic/Nand2");
-	act_out = test_am_nand2();
-	load('test_am_nand2_out.mat');
-	verifyEqual(testCase, act_out, test_am_nand2_out)
-	rmpath("TestCases/Modelbase/Digital/Logic/atomic/Nand2");
+  addpath("TestCases/Modelbase/Digital/Logic/atomic/Nand2");
+  act_out = test_am_nand2();
+  load('test_am_nand2_out.mat');
+  verifyEqual(testCase, act_out, test_am_nand2_out)
+  rmpath("TestCases/Modelbase/Digital/Logic/atomic/Nand2");
 end
 function am_nand3_test(testCase)
-    addpath("TestCases/Modelbase/Digital/Logic/atomic/Nand3");
-	act_out = test_am_nand3();
-	load('test_am_nand3_out.mat');
-	verifyEqual(testCase, act_out, test_am_nand3_out)
-	rmpath("TestCases/Modelbase/Digital/Logic/atomic/Nand3");
+  addpath("TestCases/Modelbase/Digital/Logic/atomic/Nand3");
+  act_out = test_am_nand3();
+  load('test_am_nand3_out.mat');
+  verifyEqual(testCase, act_out, test_am_nand3_out)
+  rmpath("TestCases/Modelbase/Digital/Logic/atomic/Nand3");
 end
 function am_nand4_test(testCase)
-    addpath("TestCases/Modelbase/Digital/Logic/atomic/Nand4");
-	act_out = test_am_nand4();
-	load('test_am_nand4_out.mat');
-	verifyEqual(testCase, act_out, test_am_nand4_out)
-	rmpath("TestCases/Modelbase/Digital/Logic/atomic/Nand4");
+  addpath("TestCases/Modelbase/Digital/Logic/atomic/Nand4");
+  act_out = test_am_nand4();
+  load('test_am_nand4_out.mat');
+  verifyEqual(testCase, act_out, test_am_nand4_out)
+  rmpath("TestCases/Modelbase/Digital/Logic/atomic/Nand4");
 end
 function am_notgate_test(testCase)
-    addpath("TestCases/Modelbase/Digital/Logic/atomic/Not");
-	act_out = test_am_not();
-	load('test_am_not_out.mat');
-	verifyEqual(testCase, act_out, test_am_not_out)
-	rmpath("TestCases/Modelbase/Digital/Logic/atomic/Not");
+  addpath("TestCases/Modelbase/Digital/Logic/atomic/Not");
+  act_out = test_am_not();
+  load('test_am_not_out.mat');
+  verifyEqual(testCase, act_out, test_am_not_out)
+  rmpath("TestCases/Modelbase/Digital/Logic/atomic/Not");
 end
 function am_or2_test(testCase)
-    addpath("TestCases/Modelbase/Digital/Logic/atomic/Or2");
-	act_out = test_am_or2();
-	load('test_am_or2_out.mat');
-	verifyEqual(testCase, act_out, test_am_or2_out)
-	rmpath("TestCases/Modelbase/Digital/Logic/atomic/Or2");
+  addpath("TestCases/Modelbase/Digital/Logic/atomic/Or2");
+  act_out = test_am_or2();
+  load('test_am_or2_out.mat');
+  verifyEqual(testCase, act_out, test_am_or2_out)
+  rmpath("TestCases/Modelbase/Digital/Logic/atomic/Or2");
 end
 %coupled
 function cm_and2_test(testCase)
-    addpath("TestCases/Modelbase/Digital/Logic/coupled/And2");
-	act_out = test_cm_and2();
-	load('test_cm_and2_out.mat');
-	verifyEqual(testCase, act_out, test_cm_and2_out)
-	rmpath("TestCases/Modelbase/Digital/Logic/coupled/And2");
+  addpath("TestCases/Modelbase/Digital/Logic/coupled/And2");
+  act_out = test_cm_and2();
+  load('test_cm_and2_out.mat');
+  verifyEqual(testCase, act_out, test_cm_and2_out)
+  rmpath("TestCases/Modelbase/Digital/Logic/coupled/And2");
 end
 function cm_not_test(testCase)
-    addpath("TestCases/Modelbase/Digital/Logic/coupled/Not");
-	act_out = test_cm_not();
-	load('test_cm_not_out.mat');
-	verifyEqual(testCase, act_out, test_cm_not_out)
-	rmpath("TestCases/Modelbase/Digital/Logic/coupled/Not");
+  addpath("TestCases/Modelbase/Digital/Logic/coupled/Not");
+  act_out = test_cm_not();
+  load('test_cm_not_out.mat');
+  verifyEqual(testCase, act_out, test_cm_not_out)
+  rmpath("TestCases/Modelbase/Digital/Logic/coupled/Not");
 end
 function cm_or2_test(testCase)
-    addpath("TestCases/Modelbase/Digital/Logic/coupled/Or2");
-	act_out = test_cm_or2();
-	load('test_cm_or2_out.mat');
-	verifyEqual(testCase, act_out, test_cm_or2_out)
-	rmpath("TestCases/Modelbase/Digital/Logic/coupled/Or2");
+  addpath("TestCases/Modelbase/Digital/Logic/coupled/Or2");
+  act_out = test_cm_or2();
+  load('test_cm_or2_out.mat');
+  verifyEqual(testCase, act_out, test_cm_or2_out)
+  rmpath("TestCases/Modelbase/Digital/Logic/coupled/Or2");
 end
 function cm_xor2_test(testCase)
-    addpath("TestCases/Modelbase/Digital/Logic/coupled/Xor2");
-	act_out = test_cm_xor2();
-	load('test_cm_xor2_out.mat');
-	verifyEqual(testCase, act_out, test_cm_xor2_out)
-	rmpath("TestCases/Modelbase/Digital/Logic/coupled/Xor2");
+  addpath("TestCases/Modelbase/Digital/Logic/coupled/Xor2");
+  act_out = test_cm_xor2();
+  load('test_cm_xor2_out.mat');
+  verifyEqual(testCase, act_out, test_cm_xor2_out)
+  rmpath("TestCases/Modelbase/Digital/Logic/coupled/Xor2");
 end
 function cm_Mux2to1_test(testCase)
-    addpath("TestCases/Modelbase/Digital/Logic/coupled/Mux2to1");
-	act_out = test_cm_Mux2to1();
-	load('test_cm_Mux2to1_out.mat');
-	verifyEqual(testCase, act_out, test_cm_Mux2to1_out)
-	rmpath("TestCases/Modelbase/Digital/Logic/coupled/Mux2to1");
+  addpath("TestCases/Modelbase/Digital/Logic/coupled/Mux2to1");
+  act_out = test_cm_Mux2to1();
+  load('test_cm_Mux2to1_out.mat');
+  verifyEqual(testCase, act_out, test_cm_Mux2to1_out)
+  rmpath("TestCases/Modelbase/Digital/Logic/coupled/Mux2to1");
 end
 function cm_Mux4to1_test(testCase)
-    addpath("TestCases/Modelbase/Digital/Logic/coupled/Mux4to1");
-	act_out = test_cm_Mux4to1();
-	load('test_cm_Mux4to1_out.mat');
-	verifyEqual(testCase, act_out, test_cm_Mux4to1_out)
-	rmpath("TestCases/Modelbase/Digital/Logic/coupled/Mux4to1");
+  addpath("TestCases/Modelbase/Digital/Logic/coupled/Mux4to1");
+  act_out = test_cm_Mux4to1();
+  load('test_cm_Mux4to1_out.mat');
+  verifyEqual(testCase, act_out, test_cm_Mux4to1_out)
+  rmpath("TestCases/Modelbase/Digital/Logic/coupled/Mux4to1");
 end
 function cm_halfadder_test(testCase)
-    addpath("TestCases/Modelbase/Digital/Logic/coupled/Halfadder");
-	act_out = test_cm_halfadder();
-	load('test_cm_halfadder_out.mat');
-	verifyEqual(testCase, act_out, test_cm_halfadder_out)
-	rmpath("TestCases/Modelbase/Digital/Logic/coupled/Halfadder");
+  addpath("TestCases/Modelbase/Digital/Logic/coupled/Halfadder");
+  act_out = test_cm_halfadder();
+  load('test_cm_halfadder_out.mat');
+  verifyEqual(testCase, act_out, test_cm_halfadder_out)
+  rmpath("TestCases/Modelbase/Digital/Logic/coupled/Halfadder");
 end
 function cm_fulladder_test(testCase)
-    addpath("TestCases/Modelbase/Digital/Logic/coupled/Fulladder");
-	act_out = test_cm_fulladder();
-	load('test_cm_fulladder_out.mat');
-	verifyEqual(testCase, act_out, test_cm_fulladder_out)
-	rmpath("TestCases/Modelbase/Digital/Logic/coupled/Fulladder");
+  addpath("TestCases/Modelbase/Digital/Logic/coupled/Fulladder");
+  act_out = test_cm_fulladder();
+  load('test_cm_fulladder_out.mat');
+  verifyEqual(testCase, act_out, test_cm_fulladder_out)
+  rmpath("TestCases/Modelbase/Digital/Logic/coupled/Fulladder");
 end
 function cm_nand4_test(testCase)
-    addpath("TestCases/Modelbase/Digital/Logic/coupled/Nand4");
-	act_out = test_cm_nand4();
-	load('test_cm_nand4_out.mat');
-	verifyEqual(testCase, act_out, test_cm_nand4_out)
-	rmpath("TestCases/Modelbase/Digital/Logic/coupled/Nand4");
+  addpath("TestCases/Modelbase/Digital/Logic/coupled/Nand4");
+  act_out = test_cm_nand4();
+  load('test_cm_nand4_out.mat');
+  verifyEqual(testCase, act_out, test_cm_nand4_out)
+  rmpath("TestCases/Modelbase/Digital/Logic/coupled/Nand4");
 end
 function cm_rising_edge_test(testCase)
-    addpath("TestCases/Modelbase/Digital/Logic/coupled/Rising_edge");
-	act_out = test_cm_rising_edge();
-	load('test_cm_rising_edge_out.mat');
-	verifyEqual(testCase, act_out, test_cm_rising_edge_out)
-	rmpath("TestCases/Modelbase/Digital/Logic/coupled/Rising_edge");
+  addpath("TestCases/Modelbase/Digital/Logic/coupled/Rising_edge");
+  act_out = test_cm_rising_edge();
+  load('test_cm_rising_edge_out.mat');
+  verifyEqual(testCase, act_out, test_cm_rising_edge_out)
+  rmpath("TestCases/Modelbase/Digital/Logic/coupled/Rising_edge");
 end
 function cm_falling_edge_test(testCase)
-    addpath("TestCases/Modelbase/Digital/Logic/coupled/Falling_edge");
-	act_out = test_cm_falling_edge();
-	load('test_cm_falling_edge_out.mat');
-	verifyEqual(testCase, act_out, test_cm_falling_edge_out)
-	rmpath("TestCases/Modelbase/Digital/Logic/coupled/Falling_edge");
+  addpath("TestCases/Modelbase/Digital/Logic/coupled/Falling_edge");
+  act_out = test_cm_falling_edge();
+  load('test_cm_falling_edge_out.mat');
+  verifyEqual(testCase, act_out, test_cm_falling_edge_out)
+  rmpath("TestCases/Modelbase/Digital/Logic/coupled/Falling_edge");
 end
 function cm_carry_ripple_adder_8bit_test(testCase)
-    addpath("TestCases/Modelbase/Digital/Logic/coupled/Carry_ripple_adder_8bit");
-	act_out = test_cm_carry_ripple_adder_8bit();
-	load('test_cm_carry_ripple_adder_8bit_out.mat');
-	verifyEqual(testCase, act_out, test_cm_carry_ripple_adder_8bit_out)
-	rmpath("TestCases/Modelbase/Digital/Logic/coupled/Carry_ripple_adder_8bit");
+  addpath("TestCases/Modelbase/Digital/Logic/coupled/Carry_ripple_adder_8bit");
+  act_out = test_cm_carry_ripple_adder_8bit();
+  load('test_cm_carry_ripple_adder_8bit_out.mat');
+  verifyEqual(testCase, act_out, test_cm_carry_ripple_adder_8bit_out)
+  rmpath("TestCases/Modelbase/Digital/Logic/coupled/Carry_ripple_adder_8bit");
 end
 %Model by Model verification
 function MMV_not_test(testCase)
-    addpath("TestCases/Modelbase/Digital/Logic/coupled/Not");
-    addpath("TestCases/Modelbase/Digital/Logic/atomic/Not");
-	out_cm = test_cm_not();
-	out_am = test_am_not();
-	verifyEqual(testCase, out_cm, out_am)
-	rmpath("TestCases/Modelbase/Digital/Logic/coupled/Not");
-    rmpath("TestCases/Modelbase/Digital/Logic/atomic/Not");
+  addpath("TestCases/Modelbase/Digital/Logic/coupled/Not");
+  addpath("TestCases/Modelbase/Digital/Logic/atomic/Not");
+  out_cm = test_cm_not();
+  out_am = test_am_not();
+  verifyEqual(testCase, out_cm, out_am)
+  rmpath("TestCases/Modelbase/Digital/Logic/coupled/Not");
+  rmpath("TestCases/Modelbase/Digital/Logic/atomic/Not");
 end
 function MMV_or2_test(testCase)
-    addpath("TestCases/Modelbase/Digital/Logic/coupled/Or2");
-    addpath("TestCases/Modelbase/Digital/Logic/atomic/Or2");
-	out_cm = test_cm_or2();
-	out_am = test_am_or2();
-	verifyEqual(testCase, out_cm, out_am)
-	rmpath("TestCases/Modelbase/Digital/Logic/coupled/Or2");
-    rmpath("TestCases/Modelbase/Digital/Logic/atomic/Or2");
+  addpath("TestCases/Modelbase/Digital/Logic/coupled/Or2");
+  addpath("TestCases/Modelbase/Digital/Logic/atomic/Or2");
+  out_cm = test_cm_or2();
+  out_am = test_am_or2();
+  verifyEqual(testCase, out_cm, out_am)
+  rmpath("TestCases/Modelbase/Digital/Logic/coupled/Or2");
+  rmpath("TestCases/Modelbase/Digital/Logic/atomic/Or2");
 end
 
 %%Flip Flops
 %atomic
 function am_jk_flip_flop_test(testCase)
-    addpath("TestCases/Modelbase/Digital/FlipFlops/JK/atomic/JKFF");
-	act_out = test_am_jk_flip_flop();
-	load('test_am_jk_flip_flop_out.mat');
-	verifyEqual(testCase, act_out, test_am_jk_flip_flop_out)
-	rmpath("TestCases/Modelbase/Digital/FlipFlops/JK/atomic/JKFF");
+  addpath("TestCases/Modelbase/Digital/FlipFlops/JK/atomic/JKFF");
+  act_out = test_am_jk_flip_flop();
+  load('test_am_jk_flip_flop_out.mat');
+  verifyEqual(testCase, act_out, test_am_jk_flip_flop_out)
+  rmpath("TestCases/Modelbase/Digital/FlipFlops/JK/atomic/JKFF");
 end
 %coupled
 
@@ -469,305 +476,400 @@ end
 %%%%%%%%%%%%%%%%%%%%Statistics%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %%atomic
 function test_utilization(testCase)
-    addpath("TestCases/Modelbase/Statistics/atomic/Utilization");
-	act_out = testUtilization();
-	load('testUtilization_out.mat');
-	verifyEqual(testCase, act_out, testUtilization_out)
-	rmpath("TestCases/Modelbase/Statistics/atomic/Utilization");
+  addpath("TestCases/Modelbase/Statistics/atomic/Utilization");
+  act_out = testUtilization();
+  load('testUtilization_out.mat');
+  verifyEqual(testCase, act_out, testUtilization_out)
+  rmpath("TestCases/Modelbase/Statistics/atomic/Utilization");
 end
 function test_getmax(testCase)
-    addpath("TestCases/Modelbase/Statistics/atomic/Getmax");
-	act_out = testGetmax();
-	load('testGetmax_out.mat');
-	verifyEqual(testCase, act_out, testGetmax_out)
-	rmpath("TestCases/Modelbase/Statistics/atomic/Getmax");
+  addpath("TestCases/Modelbase/Statistics/atomic/Getmax");
+  act_out = testGetmax();
+  load('testGetmax_out.mat');
+  verifyEqual(testCase, act_out, testGetmax_out)
+  rmpath("TestCases/Modelbase/Statistics/atomic/Getmax");
 end
 %%coupled
+
+%%%%%%%%%%%%%%%%%%%%Utilities%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+function test_minHR_case1(testCase)
+  addpath("TestCases/Modelbase/Utilities/MinHR");
+  act_out = testMinHR(1);
+  load('testMinHR_out1.mat');
+  verifyEqual(testCase, act_out, testMinHR_out)
+  rmpath("TestCases/Modelbase/Utilities/MinHR");
+end
+function test_minHR_case2(testCase)
+  addpath("TestCases/Modelbase/Utilities/MinHR");
+  act_out = testMinHR(2);
+  load('testMinHR_out2.mat');
+  verifyEqual(testCase, act_out, testMinHR_out)
+  rmpath("TestCases/Modelbase/Utilities/MinHR");
+end
+function test_minHR_case3(testCase)
+  addpath("TestCases/Modelbase/Utilities/MinHR");
+  act_out = testMinHR(3);
+  load('testMinHR_out3.mat');
+  verifyEqual(testCase, act_out, testMinHR_out)
+  rmpath("TestCases/Modelbase/Utilities/MinHR");
+end
+
 
 %%%%%%%%%%%%%%%%%%%%Blocklib%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
 %%%%%%%%%%%%%%%%%%%%Logistics%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %%atomic
+function test_blocklib_adddata(testCase)
+  addpath("TestCases/Blocklib/Logistics/atomic/Adddata");
+  act_out = testAdddata();
+  load('testAdddata_out.mat');
+  verifyEqual(testCase, act_out, testAdddata_out)
+  rmpath("TestCases/Blocklib/Logistics/atomic/Adddata");
+end
 function test_blocklib_batch(testCase)
-    addpath("TestCases/Blocklib/Logistics/atomic/Batch");
-	act_out = testBatch();
-	load('testBatch_out.mat');
-	verifyEqual(testCase, act_out, testBatch_out)
-	rmpath("TestCases/Blocklib/Logistics/atomic/Batch");
+  addpath("TestCases/Blocklib/Logistics/atomic/Batch");
+  act_out = testBatch();
+  load('testBatch_out.mat');
+  verifyEqual(testCase, act_out, testBatch_out)
+  rmpath("TestCases/Blocklib/Logistics/atomic/Batch");
 end
 function test_blocklib_delay(testCase)
-    addpath("TestCases/Blocklib/Logistics/atomic/Delay");
-	act_out = testDelay();
-	load('testDelay_out.mat');
-	verifyEqual(testCase, act_out, testDelay_out)
-	rmpath("TestCases/Blocklib/Logistics/atomic/Delay");
+  addpath("TestCases/Blocklib/Logistics/atomic/Delay");
+  act_out = testDelay();
+  load('testDelay_out.mat');
+  verifyEqual(testCase, act_out, testDelay_out)
+  rmpath("TestCases/Blocklib/Logistics/atomic/Delay");
 end
-function test_blocklibgate(testCase)
-    addpath("TestCases/Blocklib/Logistics/atomic/Gate");
-	act_out = testGate();
-	load('testGate_out.mat');
-	verifyEqual(testCase, act_out, testGate_out)
-	rmpath("TestCases/Blocklib/Logistics/atomic/Gate");
+function test_blocklib_expserver(testCase)
+  addpath("TestCases/Blocklib/Logistics/atomic/Expserver");
+  act_out = testExpserver();
+  load('testExpserver_out.mat');
+  verifyEqual(testCase, act_out, testExpserver_out)
+  rmpath("TestCases/Blocklib/Logistics/atomic/Expserver");
 end
-function test_blocklibqueue(testCase)
-    addpath("TestCases/Blocklib/Logistics/atomic/Queue");
-	act_out = testQueue();
-	load('testQueue_out.mat');
-	verifyEqual(testCase, act_out, testQueue_out)
-	rmpath("TestCases/Blocklib/Logistics/atomic/Queue");
+function test_blocklib_gate(testCase)
+  addpath("TestCases/Blocklib/Logistics/atomic/Gate");
+  act_out = testGate();
+  load('testGate_out.mat');
+  verifyEqual(testCase, act_out, testGate_out)
+  rmpath("TestCases/Blocklib/Logistics/atomic/Gate");
 end
-function test_blocklibserver_case1(testCase)
-    addpath("TestCases/Blocklib/Logistics/atomic/Server");
-	act_out = testServer(1);
-	load('testServer_out1.mat');
-	verifyEqual(testCase, act_out, testServer_out)
-	rmpath("TestCases/Blocklib/Logistics/atomic/Server");
+function test_blocklib_nserver_case1(testCase)
+  addpath("TestCases/Blocklib/Logistics/atomic/Nserver");
+  act_out = testNserver(1);
+  load('testNserver_out1.mat');
+  verifyEqual(testCase, act_out, testNserver_out)
+  rmpath("TestCases/Blocklib/Logistics/atomic/Nserver");
 end
-function test_blocklibserver_case2(testCase)
-    addpath("TestCases/Blocklib/Logistics/atomic/Server");
-	act_out = testServer(2);
-	load('testServer_out2.mat');
-	verifyEqual(testCase, act_out, testServer_out)
-	rmpath("TestCases/Blocklib/Logistics/atomic/Server");
+function test_blocklib_nserver_case2(testCase)
+  addpath("TestCases/Blocklib/Logistics/atomic/Nserver");
+  act_out = testNserver(2);
+  load('testNserver_out2.mat');
+  verifyEqual(testCase, act_out, testNserver_out)
+  rmpath("TestCases/Blocklib/Logistics/atomic/Nserver");
 end
-function test_blocklibterminator(testCase)
-    addpath("TestCases/Blocklib/Logistics/atomic/Terminator");
-	act_out = testTerminator();
-	load('testTerminator_out.mat');
-	verifyEqual(testCase, act_out, testTerminator_out)
-	rmpath("TestCases/Blocklib/Logistics/atomic/Terminator");
+function test_blocklib_nserver_case3(testCase)
+  addpath("TestCases/Blocklib/Logistics/atomic/Nserver");
+  act_out = testNserver(3);
+  load('testNserver_out3.mat');
+  verifyEqual(testCase, act_out, testNserver_out)
+  rmpath("TestCases/Blocklib/Logistics/atomic/Nserver");
 end
-function test_blocklibunbatch(testCase)
-    addpath("TestCases/Blocklib/Logistics/atomic/Unbatch");
-	act_out = testUnbatch();
-	load('testUnbatch_out.mat');
-	verifyEqual(testCase, act_out, testUnbatch_out)
-	rmpath("TestCases/Blocklib/Logistics/atomic/Unbatch");
+function test_blocklib_queue(testCase)
+  addpath("TestCases/Blocklib/Logistics/atomic/Queue");
+  act_out = testQueue();
+  load('testQueue_out.mat');
+  verifyEqual(testCase, act_out, testQueue_out)
+  rmpath("TestCases/Blocklib/Logistics/atomic/Queue");
+end
+function test_blocklib_readdata(testCase)
+  addpath("TestCases/Blocklib/Logistics/atomic/Readdata");
+  act_out = testReaddata();
+  load('testReaddata_out.mat');
+  verifyEqual(testCase, act_out, testReaddata_out)
+  rmpath("TestCases/Blocklib/Logistics/atomic/Readdata");
+end
+function test_blocklib_server_case1(testCase)
+  addpath("TestCases/Blocklib/Logistics/atomic/Server");
+  act_out = testServer(1);
+  load('testServer_out1.mat');
+  verifyEqual(testCase, act_out, testServer_out)
+  rmpath("TestCases/Blocklib/Logistics/atomic/Server");
+end
+function test_blocklib_server_case2(testCase)
+  addpath("TestCases/Blocklib/Logistics/atomic/Server");
+  act_out = testServer(2);
+  load('testServer_out2.mat');
+  verifyEqual(testCase, act_out, testServer_out)
+  rmpath("TestCases/Blocklib/Logistics/atomic/Server");
+end
+function test_blocklib_terminator(testCase)
+  addpath("TestCases/Blocklib/Logistics/atomic/Terminator");
+  act_out = testTerminator();
+  load('testTerminator_out.mat');
+  verifyEqual(testCase, act_out, testTerminator_out)
+  rmpath("TestCases/Blocklib/Logistics/atomic/Terminator");
+end
+function test_blocklib_unbatch(testCase)
+  addpath("TestCases/Blocklib/Logistics/atomic/Unbatch");
+  act_out = testUnbatch();
+  load('testUnbatch_out.mat');
+  verifyEqual(testCase, act_out, testUnbatch_out)
+  rmpath("TestCases/Blocklib/Logistics/atomic/Unbatch");
+end
+function test_blocklib_writedata(testCase)
+  addpath("TestCases/Blocklib/Logistics/atomic/Writedata");
+  act_out = testWritedata();
+  load('testWritedata_out.mat');
+  verifyEqual(testCase, act_out, testWritedata_out)
+  rmpath("TestCases/Blocklib/Logistics/atomic/Writedata");
 end
 %%coupled
-function test_blocklibqueue_en(testCase)
-    addpath("TestCases/Blocklib/Logistics/coupled/Queue_en");
-	act_out = testQueue_en();
-	load('testQueue_en_out.mat');
-	verifyEqual(testCase, act_out, testQueue_en_out)
-	rmpath("TestCases/Blocklib/Logistics/coupled/Queue_en");
+function test_blocklib_expnserver(testCase)
+  addpath("TestCases/Blocklib/Logistics/coupled/Expnserver");
+  act_out = testExpnserver();
+  load('testExpnserver_out.mat');
+  verifyEqual(testCase, act_out, testExpnserver_out)
+  rmpath("TestCases/Blocklib/Logistics/coupled/Expnserver");
 end
-function test_blocklibqueue_server(testCase)
-    addpath("TestCases/Blocklib/Logistics/coupled/Queue_server");
-	act_out = test_cm_queue_server();
-	load('test_cm_queue_server_out.mat');
-	verifyEqual(testCase, act_out, test_cm_queue_server_out)
-	rmpath("TestCases/Blocklib/Logistics/coupled/Queue_server");
+function test_blocklib_queue_en(testCase)
+  addpath("TestCases/Blocklib/Logistics/coupled/Queue_en");
+  act_out = testQueue_en();
+  load('testQueue_en_out.mat');
+  verifyEqual(testCase, act_out, testQueue_en_out)
+  rmpath("TestCases/Blocklib/Logistics/coupled/Queue_en");
+end
+function test_blocklib_queue_server(testCase)
+  addpath("TestCases/Blocklib/Logistics/coupled/Queue_server");
+  act_out = test_cm_queue_server();
+  load('test_cm_queue_server_out.mat');
+  verifyEqual(testCase, act_out, test_cm_queue_server_out)
+  rmpath("TestCases/Blocklib/Logistics/coupled/Queue_server");
 end
 %%%%%%%%%%%%%%%%%%%%Math operations%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %%atomic
-function test_blocklibadd2(testCase)
-    addpath("TestCases/Blocklib/MathOperations/atomic/Add2");
-	act_out = testAdd2();
-	load('testAdd2_out.mat');
-	verifyEqual(testCase, act_out, testAdd2_out)
-	rmpath("TestCases/Blocklib/MathOperations/atomic/Add2");
+function test_blocklib_add2(testCase)
+  addpath("TestCases/Blocklib/MathOperations/atomic/Add2");
+  act_out = testAdd2();
+  load('testAdd2_out.mat');
+  verifyEqual(testCase, act_out, testAdd2_out)
+  rmpath("TestCases/Blocklib/MathOperations/atomic/Add2");
 end
-function test_blocklibadd3(testCase)
-    addpath("TestCases/Blocklib/MathOperations/atomic/Add3");
-	act_out = testAdd3();
-	load('testAdd3_out.mat');
-	verifyEqual(testCase, act_out, testAdd3_out)
-	rmpath("TestCases/Blocklib/MathOperations/atomic/Add3");
+function test_blocklib_add3(testCase)
+  addpath("TestCases/Blocklib/MathOperations/atomic/Add3");
+  act_out = testAdd3();
+  load('testAdd3_out.mat');
+  verifyEqual(testCase, act_out, testAdd3_out)
+  rmpath("TestCases/Blocklib/MathOperations/atomic/Add3");
 end
-function test_blocklibadd4(testCase)
-    addpath("TestCases/Blocklib/MathOperations/atomic/Add4");
-	act_out = testAdd4();
-	load('testAdd4_out.mat');
-	verifyEqual(testCase, act_out, testAdd4_out)
-	rmpath("TestCases/Blocklib/MathOperations/atomic/Add4");
+function test_blocklib_add4(testCase)
+  addpath("TestCases/Blocklib/MathOperations/atomic/Add4");
+  act_out = testAdd4();
+  load('testAdd4_out.mat');
+  verifyEqual(testCase, act_out, testAdd4_out)
+  rmpath("TestCases/Blocklib/MathOperations/atomic/Add4");
 end
-function test_blocklibadd6(testCase)
-    addpath("TestCases/Blocklib/MathOperations/atomic/Add6");
-	act_out = testAdd6();
-	load('testAdd6_out.mat');
-	verifyEqual(testCase, act_out, testAdd6_out)
-	rmpath("TestCases/Blocklib/MathOperations/atomic/Add6");
+function test_blocklib_add6(testCase)
+  addpath("TestCases/Blocklib/MathOperations/atomic/Add6");
+  act_out = testAdd6();
+  load('testAdd6_out.mat');
+  verifyEqual(testCase, act_out, testAdd6_out)
+  rmpath("TestCases/Blocklib/MathOperations/atomic/Add6");
 end
-function test_blocklibcomparator(testCase)
-    addpath("TestCases/Blocklib/MathOperations/atomic/Comparator");
-	act_out = testComparator();
-	load('testComparator_out.mat');
-	verifyEqual(testCase, act_out, testComparator_out)
-	rmpath("TestCases/Blocklib/MathOperations/atomic/Comparator");
+function test_blocklib_comparator(testCase)
+  addpath("TestCases/Blocklib/MathOperations/atomic/Comparator");
+  act_out = testComparator();
+  load('testComparator_out.mat');
+  verifyEqual(testCase, act_out, testComparator_out)
+  rmpath("TestCases/Blocklib/MathOperations/atomic/Comparator");
 end
-function test_blocklibGain(testCase)
-    addpath("TestCases/Blocklib/MathOperations/atomic/Gain");
-	act_out = testGain();
-	load('testGain_out.mat');
-	verifyEqual(testCase, act_out, testGain_out)
-	rmpath("TestCases/Blocklib/MathOperations/atomic/Gain");
+function test_blocklib_Gain(testCase)
+  addpath("TestCases/Blocklib/MathOperations/atomic/Gain");
+  act_out = testGain();
+  load('testGain_out.mat');
+  verifyEqual(testCase, act_out, testGain_out)
+  rmpath("TestCases/Blocklib/MathOperations/atomic/Gain");
 end
-function test_blocklibmulti2(testCase)
-    addpath("TestCases/Blocklib/MathOperations/atomic/Multi2");
-	act_out = testMulti2();
-	load('testMulti2_out.mat');
-	verifyEqual(testCase, act_out, testMulti2_out)
-	rmpath("TestCases/Blocklib/MathOperations/atomic/Multi2");
+function test_blocklib_multi2(testCase)
+  addpath("TestCases/Blocklib/MathOperations/atomic/Multi2");
+  act_out = testMulti2();
+  load('testMulti2_out.mat');
+  verifyEqual(testCase, act_out, testMulti2_out)
+  rmpath("TestCases/Blocklib/MathOperations/atomic/Multi2");
 end
-function test_blocklibmulti3(testCase)
-    addpath("TestCases/Blocklib/MathOperations/atomic/Multi3");
-	act_out = testMulti3();
-	load('testMulti3_out.mat');
-	verifyEqual(testCase, act_out, testMulti3_out)
-	rmpath("TestCases/Blocklib/MathOperations/atomic/Multi3");
+function test_blocklib_multi3(testCase)
+  addpath("TestCases/Blocklib/MathOperations/atomic/Multi3");
+  act_out = testMulti3();
+  load('testMulti3_out.mat');
+  verifyEqual(testCase, act_out, testMulti3_out)
+  rmpath("TestCases/Blocklib/MathOperations/atomic/Multi3");
 end
-function test_blocklibsaturation(testCase)
-    addpath("TestCases/Blocklib/MathOperations/atomic/Saturation");
-	act_out = testSaturation();
-	load('testSaturation_out.mat');
-	verifyEqual(testCase, act_out, testSaturation_out)
-	rmpath("TestCases/Blocklib/MathOperations/atomic/Saturation");
+function test_blocklib_saturation(testCase)
+  addpath("TestCases/Blocklib/MathOperations/atomic/Saturation");
+  act_out = testSaturation();
+  load('testSaturation_out.mat');
+  verifyEqual(testCase, act_out, testSaturation_out)
+  rmpath("TestCases/Blocklib/MathOperations/atomic/Saturation");
 end
 %%coupled
 
 %%%%%%%%%%%%%%%%%%%%QSS%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %%atomic
-function test_blocklibhIntegrator(testCase)
-    addpath("TestCases/Blocklib/Qss/atomic/Hintegrator");
-	act_out = testhIntegrator();
-	load('testhIntegrator_out.mat');
-	verifyEqual(testCase, act_out, testhIntegrator_out)
-	rmpath("TestCases/Blocklib/Qss/atomic/Hintegrator");
+function test_blocklib_hIntegrator(testCase)
+  addpath("TestCases/Blocklib/Qss/atomic/Hintegrator");
+  act_out = testhIntegrator();
+  load('testhIntegrator_out.mat');
+  verifyEqual(testCase, act_out, testhIntegrator_out)
+  rmpath("TestCases/Blocklib/Qss/atomic/Hintegrator");
 end
 %%coupled
 
 %%%%%%%%%%%%%%%%%%%%Routing%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %%atomic
-function test_blocklibcombine3(testCase)
-    addpath("TestCases/Blocklib/Routing/atomic/Combine3");
-	act_out = testCombine3();
-	load('testCombine3_out.mat');
-	verifyEqual(testCase, act_out, testCombine3_out)
-	rmpath("TestCases/Blocklib/Routing/atomic/Combine3");
+function test_blocklib_combine3(testCase)
+  addpath("TestCases/Blocklib/Routing/atomic/Combine3");
+  act_out = testCombine3();
+  load('testCombine3_out.mat');
+  verifyEqual(testCase, act_out, testCombine3_out)
+  rmpath("TestCases/Blocklib/Routing/atomic/Combine3");
 end
-function test_blocklibcombine4(testCase)
-    addpath("TestCases/Blocklib/Routing/atomic/Combine4");
-	act_out = testCombine4();
-	load('testCombine4_out.mat');
-	verifyEqual(testCase, act_out, testCombine4_out)
-	rmpath("TestCases/Blocklib/Routing/atomic/Combine4");
+function test_blocklib_combine4(testCase)
+  addpath("TestCases/Blocklib/Routing/atomic/Combine4");
+  act_out = testCombine4();
+  load('testCombine4_out.mat');
+  verifyEqual(testCase, act_out, testCombine4_out)
+  rmpath("TestCases/Blocklib/Routing/atomic/Combine4");
 end
-function test_blocklibdistribute2(testCase)
-    addpath("TestCases/Blocklib/Routing/atomic/Distribute2");
-	act_out = testDistribute2();
-	load('testDistribute2_out.mat');
-	verifyEqual(testCase, act_out, testDistribute2_out)
-	rmpath("TestCases/Blocklib/Routing/atomic/Distribute2");
+function test_blocklib_distribute2(testCase)
+  addpath("TestCases/Blocklib/Routing/atomic/Distribute2");
+  act_out = testDistribute2();
+  load('testDistribute2_out.mat');
+  verifyEqual(testCase, act_out, testDistribute2_out)
+  rmpath("TestCases/Blocklib/Routing/atomic/Distribute2");
 end
-function test_blocklibdistribute3(testCase)
-    addpath("TestCases/Blocklib/Routing/atomic/Distribute3");
-	act_out = testDistribute3();
-	load('testDistribute3_out.mat');
-	verifyEqual(testCase, act_out, testDistribute3_out)
-	rmpath("TestCases/Blocklib/Routing/atomic/Distribute3");
+function test_blocklib_distribute2a(testCase)
+  addpath("TestCases/Blocklib/Routing/atomic/Distribute2");
+  act_out = testDistribute2a();
+  load('testDistribute2a_out.mat');
+  verifyEqual(testCase, act_out, testDistribute2a_out)
+  rmpath("TestCases/Blocklib/Routing/atomic/Distribute2");
 end
-function test_blocklibdistribute4(testCase)
-    addpath("TestCases/Blocklib/Routing/atomic/Distribute4");
-	act_out = testDistribute4();
-	load('testDistribute4_out.mat');
-	verifyEqual(testCase, act_out, testDistribute4_out)
-	rmpath("TestCases/Blocklib/Routing/atomic/Distribute4");
+function test_blocklib_distribute3(testCase)
+  addpath("TestCases/Blocklib/Routing/atomic/Distribute3");
+  act_out = testDistribute3();
+  load('testDistribute3_out.mat');
+  verifyEqual(testCase, act_out, testDistribute3_out)
+  rmpath("TestCases/Blocklib/Routing/atomic/Distribute3");
 end
-function test_blockliboutputswitch(testCase)
-    addpath("TestCases/Blocklib/Routing/atomic/Outputswitch");
-	act_out = testOutputswitch();
-	load('testOutputswitch_out.mat');
-	verifyEqual(testCase, act_out, testOutputswitch_out)
-	rmpath("TestCases/Blocklib/Routing/atomic/Outputswitch");
+function test_blocklib_distribute4(testCase)
+  addpath("TestCases/Blocklib/Routing/atomic/Distribute4");
+  act_out = testDistribute4();
+  load('testDistribute4_out.mat');
+  verifyEqual(testCase, act_out, testDistribute4_out)
+  rmpath("TestCases/Blocklib/Routing/atomic/Distribute4");
 end
-function test_blocklibsmallestin3(testCase)
-    addpath("TestCases/Blocklib/Routing/atomic/Smallestin3");
-	act_out = testSmallestin3();
-	load('testSmallestin3_out.mat');
-	verifyEqual(testCase, act_out, testSmallestin3_out)
-	rmpath("TestCases/Blocklib/Routing/atomic/Smallestin3");
+function test_blocklib_outputswitch(testCase)
+  addpath("TestCases/Blocklib/Routing/atomic/Outputswitch");
+  act_out = testOutputswitch();
+  load('testOutputswitch_out.mat');
+  verifyEqual(testCase, act_out, testOutputswitch_out)
+  rmpath("TestCases/Blocklib/Routing/atomic/Outputswitch");
 end
-function test_blocklibsmallestin4(testCase)
-    addpath("TestCases/Blocklib/Routing/atomic/Smallestin4");
-	act_out = testSmallestin4();
-	load('testSmallestin4_out.mat');
-	verifyEqual(testCase, act_out, testSmallestin4_out)
-	rmpath("TestCases/Blocklib/Routing/atomic/Smallestin4");
+function test_blocklib_smallestin3(testCase)
+  addpath("TestCases/Blocklib/Routing/atomic/Smallestin3");
+  act_out = testSmallestin3();
+  load('testSmallestin3_out.mat');
+  verifyEqual(testCase, act_out, testSmallestin3_out)
+  rmpath("TestCases/Blocklib/Routing/atomic/Smallestin3");
+end
+function test_blocklib_smallestin4(testCase)
+  addpath("TestCases/Blocklib/Routing/atomic/Smallestin4");
+  act_out = testSmallestin4();
+  load('testSmallestin4_out.mat');
+  verifyEqual(testCase, act_out, testSmallestin4_out)
+  rmpath("TestCases/Blocklib/Routing/atomic/Smallestin4");
 end
 %%coupled
 
 %%%%%%%%%%%%%%%%%%%%Sinks%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %%atomic
-function test_blocklibtoworkspace(testCase)
-    addpath("TestCases/Blocklib/Sinks/atomic/Toworkspace");
-	act_out = testToworkspace();
-	load('testToworkspace_out.mat');
-	verifyEqual(testCase, act_out, testToworkspace_out)
-	rmpath("TestCases/Blocklib/Sinks/atomic/Toworkspace");
+function test_blocklib_stop(testCase)
+  addpath("TestCases/Blocklib/Sinks/atomic/Stop");
+  act_out = testStop();
+  load('testStop_out.mat');
+  verifyEqual(testCase, act_out, testStop_out)
+  rmpath("TestCases/Blocklib/Sinks/atomic/Stop");
+end
+function test_blocklib_toworkspace(testCase)
+  addpath("TestCases/Blocklib/Sinks/atomic/Toworkspace");
+  act_out = testToworkspace();
+  load('testToworkspace_out.mat');
+  verifyEqual(testCase, act_out, testToworkspace_out)
+  rmpath("TestCases/Blocklib/Sinks/atomic/Toworkspace");
 end
 %%coupled
 
 %%%%%%%%%%%%%%%%%%%%Sources%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %%atomic
-function test_blocklibfromworkspace(testCase)
-    addpath("TestCases/Blocklib/Sources/atomic/Fromworkspace");
-	act_out = testFromworkspace();
-	load('testFromworkspace_out.mat');
-	verifyEqual(testCase, act_out, testFromworkspace_out)
-	rmpath("TestCases/Blocklib/Sources/atomic/Fromworkspace");
+function test_blocklib_fromworkspace(testCase)
+  addpath("TestCases/Blocklib/Sources/atomic/Fromworkspace");
+  act_out = testFromworkspace();
+  load('testFromworkspace_out.mat');
+  verifyEqual(testCase, act_out, testFromworkspace_out)
+  rmpath("TestCases/Blocklib/Sources/atomic/Fromworkspace");
 end
-function test_blocklibGenerator(testCase)
-    addpath("TestCases/Blocklib/Sources/atomic/Generator");
-	act_out = testGenerator();
-	load('testGenerator_out.mat');
-	verifyEqual(testCase, act_out, testGenerator_out)
-	rmpath("TestCases/Blocklib/Sources/atomic/Generator");
+function test_blocklib_Generator(testCase)
+  addpath("TestCases/Blocklib/Sources/atomic/Generator");
+  act_out = testGenerator();
+  load('testGenerator_out.mat');
+  verifyEqual(testCase, act_out, testGenerator_out)
+  rmpath("TestCases/Blocklib/Sources/atomic/Generator");
 end
-function test_blocklibvectorgen(testCase)
-    addpath("TestCases/Blocklib/Sources/atomic/Vectorgen");
-	act_out = testVectorgen();
-	load('testVectorgen_out.mat');
-	verifyEqual(testCase, act_out, testVectorgen_out)
-	rmpath("TestCases/Blocklib/Sources/atomic/Vectorgen");
+function test_blocklib_vectorgen(testCase)
+  addpath("TestCases/Blocklib/Sources/atomic/Vectorgen");
+  act_out = testVectorgen();
+  load('testVectorgen_out.mat');
+  verifyEqual(testCase, act_out, testVectorgen_out)
+  rmpath("TestCases/Blocklib/Sources/atomic/Vectorgen");
 end
-function test_blocklibbingenerator(testCase)
-    addpath("TestCases/Blocklib/Sources/atomic/Bingenerator");
-	act_out = testBingenerator();
-	load('testBingenerator_out.mat');
-	verifyEqual(testCase, act_out, testBingenerator_out)
-	rmpath("TestCases/Blocklib/Sources/atomic/Bingenerator");
+function test_blocklib_bingenerator(testCase)
+  addpath("TestCases/Blocklib/Sources/atomic/Bingenerator");
+  act_out = testBingenerator();
+  load('testBingenerator_out.mat');
+  verifyEqual(testCase, act_out, testBingenerator_out)
+  rmpath("TestCases/Blocklib/Sources/atomic/Bingenerator");
 end
-function test_blocklibConst(testCase)
-    addpath("TestCases/Blocklib/Sources/atomic/Const");
-	act_out = testConst();
-	load('testConst_out.mat');
-	verifyEqual(testCase, act_out, testConst_out)
-	rmpath("TestCases/Blocklib/Sources/atomic/Const");
+function test_blocklib_Const(testCase)
+  addpath("TestCases/Blocklib/Sources/atomic/Const");
+  act_out = testConst();
+  load('testConst_out.mat');
+  verifyEqual(testCase, act_out, testConst_out)
+  rmpath("TestCases/Blocklib/Sources/atomic/Const");
 end
-function test_blocklibenabledgenerator(testCase)
-    addpath("TestCases/Blocklib/Sources/atomic/EnabledGenerator");
-	act_out = testEnabledGenerator();
-	load('testEnabledGenerator_out.mat');
-	verifyEqual(testCase, act_out, testEnabledGenerator_out)
-	rmpath("TestCases/Blocklib/Sources/atomic/EnabledGenerator");
+function test_blocklib_enabledgenerator(testCase)
+  addpath("TestCases/Blocklib/Sources/atomic/EnabledGenerator");
+  act_out = testEnabledGenerator();
+  load('testEnabledGenerator_out.mat');
+  verifyEqual(testCase, act_out, testEnabledGenerator_out)
+  rmpath("TestCases/Blocklib/Sources/atomic/EnabledGenerator");
 end
 
 %%%%%%%%%%%%%%%%%%%%Statistics%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %%atomic
-function test_blocklibutilization(testCase)
-    addpath("TestCases/Blocklib/Statistics/atomic/Utilization");
-	act_out = testUtilization();
-	load('testUtilization_out.mat');
-	verifyEqual(testCase, act_out, testUtilization_out)
-	rmpath("TestCases/Blocklib/Statistics/atomic/Utilization");
+function test_blocklib_utilization(testCase)
+  addpath("TestCases/Blocklib/Statistics/atomic/Utilization");
+  act_out = testUtilization();
+  load('testUtilization_out.mat');
+  verifyEqual(testCase, act_out, testUtilization_out)
+  rmpath("TestCases/Blocklib/Statistics/atomic/Utilization");
 end
-function test_blocklibgetmax(testCase)
-    addpath("TestCases/Blocklib/Statistics/atomic/Getmax");
-	act_out = testGetmax();
-	load('testGetmax_out.mat');
-	verifyEqual(testCase, act_out, testGetmax_out)
-	rmpath("TestCases/Blocklib/Statistics/atomic/Getmax");
+function test_blocklib_getmax(testCase)
+  addpath("TestCases/Blocklib/Statistics/atomic/Getmax");
+  act_out = testGetmax();
+  load('testGetmax_out.mat');
+  verifyEqual(testCase, act_out, testGetmax_out)
+  rmpath("TestCases/Blocklib/Statistics/atomic/Getmax");
 end
 %%coupled
 
@@ -775,178 +877,178 @@ end
 %%Converter
 %atomic
 function am_bin8_to_decblocklib_test(testCase)
-    addpath("TestCases/Blocklib/Digital/Converter/atomic/Bin8_to_dec");
-	act_out = test_am_bin8_to_dec();
-	load('test_am_bin8_to_dec_out.mat');
-	verifyEqual(testCase, act_out, test_am_bin8_to_dec_out)
-	rmpath("TestCases/Blocklib/Digital/Converter/atomic/Bin8_to_dec");
+  addpath("TestCases/Blocklib/Digital/Converter/atomic/Bin8_to_dec");
+  act_out = test_am_bin8_to_dec();
+  load('test_am_bin8_to_dec_out.mat');
+  verifyEqual(testCase, act_out, test_am_bin8_to_dec_out)
+  rmpath("TestCases/Blocklib/Digital/Converter/atomic/Bin8_to_dec");
 end
 function am_dec_to_bin8blocklib_test(testCase)
-    addpath("TestCases/Blocklib/Digital/Converter/atomic/Dec_to_bin8");
-	act_out = test_am_dec_to_bin8();
-	load('test_am_dec_to_bin8_out.mat');
-	verifyEqual(testCase, act_out, test_am_dec_to_bin8_out)
-	rmpath("TestCases/Blocklib/Digital/Converter/atomic/Dec_to_bin8");
+  addpath("TestCases/Blocklib/Digital/Converter/atomic/Dec_to_bin8");
+  act_out = test_am_dec_to_bin8();
+  load('test_am_dec_to_bin8_out.mat');
+  verifyEqual(testCase, act_out, test_am_dec_to_bin8_out)
+  rmpath("TestCases/Blocklib/Digital/Converter/atomic/Dec_to_bin8");
 end
 function am_bin_to_doubleblocklib_test(testCase)
-    addpath("TestCases/Blocklib/Digital/Converter/atomic/Bin_to_double");
-	act_out = test_am_bin_to_double();
-	load('test_am_bin_to_double_out.mat');
-	verifyEqual(testCase, act_out, test_am_bin_to_double_out)
-	rmpath("TestCases/Blocklib/Digital/Converter/atomic/Bin_to_double");
+  addpath("TestCases/Blocklib/Digital/Converter/atomic/Bin_to_double");
+  act_out = test_am_bin_to_double();
+  load('test_am_bin_to_double_out.mat');
+  verifyEqual(testCase, act_out, test_am_bin_to_double_out)
+  rmpath("TestCases/Blocklib/Digital/Converter/atomic/Bin_to_double");
 end
 %coupled
 
 %%Logic
 %atomic
 function am_nand2blocklib_test(testCase)
-    addpath("TestCases/Blocklib/Digital/Logic/atomic/Nand2");
-	act_out = test_am_nand2();
-	load('test_am_nand2_out.mat');
-	verifyEqual(testCase, act_out, test_am_nand2_out)
-	rmpath("TestCases/Blocklib/Digital/Logic/atomic/Nand2");
+  addpath("TestCases/Blocklib/Digital/Logic/atomic/Nand2");
+  act_out = test_am_nand2();
+  load('test_am_nand2_out.mat');
+  verifyEqual(testCase, act_out, test_am_nand2_out)
+  rmpath("TestCases/Blocklib/Digital/Logic/atomic/Nand2");
 end
 function am_nand3blocklib_test(testCase)
-    addpath("TestCases/Blocklib/Digital/Logic/atomic/Nand3");
-	act_out = test_am_nand3();
-	load('test_am_nand3_out.mat');
-	verifyEqual(testCase, act_out, test_am_nand3_out)
-	rmpath("TestCases/Blocklib/Digital/Logic/atomic/Nand3");
+  addpath("TestCases/Blocklib/Digital/Logic/atomic/Nand3");
+  act_out = test_am_nand3();
+  load('test_am_nand3_out.mat');
+  verifyEqual(testCase, act_out, test_am_nand3_out)
+  rmpath("TestCases/Blocklib/Digital/Logic/atomic/Nand3");
 end
 function am_nand4blocklib_test(testCase)
-    addpath("TestCases/Blocklib/Digital/Logic/atomic/Nand4");
-	act_out = test_am_nand4();
-	load('test_am_nand4_out.mat');
-	verifyEqual(testCase, act_out, test_am_nand4_out)
-	rmpath("TestCases/Blocklib/Digital/Logic/atomic/Nand4");
+  addpath("TestCases/Blocklib/Digital/Logic/atomic/Nand4");
+  act_out = test_am_nand4();
+  load('test_am_nand4_out.mat');
+  verifyEqual(testCase, act_out, test_am_nand4_out)
+  rmpath("TestCases/Blocklib/Digital/Logic/atomic/Nand4");
 end
 function am_notgateblocklib_test(testCase)
-    addpath("TestCases/Blocklib/Digital/Logic/atomic/Not");
-	act_out = test_am_not();
-	load('test_am_not_out.mat');
-	verifyEqual(testCase, act_out, test_am_not_out)
-	rmpath("TestCases/Blocklib/Digital/Logic/atomic/Not");
+  addpath("TestCases/Blocklib/Digital/Logic/atomic/Not");
+  act_out = test_am_not();
+  load('test_am_not_out.mat');
+  verifyEqual(testCase, act_out, test_am_not_out)
+  rmpath("TestCases/Blocklib/Digital/Logic/atomic/Not");
 end
 function am_or2blocklib_test(testCase)
-    addpath("TestCases/Blocklib/Digital/Logic/atomic/Or2");
-	act_out = test_am_or2();
-	load('test_am_or2_out.mat');
-	verifyEqual(testCase, act_out, test_am_or2_out)
-	rmpath("TestCases/Blocklib/Digital/Logic/atomic/Or2");
+  addpath("TestCases/Blocklib/Digital/Logic/atomic/Or2");
+  act_out = test_am_or2();
+  load('test_am_or2_out.mat');
+  verifyEqual(testCase, act_out, test_am_or2_out)
+  rmpath("TestCases/Blocklib/Digital/Logic/atomic/Or2");
 end
 %coupled
 function cm_and2blocklib_test(testCase)
-    addpath("TestCases/Blocklib/Digital/Logic/coupled/And2");
-	act_out = test_cm_and2();
-	load('test_cm_and2_out.mat');
-	verifyEqual(testCase, act_out, test_cm_and2_out)
-	rmpath("TestCases/Blocklib/Digital/Logic/coupled/And2");
+  addpath("TestCases/Blocklib/Digital/Logic/coupled/And2");
+  act_out = test_cm_and2();
+  load('test_cm_and2_out.mat');
+  verifyEqual(testCase, act_out, test_cm_and2_out)
+  rmpath("TestCases/Blocklib/Digital/Logic/coupled/And2");
 end
 function cm_notblocklib_test(testCase)
-    addpath("TestCases/Blocklib/Digital/Logic/coupled/Not");
-	act_out = test_cm_not();
-	load('test_cm_not_out.mat');
-	verifyEqual(testCase, act_out, test_cm_not_out)
-	rmpath("TestCases/Blocklib/Digital/Logic/coupled/Not");
+  addpath("TestCases/Blocklib/Digital/Logic/coupled/Not");
+  act_out = test_cm_not();
+  load('test_cm_not_out.mat');
+  verifyEqual(testCase, act_out, test_cm_not_out)
+  rmpath("TestCases/Blocklib/Digital/Logic/coupled/Not");
 end
 function cm_or2blocklib_test(testCase)
-    addpath("TestCases/Blocklib/Digital/Logic/coupled/Or2");
-	act_out = test_cm_or2();
-	load('test_cm_or2_out.mat');
-	verifyEqual(testCase, act_out, test_cm_or2_out)
-	rmpath("TestCases/Blocklib/Digital/Logic/coupled/Or2");
+  addpath("TestCases/Blocklib/Digital/Logic/coupled/Or2");
+  act_out = test_cm_or2();
+  load('test_cm_or2_out.mat');
+  verifyEqual(testCase, act_out, test_cm_or2_out)
+  rmpath("TestCases/Blocklib/Digital/Logic/coupled/Or2");
 end
 function cm_xor2blocklib_test(testCase)
-    addpath("TestCases/Blocklib/Digital/Logic/coupled/Xor2");
-	act_out = test_cm_xor2();
-	load('test_cm_xor2_out.mat');
-	verifyEqual(testCase, act_out, test_cm_xor2_out)
-	rmpath("TestCases/Blocklib/Digital/Logic/coupled/Xor2");
+  addpath("TestCases/Blocklib/Digital/Logic/coupled/Xor2");
+  act_out = test_cm_xor2();
+  load('test_cm_xor2_out.mat');
+  verifyEqual(testCase, act_out, test_cm_xor2_out)
+  rmpath("TestCases/Blocklib/Digital/Logic/coupled/Xor2");
 end
 function cm_Mux2to1blocklib_test(testCase)
-    addpath("TestCases/Blocklib/Digital/Logic/coupled/Mux2to1");
-	act_out = test_cm_Mux2to1();
-	load('test_cm_Mux2to1_out.mat');
-	verifyEqual(testCase, act_out, test_cm_Mux2to1_out)
-	rmpath("TestCases/Blocklib/Digital/Logic/coupled/Mux2to1");
+  addpath("TestCases/Blocklib/Digital/Logic/coupled/Mux2to1");
+  act_out = test_cm_Mux2to1();
+  load('test_cm_Mux2to1_out.mat');
+  verifyEqual(testCase, act_out, test_cm_Mux2to1_out)
+  rmpath("TestCases/Blocklib/Digital/Logic/coupled/Mux2to1");
 end
 function cm_Mux4to1blocklib_test(testCase)
-    addpath("TestCases/Blocklib/Digital/Logic/coupled/Mux4to1");
-	act_out = test_cm_Mux4to1();
-	load('test_cm_Mux4to1_out.mat');
-	verifyEqual(testCase, act_out, test_cm_Mux4to1_out)
-	rmpath("TestCases/Blocklib/Digital/Logic/coupled/Mux4to1");
+  addpath("TestCases/Blocklib/Digital/Logic/coupled/Mux4to1");
+  act_out = test_cm_Mux4to1();
+  load('test_cm_Mux4to1_out.mat');
+  verifyEqual(testCase, act_out, test_cm_Mux4to1_out)
+  rmpath("TestCases/Blocklib/Digital/Logic/coupled/Mux4to1");
 end
 function cm_halfadderblocklib_test(testCase)
-    addpath("TestCases/Blocklib/Digital/Logic/coupled/Halfadder");
-	act_out = test_cm_halfadder();
-	load('test_cm_halfadder_out.mat');
-	verifyEqual(testCase, act_out, test_cm_halfadder_out)
-	rmpath("TestCases/Blocklib/Digital/Logic/coupled/Halfadder");
+  addpath("TestCases/Blocklib/Digital/Logic/coupled/Halfadder");
+  act_out = test_cm_halfadder();
+  load('test_cm_halfadder_out.mat');
+  verifyEqual(testCase, act_out, test_cm_halfadder_out)
+  rmpath("TestCases/Blocklib/Digital/Logic/coupled/Halfadder");
 end
 function cm_fulladderblocklib_test(testCase)
-    addpath("TestCases/Blocklib/Digital/Logic/coupled/Fulladder");
-	act_out = test_cm_fulladder();
-	load('test_cm_fulladder_out.mat');
-	verifyEqual(testCase, act_out, test_cm_fulladder_out)
-	rmpath("TestCases/Blocklib/Digital/Logic/coupled/Fulladder");
+  addpath("TestCases/Blocklib/Digital/Logic/coupled/Fulladder");
+  act_out = test_cm_fulladder();
+  load('test_cm_fulladder_out.mat');
+  verifyEqual(testCase, act_out, test_cm_fulladder_out)
+  rmpath("TestCases/Blocklib/Digital/Logic/coupled/Fulladder");
 end
 function cm_nand4blocklib_test(testCase)
-    addpath("TestCases/Blocklib/Digital/Logic/coupled/Nand4");
-	act_out = test_cm_nand4();
-	load('test_cm_nand4_out.mat');
-	verifyEqual(testCase, act_out, test_cm_nand4_out)
-	rmpath("TestCases/Blocklib/Digital/Logic/coupled/Nand4");
+  addpath("TestCases/Blocklib/Digital/Logic/coupled/Nand4");
+  act_out = test_cm_nand4();
+  load('test_cm_nand4_out.mat');
+  verifyEqual(testCase, act_out, test_cm_nand4_out)
+  rmpath("TestCases/Blocklib/Digital/Logic/coupled/Nand4");
 end
 function cm_rising_edgeblocklib_test(testCase)
-    addpath("TestCases/Blocklib/Digital/Logic/coupled/Rising_edge");
-	act_out = test_cm_rising_edge();
-	load('test_cm_rising_edge_out.mat');
-	verifyEqual(testCase, act_out, test_cm_rising_edge_out)
-	rmpath("TestCases/Blocklib/Digital/Logic/coupled/Rising_edge");
+  addpath("TestCases/Blocklib/Digital/Logic/coupled/Rising_edge");
+  act_out = test_cm_rising_edge();
+  load('test_cm_rising_edge_out.mat');
+  verifyEqual(testCase, act_out, test_cm_rising_edge_out)
+  rmpath("TestCases/Blocklib/Digital/Logic/coupled/Rising_edge");
 end
 function cm_falling_edgeblocklib_test(testCase)
-    addpath("TestCases/Blocklib/Digital/Logic/coupled/Falling_edge");
-	act_out = test_cm_falling_edge();
-	load('test_cm_falling_edge_out.mat');
-	verifyEqual(testCase, act_out, test_cm_falling_edge_out)
-	rmpath("TestCases/Blocklib/Digital/Logic/coupled/Falling_edge");
+  addpath("TestCases/Blocklib/Digital/Logic/coupled/Falling_edge");
+  act_out = test_cm_falling_edge();
+  load('test_cm_falling_edge_out.mat');
+  verifyEqual(testCase, act_out, test_cm_falling_edge_out)
+  rmpath("TestCases/Blocklib/Digital/Logic/coupled/Falling_edge");
 end
 function cm_carry_ripple_adder_8bitblocklib_test(testCase)
-    addpath("TestCases/Blocklib/Digital/Logic/coupled/Carry_ripple_adder_8bit");
-	act_out = test_cm_carry_ripple_adder_8bit();
-	load('test_cm_carry_ripple_adder_8bit_out.mat');
-	verifyEqual(testCase, act_out, test_cm_carry_ripple_adder_8bit_out)
-	rmpath("TestCases/Blocklib/Digital/Logic/coupled/Carry_ripple_adder_8bit");
+  addpath("TestCases/Blocklib/Digital/Logic/coupled/Carry_ripple_adder_8bit");
+  act_out = test_cm_carry_ripple_adder_8bit();
+  load('test_cm_carry_ripple_adder_8bit_out.mat');
+  verifyEqual(testCase, act_out, test_cm_carry_ripple_adder_8bit_out)
+  rmpath("TestCases/Blocklib/Digital/Logic/coupled/Carry_ripple_adder_8bit");
 end
 %Model by Model verification
 function MMVblocklib_not_test(testCase)
-    addpath("TestCases/Blocklib/Digital/Logic/coupled/Not");
-    addpath("TestCases/Blocklib/Digital/Logic/atomic/Not");
-	out_cm = test_cm_not();
-	out_am = test_am_not();
-	verifyEqual(testCase, out_cm, out_am)
-	rmpath("TestCases/Blocklib/Digital/Logic/coupled/Not");
-    rmpath("TestCases/Blocklib/Digital/Logic/atomic/Not");
+  addpath("TestCases/Blocklib/Digital/Logic/coupled/Not");
+  addpath("TestCases/Blocklib/Digital/Logic/atomic/Not");
+  out_cm = test_cm_not();
+  out_am = test_am_not();
+  verifyEqual(testCase, out_cm, out_am)
+  rmpath("TestCases/Blocklib/Digital/Logic/coupled/Not");
+  rmpath("TestCases/Blocklib/Digital/Logic/atomic/Not");
 end
 function MMVblocklib_or2_test(testCase)
-    addpath("TestCases/Blocklib/Digital/Logic/coupled/Or2");
-    addpath("TestCases/Blocklib/Digital/Logic/atomic/Or2");
-	out_cm = test_cm_or2();
-	out_am = test_am_or2();
-	verifyEqual(testCase, out_cm, out_am)
-	rmpath("TestCases/Blocklib/Digital/Logic/coupled/Or2");
-    rmpath("TestCases/Blocklib/Digital/Logic/atomic/Or2");
+  addpath("TestCases/Blocklib/Digital/Logic/coupled/Or2");
+  addpath("TestCases/Blocklib/Digital/Logic/atomic/Or2");
+  out_cm = test_cm_or2();
+  out_am = test_am_or2();
+  verifyEqual(testCase, out_cm, out_am)
+  rmpath("TestCases/Blocklib/Digital/Logic/coupled/Or2");
+  rmpath("TestCases/Blocklib/Digital/Logic/atomic/Or2");
 end
 
 %%Flip Flops
 %atomic
 function am_jk_flip_flopblocklib_test(testCase)
-    addpath("TestCases/Blocklib/Digital/FlipFlops/JK/atomic/JKFF");
-	act_out = test_am_jk_flip_flop();
-	load('test_am_jk_flip_flop_out.mat');
-	verifyEqual(testCase, act_out, test_am_jk_flip_flop_out)
-	rmpath("TestCases/Blocklib/Digital/FlipFlops/JK/atomic/JKFF");
+  addpath("TestCases/Blocklib/Digital/FlipFlops/JK/atomic/JKFF");
+  act_out = test_am_jk_flip_flop();
+  load('test_am_jk_flip_flop_out.mat');
+  verifyEqual(testCase, act_out, test_am_jk_flip_flop_out)
+  rmpath("TestCases/Blocklib/Digital/FlipFlops/JK/atomic/JKFF");
 end
 %coupled
 
