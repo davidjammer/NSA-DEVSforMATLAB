@@ -26,7 +26,7 @@ function [out] = testDistribute2(showPlot)
 
   Generator1 = devs(am_generator("Generator1", tG, 1, nG, [0, 1], mdebug));
   Vectorgen = devs(am_vectorgen("Vectorgen", tVec, yVec, [0, 1], mdebug));
-  Distribute2 = devs(am_distribute2("Distribute2", 1, [0, 1], mdebug));
+  Distribute2 = devs(am_distribute2("Distribute2", 1, "", [0, 1], mdebug));
   Terminator1 = devs(am_terminator("Terminator1", [0, 1], mdebug));
   Terminator2 = devs(am_terminator("Terminator2", [0, 1], mdebug));
   Genout = devs(am_toworkspace("Genout", "genOut", 0, "vector", [0, rOut], 0));

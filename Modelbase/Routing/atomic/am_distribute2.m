@@ -1,6 +1,6 @@
 classdef am_distribute2 < handle
 %% Description
-%  routes entities to one of two outputs according to port input
+%  routes entities to one of two outputs according to data field or port input
 %% Ports
 %  inputs: 
 %    in        incoming entities
@@ -13,6 +13,7 @@ classdef am_distribute2 < handle
 %% System Parameters
 %  name:  object name
 %  port0: initial output port
+%  field: name of field containing the outport port number ("": use port input)
 %  tau:   input delay
 %  debug: flag to enable debug information
 
@@ -21,16 +22,18 @@ classdef am_distribute2 < handle
     nextPort
     name
     port0
+    field
     debug
     tau
   end
   
   methods
-    function obj = am_distribute2(name, port0, tau, debug)
+    function obj = am_distribute2(name, port0, field, tau, debug)
       obj.s = "running";
       obj.nextPort = port0;
       obj.name = name;
       obj.port0 = port0;
+      obj.field = field;
       obj.debug = debug;
       obj.tau = tau;
     end
@@ -53,10 +56,15 @@ classdef am_distribute2 < handle
     
     function y = lambda(obj,e,x)
       if isfield(x, "in")
-        port = obj.nextPort;
-        if isfield(x, "port")
-          port = x.port;
+        if obj.field == ""
+          port = obj.nextPort;
+          if isfield(x, "port")
+            port = x.port;
+          end
+        else
+          port = x.in.(obj.field);
         end
+
         switch port
           case 1
             y.out1 = x.in;

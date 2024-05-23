@@ -12,7 +12,7 @@ function [N1] = cm_queue_server(name, ts, tau, debug)
 N1 = coordinator(name);
 
 Fifo1 = devs(am_queue("fifo",tau.*2, tau, debug)); 
-Server1 = devs(am_server("server", ts, tau, debug));
+Server1 = devs(am_server("server", ts, "", tau, debug));
 add = devs(am_add2("add", tau, debug));
 
 N1.add_model(Fifo1);
