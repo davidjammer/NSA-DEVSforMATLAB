@@ -6,13 +6,11 @@ function out = testProductionLine(showPlot)
   model = "productionLine";
   tEnd = 60000;
 
-  %addpath("atomics");
   model_generator(model);
   out = model_simulator(model, tEnd);
   if showPlot
     plotResults(out, tEnd, model)
   end
-  %rmpath("atomics");
 end
 
 %---------------------------------------------------------------------------

@@ -62,7 +62,8 @@ end
 
 %% BigExample
 function test_BigExample_productionLine(testCase)
-  oldpath = addpath("../Examples/BigExample", "TestExamples/BigExample");
+  oldpath = addpath("../Examples/BigExample", "../Examples/BigExample/atomics", ...
+                                "TestExamples/BigExample");
 	act_out = testProductionLine(false);
 	load("testProductionLine_out.mat");
 	verifyEqual(testCase, act_out, testProductionLine_out)
