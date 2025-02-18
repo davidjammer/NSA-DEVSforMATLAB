@@ -18,7 +18,7 @@ classdef am_expserver < handle
 %  name:     object name
 %  tS:       mean service time
 %  useSeed:  true -> seed is used in constructor
-%  seed      seed of random generator
+%  seed:     seed of random generator
 %  tau:      input delay
 %  debug:    model debug level
 
@@ -57,7 +57,7 @@ classdef am_expserver < handle
     
 		function delta(obj,e,x)
       if obj.debug
-        fprintf("%-8s entering delta,", obj.name)
+        fprintf("%-8s entering delta\n", obj.name)
         showState(obj);
       end      
 
@@ -93,7 +93,7 @@ classdef am_expserver < handle
       end
 
       if obj.debug
-        fprintf("%-8s leaving  delta,", obj.name)
+        fprintf("%-8s leaving delta\n", obj.name)
         showState(obj);
       end      
     end
@@ -117,17 +117,9 @@ classdef am_expserver < handle
       end
       
       if obj.debug
-        fprintf("%-8s lambda, ", obj.name);
-        if isfield(y, "out")
-          fprintf("out=%2d ", y.out);
-        end
-        if isfield(y, "working")
-          fprintf("working=%1d ", y.working);
-        end
-        if isfield(y, "n")
-          fprintf("n=%1d", y.n);
-        end
-        fprintf("\n")
+        fprintf("%-8s lambda\n", obj.name)
+        showInput(obj, x)
+        showOutput(obj, y)
       end
     end
     
@@ -138,9 +130,31 @@ classdef am_expserver < handle
     %-------------------------------------------------------
     function showState(obj)
       % debug function, prints current state
-      fprintf("  phase=%4s E=%1d sig=[%4.2f,%4.2f]\n",...
-            obj.s, obj.E, obj.sig(1), obj.sig(2))
+      fprintf("  phase=%4s E=[ %s] sig=%4.2f\n",...
+        obj.s, getDescription(obj.E), obj.sig(1))
     end
-   
+
+    function showInput(obj, x)
+      % debug function, prints current input
+      fprintf("  in: ");
+      if isfield(x, "in")
+        fprintf("[ %s]", getDescription(x.in));
+      end
+    end
+
+    function showOutput(obj, y)
+      % debug function, prints current output
+      fprintf(", out: ")
+      if isfield(y, "out")
+        fprintf("[ %s] ", getDescription(y.out));
+      end
+      if isfield(y, "working")
+        fprintf("working=%1d ", str2double(y.working));
+      end
+      if isfield(y, "n")
+        fprintf("n=%1d", y.n);
+      end
+      fprintf("\n")
+    end 
   end
 end

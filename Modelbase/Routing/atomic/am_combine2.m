@@ -49,7 +49,7 @@ classdef am_combine2 < handle
 
       switch obj.s
         case "go"
-          if length(obj.q) == 1
+          if isscalar(obj.q)
             obj.s = "idle";
           else
             obj.s = "go";
@@ -76,16 +76,9 @@ classdef am_combine2 < handle
       end
       
       if obj.debug
-        fprintf("%-8s lambda, ", obj.name)
-        if isfield(y, "out") 
-          if isstruct(y.out) && isfield(y.out, "id")
-            fprintf("out=%2d\n", y.out.id)
-          else
-            fprintf("out=%2d\n", y.out)
-          end
-        else
-          fprintf("\n")
-        end
+        fprintf("%-8s lambda\n", obj.name)
+        showInput(obj, x)
+        showOutput(obj, y)
       end      
     end
  
@@ -103,13 +96,37 @@ classdef am_combine2 < handle
     function showState(obj)
       % debug function, prints current state
       fprintf("  phase=%s q=", obj.s)
-      if isstruct(obj.q) && isfield(obj.q, "id")
-        fprintf("%2d ", obj.q.id)
+      if isempty(obj.q)
+        fprintf("[] ");
       else
-        fprintf("%2d ", obj.q)
+        fprintf("[ ");
+        for I = 1:length(obj.q)-1
+          fprintf("%s, ", getDescription(obj.q(I)));
+        end
+        fprintf("%s", getDescription(obj.q(end)));
+        fprintf("]");
       end
       fprintf("\n")
     end
 
+    function showInput(obj, x)
+      % debug function, prints current input
+      fprintf("  in: ");
+      if isfield(x, "in1")
+        fprintf("in1=[ %s] ", getDescription(x.in1));
+      end
+      if isfield(x, "in2")
+        fprintf("in2=[ %s]", getDescription(x.in2));
+      end
+    end
+
+    function showOutput(obj, y)
+      % debug function, prints current output
+      fprintf(", out: ")
+      if isfield(y, "out")
+        fprintf("[ %s]", getDescription(y.out));
+      end
+      fprintf("\n")
+    end
   end
 end

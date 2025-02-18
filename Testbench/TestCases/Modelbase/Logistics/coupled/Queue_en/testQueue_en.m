@@ -2,13 +2,13 @@ function [out] = testQueue_en(showPlot)
     global simout
     global epsilon
     global DEBUGLEVEL
-    global mi
+    global mu
 
     if nargin == 0
       showPlot = false;
     end
     
-    mi = 0.0;
+    mu = 0.0;
     simout = [];
     DEBUGLEVEL = 0;           % simulator debug level
     epsilon = 1e-6;

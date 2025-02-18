@@ -6,6 +6,7 @@ function out = testCompswitch(showPlot)
   model = "compswitch";
   tEnd = 17.5;
 
+  addpath("../Examples/PaperExamples/atomics");
   model_generator(model);
   out = model_simulator(model, tEnd);
 

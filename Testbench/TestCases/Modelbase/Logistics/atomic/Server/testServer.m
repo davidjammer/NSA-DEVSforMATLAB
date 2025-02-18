@@ -2,7 +2,7 @@ function [out] = testServer(testcase, showPlot)
 	global simout
 	global epsilon
 	global DEBUGLEVEL
-	global mi
+	global mu
 	
 	if ~exist('testcase','var')
 		testcase = 1;
@@ -11,7 +11,7 @@ function [out] = testServer(testcase, showPlot)
 		showPlot = 0;
 	end
 	
-	mi = 0.0;
+	mu = 0.0;
 	simout = [];
 	DEBUGLEVEL = 0;           % simulator debug level
 	epsilon = 1e-6;

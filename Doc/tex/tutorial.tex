@@ -1,0 +1,1019 @@
+\documentclass[12pt,oneside,a4paper,bibtotoc,BCOR=0pt,DIV=20]{scrreprt} 
+\RequirePackage[utf8]{inputenc}
+\RequirePackage{fancyvrb}
+\usepackage[gen]{eurosym}
+\usepackage{colortbl}
+\usepackage[table,svgnames]{xcolor}
+\usepackage[pdftex,final]{graphicx}    %% PDF und PNG Graphiken einbinden
+\usepackage{graphicx}
+\usepackage{url}
+\usepackage{epstopdf}
+\usepackage{eurosym}
+\usepackage[T1]{fontenc} % hyphenation and accented letters
+\usepackage{blindtext}
+\usepackage{pdfpages}
+\usepackage{amsmath}
+\usepackage{amssymb}
+\usepackage{changepage}
+\RequirePackage[colorlinks,pdfusetitle]{hyperref}
+\RequirePackage[sorting=none]{biblatex}
+\usepackage{alphabeta}
+\addbibresource{References.bib}
+
+\usepackage{listings}
+\lstset{numbers=left,
+	escapeinside={\#}{\#},
+	numberstyle=\scriptsize,
+	numbersep=5pt,
+	breaklines=true,
+	showstringspaces=false,
+	frame=l ,
+	xleftmargin=15pt,
+	xrightmargin=15pt,
+	basicstyle=\ttfamily\footnotesize,
+	tabsize=2,
+	stepnumber=1,
+	keywordstyle=\color{blue},          % keyword style
+  	commentstyle=\color{DarkGreen},     % comment style
+  	stringstyle=\color{mauve},          % string literal style
+  	morekeywords={when,properties,if,else,not,for,while, send}
+}
+
+
+% neue Kommandos
+\newcommand{\infopar}[1]{\begin{adjustwidth}{20pt}{0pt}\makebox[-5px]{}\marginpar{\vspace{-0.2cm}\hfill\includegraphics[width=0.5cm]{images/lupe.pdf}}{#1}\end{adjustwidth}}
+
+\newcommand{\cft}[1]{\mbox{\texttt{#1}}}   % Computer-Font
+\newcommand{\defi}[1]{``#1''}
+\newcommand{\epsi}{\varepsilon}
+\newcommand{\corresponds}{\ensuremath{\hat{=}}}
+
+  
+\begin{document}
+
+\begin{titlepage}
+  \title{NSA-DEVSforMatlab \\[0.5em]
+    A Matlab-based Tool for Discrete-Event Simulation\\[2em]
+    A Tutorial Introduction}
+  \author{Peter Junglas}
+  \date{2025-02-25}
+\end{titlepage}
+\maketitle
+
+\tableofcontents
+
+\reversemarginpar   % for the magnifying glass
+\lstset{language=Matlab}
+
+
+\chapter{Introduction}
+
+% trick: force ordering of bib entries
+\nocite{nsadevsIntro}
+\nocite{nsaSimulator2}
+\nocite{nsaExamples}
+\nocite{nsaLargedemo}
+\nocite{nsaInvitation}
+\nocite{nsaDiagram}
+
+NSA-DEVSforMatlab (\defi{ND4M}) is a modeling and simulation tool for
+discrete-event based simulation. It is based on Matlab and combines the ease of
+use of graphical tools like Simevents or Arena with the mathematical
+preciseness of DEVS. For this purpose it uses the DEVS variant NSA-DEVS
+\cite{nsadevsIntro}. It comes with a growing library of components that can be
+used to build a model graphically using the Simulink editor. A new component
+can be built either by combining existing components in a hierarchy of
+subsystems (\defi{coupled model}) or by defining it directly as a Matlab class
+that implements the NSA-DEVS formalism (\defi{atomic model}).
+
+The first chapter describes the installation and a short test, using one of the
+example models coming with ND4M. The following chapters will use simple
+examples to show, how to build models graphically and how to create own atomic
+models from scratch. Working knowledge of Matlab and the basics of the Simulink
+editor are required, but no prior knowledge of DEVS or NSA-DEVS.
+
+All models and scripts that are presented in the following, can be found in
+ND4M's \cft{Example} directory. It is advisable to rebuild at least the first
+model from scratch.
+
+\infopar{ Additional information, especially about the inner workings of ND4M
+  and the definitions of NSA-DEVS, is provided in paragraphs marked with a
+  magnifying glass. They can be savely ignored in a first reading.  }
+
+
+\chapter{Installation}
+
+If you haven't done so already, download NSA-DEVSforMatlab from its Github
+repository \url{https://github.com/davidjammer/NSA-DEVSforMATLAB} and unpack
+it. You can rename it and/or move it to an
+arbitrary directory. In the
+following this directory will be called \cft{NSADEVSHOME}. Furthermore create a
+directory for your own models, it will be called \cft{MYMODELS}. For
+concreteness we will use the following structure
+\begin{Verbatim}  
+  NSADEVSHOME=/home/testi/nsa-devs/NSA-DEVS
+  MYMODELS=/home/testi/nsa-devs/mymodels
+\end{Verbatim}
+Then, create a subdirectory \cft{tutorial} of \cft{MYMODELS}, which will
+contain all tutorial examples. Now start Matlab and extend the path to include
+the NSA-DEVS files:
+\begin{Verbatim}  
+  NSADEVSHOME="/home/testi/nsa-devs/NSA-DEVS";
+  addpath(genpath(NSADEVSHOME+"/Modelbase"));
+  addpath(genpath(NSADEVSHOME+"/Modelgenerator"));
+  addpath(genpath(NSADEVSHOME+"/Simulator"));
+  addpath(genpath(NSADEVSHOME+"/Utilities"));
+\end{Verbatim}
+For later sessions save these lines in your \cft{startup.m}.
+
+Test the installation by running one of the example models: First copy the
+paper examples directory into your directory \cft{MYMODELS}. Open the example
+model \cft{compswitch.slx} with Simulink to see the structure of the compswitch
+example. Finally, run the command \cft{runCompswitch}, which should generate
+the plot shown in Fig.\ \ref{fig_1}.
+\begin{figure}[ht]
+\centering
+\includegraphics[width=0.37\columnwidth]{images/bild01.pdf}
+\caption{Plot generated with \cft{runCompswitch}.}
+\label{fig_1}
+\end{figure}
+
+ 
+\chapter{Building and running a simple model} \label{sec3}
+
+The first example will show how to create a simple model using the NSA-DEVS
+block library and how to run it. The example model adds two streams of incoming
+values, it displays the incoming streams and the result. The complete Simulink
+model is shown in Fig.\ \ref{fig_2}.
+\begin{figure}[ht]
+\centering
+\includegraphics[width=0.34\columnwidth]{images/bild02.pdf}
+\caption{Model \cft{tut01}.}
+\label{fig_2}
+\end{figure}
+
+To build the model \cft{tut01}, open the Simulink Library Browser and locate
+the NSA-DEVS library that contains a few sublibraries. In \cft{Sources/Atomic}
+you will find the source block \cft{am\_vectorgen} that generates given output
+values at given times. Add two of them to the new model. The sublibrary
+\cft{Math Operations/Atomic} contains the block \cft{am\_add2} that adds two
+incoming numbers. Add one to the model. Finally, add three blocks
+\cft{am\_toworkspace} from \cft{Sinks/Atomic}. They are output blocks that
+store time and value of incoming events in a global output variable that can be
+accessed after the simulation. Now connect all blocks according to
+Fig.\ \ref{fig_2}.
+
+All blocks contain parameters, which can be accessed after a double-click on
+the block. Change the parameter \cft{vector of output times} of the upper
+generator to \cft{[1, 2, 3, 4, 5]} and its parameter \cft{vector of output
+  values} to \cft{[1, 2, 3, 2, 1]}. Similarly, the lower generator gets the
+values \cft{[1.3, 2.3, 3, 4, 4.6]} for the output times and \cft{[1, 2, 1, 3,
+    1]} for its output values. The output blocks need different names for their
+corresponding output variables. Set the parameter \cft{varname} to \cft{"in1"}
+and \cft{"in2"} for the upper and lower blocks and to \cft{"out1"} for the
+block that is connected to the output of the adder. This completes the model
+\cft{tut01}.
+
+\infopar{
+If you look inside the block \cft{am\_add2} -- e.\ g.\ by clicking at the arrow
+on the icon --, you'll find that it only contains input and output ports
+without any functionality. The NSA-DEVS Simulink library contains only the
+interface of a block. Besides its name and the number and names of the ports,
+this includes the parameters with their default values, the icon and the
+documentation. This information is stored in the block mask. The actual
+definition of a block is provided by a Matlab file in the modelbase. For the
+\cft{am\_add2} component, this is the file \cft{am\_add2.m} in
+\cft{NSADEVSHOME/Modelbase/MathOperations/atomic}.
+}
+
+To run the model, create the simple Matlab file \cft{runTut01.m} shown in
+Listing \ref{lst1}. Line 6 runs the model generator, which translates the
+Simulink model into a set of Matlab files that describe the top-level model and
+additional coupled models, if necessary. Line 7 starts the simulator, which
+runs the model for the simulation time given in \cft{tEnd}, cleans up
+intermediate files and returns all outputs in the variable \cft{out}. Finally,
+line 8 calls the plot function, which displays the results.
+
+\begin{lstlisting}[caption={Run script for example model \cft{tut01}.},captionpos=b,label=lst1]
+function runTut01
+% makes and runs the model and plots the results
+model = "tut01";
+tEnd = 6;
+
+model_generator(model); 
+out = model_simulator(model, tEnd);
+plotResults01(out, tEnd)
+end
+\end{lstlisting}
+
+While the run script can be used similarly for all models, the plot function
+has of course to be adapted to the concrete model and the needs of the
+modeller. Listing \ref{lst2} presents a simple example that produces the output
+shown in Fig.\ \ref{fig_3}. It uses the output data in the variable \cft{out},
+which is a structure that contains a field for each \cft{am\_toworkspace}
+block, using the field name given as parameter in the block (cf. lines 16, 23,
+30). Each block returns its data again as a structure containing a field
+\cft{t} with the vector of output times and a field \cft{y} with the output
+values.
+
+\begin{lstlisting}[caption={Plot function for example model \cft{tut01}.},captionpos=b,label=lst2]
+function plotResults01(out, tEnd)
+width = 450;
+height = 600;
+screenSize = get(0, "ScreenSize");
+figureName = "tut01";
+
+% open new figure only if necessary
+hFig = findobj("Type", "figure", "Name", figureName);
+if isempty(hFig)
+  figure("name", figureName, "NumberTitle", "off", "Position", ...
+      [screenSize(3)-width, screenSize(4)-height, width, height]);
+end
+
+tiledlayout("vertical")
+nexttile
+stem(out.in1.t,out.in1.y);
+grid("on");
+xlim([0, tEnd])
+title("in_1");
+xlabel("t")
+
+nexttile
+stem(out.in2.t,out.in2.y);
+grid("on");
+xlim([0, tEnd])
+title("in_2");
+xlabel("t")
+
+nexttile
+stem(out.out1.t,out.out1.y);
+grid("on");
+xlim([0, tEnd])
+title("out_1");
+xlabel("t")
+end
+\end{lstlisting}
+
+Though the model looks like a simple Simulink model, this similarity is
+misleading: Due to the discrete-event structure applied here, outputs don't
+have values at all times, but only at those instants, when an event occurs.
+Therefore the add block can't rely on simultaneous input values at both of its
+inputs, but has to store incoming values, using initial values of $0$. The stem
+plot chosen for Fig.\ \ref{fig_3} emphasizes this behaviour and should make the
+results comprehensible.
+
+\infopar{
+  In case you wonder, what is going on after $t = 5$: The \cft{am\_vectorgen}
+  repeats the time and output values cyclically, which creates an input at $t =
+  5 + 1$ for $in_1$ and at $t = 4.6 + 1.3$ for $in_2$. To suppress such
+  repetitions, simply add a final very large time at the end of the output
+  times vector and an arbitrary corresponding output value.
+}
+
+\begin{figure}[ht]
+\centering
+\includegraphics[width=0.33\columnwidth]{images/bild03.pdf}
+\caption{Plot generated with \cft{plotResults01}.}
+\label{fig_3}
+\end{figure}
+
+\infopar{
+  More information about the model generator and the semantics of a
+  Simulink-like model in a discrete-event based environment can be found in
+  \cite{nsaLargedemo}. The exact description of the simulator is a fundamental
+  part of a DEVS formulation. The NSA-DEVS simulator used here is explained in
+  detail in \cite{nsaSimulator2}.
+}
+
+
+\chapter{Working with Queues and Servers}
+
+An important application of discrete-event simulation is the modeling of
+queue-server systems, where people, goods or information are transported
+through the system. Usually, they are modelled as abstract entities, which
+carry additional information (\defi{attributes}). The example model will use
+simple integer numbers (\defi{id's}) to represent them.
+
+\begin{figure}[ht]
+\centering
+\includegraphics[width=0.42\columnwidth]{images/bild04.pdf}
+\caption{Model \cft{tut02}.}
+\label{fig_4}
+\end{figure}
+
+Fig.\ \ref{fig_4} shows the basic queue-server model \cft{tut02}. It starts
+with a simple generator that outputs events with increasing integer values in
+fixed time intervals (\cft{am\_generator}). They reach a queue
+(\cft{am\_queue}), where they wait, until the server (\cft{am\_expserver}) is
+ready for them. After a random, exponentially distributed process time they
+leave the server and proceed to the terminator (\cft{am\_terminator}), where
+they leave the system. Three output blocks \cft{am\_toworkspace} collect the
+output values of the generator, the queue and the server. The parameter
+\cft{mean service time} of the server is set to $0.9$, \cft{use seed} to
+\cft{true} and \cft{seed} to $3$. As always, the output blocks have different
+and meaningful names for their \cft{varname}. And just to get nicer looking
+plots, the parameter \cft{id of the first entity} of the generator is set to
+$1$.
+
+\infopar{ The names of blocks in Simulink can be chosen arbitrarily. In ND4M
+  they have to be proper variable names, therefore they can't contain spaces or
+  other special characters.  }
+
+Setting the seed guarantees a reproducible outcome of the simulation, whereas
+\cft{use seed = false} leads to a different output with each run. An unusual
+feature is the line running back from the server to the queue. It is needed
+here due to the semantics of the queue, which outputs entities unless it is
+blocked. Its blocking status is given by an additional input, which is
+connected to the output \cft{working} of the server. It is true, when the server
+is busy.
+
+\infopar{ The exact timing of the signaling loop and the internal behaviour of
+  server and queue are of paramount importance here! Unfortunately, in the
+  usual modeling approach all time delays are zero, the correponding events are
+  concurrent and their exact order is often hard to control. NSA-DEVS uses a
+  different concept, based on infinitesimal delays \cite{nsadevsIntro,
+    nsaSimulator2}: All inputs and all ``immediate'' state changes are delayed,
+  where the delays are defined as block parameters of the form $a + b\,\epsi$
+  with real values $a, b$ and an infinitesimally small $\epsi$. In ND4M such
+  values are represented by Matlab vectors \cft{[a,b]}. These parameters are
+  predefined in the library, they are collected in a tab of \cft{Advanced}
+  parameters and generally have the value \cft{[0,1]} $\corresponds\; \epsi$.
+  But to make the queue-server pair work, the queue parameter \cft{delay time
+    of the queuingFree state} has the default value \cft{[0,2]}. In special
+  cases it may be necessary to fine-tune such a parameter to make a model work
+  in the expected way \cite{nsaLargedemo}. Exact mathematical definitions and a
+  careful analysis of the queue-server model can be found in
+  \cite{nsaExamples}.  }
+
+The run and plot functions are standard, the results are shown in
+Fig.\ \ref{fig_5}. The seed has been chosen carefully to create a result that
+can be easily analyzed: Except for a short period after $t = 3$, the queue is
+empty before $t = 6$ and after $t = 10$.
+
+\begin{figure}[ht]
+\centering
+\includegraphics[width=0.33\columnwidth]{images/bild05.pdf}
+\caption{Output plot of Model \cft{tut02}.}
+\label{fig_5}
+\end{figure}
+
+
+\chapter{Using Entities with Attributes}
+
+Many applications use entities with attributes instead of simple numbers. ND4M
+contains several components for this purpose \cite{nsaInvitation}. In the next
+example, they are put to good use to add statistical output to the simple
+queue-server model \cft{tut02}.
+
+Four atomics are included in the library to handle entity attributes:
+\cft{am\_adddata} adds a set of fields denoting new attributes to each incoming
+entity. If the input is not already an entity (i. e. of type \cft{struct}), an
+entity is created with an additional attribute that stores the input
+value. \cft{am\_writedata} changes the value of an entity attribute using
+values from other attributes. The changing function is defined as a string
+parameter describing an arbitrary Matlab command. \cft{am\_readdata} outputs
+the value of an attribute from the input entity and \cft{am\_deletedata}
+deletes a set of attributes.
+
+The model \cft{tut03} extends the queue-server model by adding the following
+statistical outputs:
+\begin{itemize}
+\item the current queue length,
+\item the current utilization of the queue,
+\item the total throughput time of the entities.
+\end{itemize}
+The first value is given explicitely as an output of the queue. For the second
+value, the number \cft{n} of entities in the server ($0$ or $1$) is sent to the
+component \cft{am\_utilization}, which computes the mean value over time of its
+input. The throughput time of an entity is the sum of its waiting time in the
+queue and the processing time in the server. A common way to compute it is to
+store the creation time of an entity in an attribute and subtract this value
+from the current time, when the entity leaves the server.
+\begin{figure}[ht]
+\centering
+\includegraphics[width=0.81\columnwidth]{images/bild06.pdf}
+\caption{Model \cft{tut03}.}
+\label{fig_6}
+\end{figure}
+
+This idea is implemented in the model (cf.\ Fig.\ \ref{fig_6}) in the following
+way: The \cft{am\_adddata} component converts the incoming value into an entity
+with a field \cft{id} to store the incoming number and a field \cft{startTime}
+with the initial value $0$. The \cft{am\_writedata} component then computes the
+current simulation time using the auxiliary function \cft{get\_time} and stores
+it in the \cft{startTime} attribute. More explicitely, its parameter
+\cft{changing function}, which contains a Matlab command that always stores its
+result in a variable named \cft{out}, has the value \cft{"out = get\_time();"}
+and the \cft{output field name} is \cft{"startTime"}. After the entity has left
+the server, another \cft{am\_adddata} component changes \cft{"startTime"} using
+the command \cft{"out = get\_time() - in(1);"} as its \cft{changing
+  function}. The variable \cft{in(1)} refers to the first attribute name given
+in the parameter \cft{input field names}, which could be a vector of attributes
+to use in the computation. Finally the \cft{am\_readdata} outputs the current
+value of the \cft{"startTime"} attribute.
+
+The final simulation results are shown in Fig.\ \ref{fig_7}. The corresponding
+plot function has two new features: Firstly, one can't use \cft{out.srvOut.y}
+to reference the output vector of the server, because \cft{y} itself is now a
+vector of \cft{struct} variables. The vector of its \cft{id} fields has to be
+specified as \cft{[out.srvOut.y.id]}. The complete plot function therefore is
+\begin{verbatim}
+  stem(out.srvOut.t,[out.srvOut.y.id]);
+\end{verbatim}
+Secondly, though the queue length and server utilization are specified by
+events at special time instants, they are usually displayed using stair plots
+with
+\begin{verbatim}
+  stairs(out.qLen.t,out.qLen.y);
+\end{verbatim}
+This corresponds to the idea, that these values stay constant between events,
+which is true exactly for the queue length, but only approximately for the
+server utilization.
+
+\begin{figure}[ht]
+\centering
+\includegraphics[width=0.50\columnwidth]{images/bild07.pdf}
+\caption{Output plot of Model \cft{tut03}.}
+\label{fig_7}
+\end{figure}
+
+
+\chapter{Creating Coupled Components} \label{sec6}
+
+Often, entities enter a system not with constant time differences, but in a
+stochastical manner. An important arrival process is the Poisson process, where
+the interarrival times are exponentially distributed. Though such a generator
+is -- at the moment of writing -- not included in the block library, it can be
+created easily, as is shown in the next example \cft{tut04a}
+(cf.\ Fig.\ \ref{fig_8}).
+
+\begin{figure}[ht]
+\centering
+\includegraphics[width=0.99\columnwidth]{images/bild08.pdf}
+\caption{Model \cft{tut04a}.}
+\label{fig_8}
+\end{figure}
+
+The exponential generator consists of four components: An \cft{am\_generator}
+(named \cft{initialEntity}) creates a single output $1$ at time $t = 0$, which
+is sent through an \cft{am\_combine2} block to a server with mean service time
+$t_S = 1.1$. It is delayed by the \cft{am\_expserver} and leaves the
+generator. A copy is routed through an \cft{am\_bias} block, which increments
+its value, and sent back to the server resulting in a permanent output stream.
+
+\begin{figure}[ht]
+\centering
+\includegraphics[width=0.50\columnwidth]{images/bild09.pdf}
+\caption{Output plot of Model \cft{tut04a}.}
+\label{fig_9}
+\end{figure}
+
+Fig.\ \ref{fig_9} displays the simulation results, which show the typical
+lumpiness of an exponential distribution. To fix the random numbers, one can
+set the seed parameters of the two servers to different values. For larger
+models, this can be a nuisance, therefore the random generator is set globally
+in the run script with the line
+\begin{verbatim}
+  rng(16);
+\end{verbatim}
+
+In Simulink, the four components of the exponential generator can be combined
+in a subsystem. To make the model generator work, this subsystem needs a
+mask. In the simplest case (\cft{tut04b}), it just defines the type of the
+component in the documentation. Of course, a proper mask contains an icon and a
+documentation and defines some block parameters. The corresponding model
+\cft{tut04c} is shown in Fig.\ \ref{fig_10}.
+
+\begin{figure}[ht]
+\centering
+\includegraphics[width=0.85\columnwidth]{images/bild10.pdf}
+\caption{Model \cft{tut04c}.}
+\label{fig_10}
+\end{figure}
+
+\infopar{ The model generator creates a Matlab description of the main model --
+  and recursively of all subsystems contained in the model -- using its
+  Simulink description. To have a look at these files, one can call the model
+  simulator with \cft{out = model\_simulator(model, tEnd, false)}, which stops
+  it from removing them after the simulation. One now finds the directory
+  \cft{tut04c} containing the main Matlab file \cft{build\_tut04c}. It consists
+  of five sections:
+  \begin{itemize}
+  \item create atomics,
+  \item add atomics to simulators,
+  \item create coupled models,
+  \item add simulators and models to coordinator,
+  \item add couplings.
+  \end{itemize}
+  This is the proper description of the coupled model and could have been
+  created manually instead of its Simulink version. The mentioned coordinator
+  and simulators are parts of the model simulator. After use, e.\ g.\ for
+  debugging purposes, the directory can be safely deleted, since it will be
+  reconstructed from the Simulink model at the next run.
+}
+
+
+\chapter{Creating a Simple Atomic Component} \label{sec7}
+
+To create an atomic component from scratch, one has to write a corresponding
+class file that implements the definition of an NSA-DEVS atomic model
+\cite{nsaSimulator2}. A simple example \cft{am\_max2} that computes the maximal
+value of its two inputs will illustrate the basic procedure.
+
+\begin{figure}[ht]
+\centering
+\includegraphics[width=0.40\columnwidth]{images/bild11.pdf}
+\caption{Basic structure of an NSA-DEVS atomics model.}
+\label{fig_11}
+\end{figure}
+
+The NSA-DEVS specification of an atomic model consists of a set of input ports
+$X$ and output ports $Y$, a set of internal states $S$, an input delay time
+$\tau$, a function $ta(s)$ that returns the lifetime of a state $s$, an output
+function $\lambda$ and a transition function $\delta$ that computes the next
+state (cf.\ Fig.\ \ref{fig_11}). A state change happens, when the lifetime of
+the current state is over or when an input event arrives.
+
+Listing \ref{lst3} shows a (slightly simplified version of) the class
+definition of \cft{am\_max2}. As has been noted for the \cft{am\_add2}
+component in section \ref{sec3}, the \cft{am\_max2} component has to store
+incoming values internally. For this purpose, the \cft{properties} section in
+the class definition contains the two fields \cft{in1} and \cft{in2} (lines
+5f). The three additional properties in lines 7--9 are mandatory for ND4M
+atomics: \cft{name} stores the name of the component, usually defined in the
+Simulink description of the coupled model containing this atomic, \cft{tau} is
+the input delay time, usually set to \cft{[0,1]}, and \cft{debug} is a debug
+flag, usually set to \cft{false}.
+
+\begin{lstlisting}[caption={Simplified code of \cft{am\_max2.m}.},captionpos=b,label=lst3]
+classdef am_max2 < handle
+  %% Description
+  %  outputs maximal value of two inputs (simplified)
+  properties
+    in1
+    in2
+    name
+    tau
+    debug
+  end
+
+  methods
+    function obj = am_max2(name, tau, debug)
+      obj.in1 = -Inf;
+      obj.in2 = -Inf;
+      obj.name = name;
+      obj.debug = debug;
+      obj.tau = tau;
+    end
+
+    function delta(obj,e,x)
+      if isfield(x, "in1")
+        obj.in1 = x.in1;
+      end
+      if isfield(x, "in2")
+        obj.in2 = x.in2;
+      end
+    end
+
+    function y = lambda(obj,e,x)
+      s1 = obj.in1;
+      s2 = obj.in2;
+      if isfield(x, "in1")
+        s1 = x.in1;
+      end
+      if isfield(x, "in2")
+        s2 = x.in2;
+      end
+      y.out = max(s1, s2);
+    end
+
+    function t = ta(obj)
+      t = [inf, 0];
+    end
+  end
+end
+\end{lstlisting}
+
+The \cft{methods} section begins with the constructor function (lines
+13--19). Its parameter list always starts with a variable for \cft{name} and
+generally ends with variables for \cft{tau} and \cft{debug}. In between there
+can be additional external parameters of the component. The constructor defines
+meaningful initial values for all internal state variables. For an input of the
+maximum function, this is \cft{-Inf} as the neutral element of the max
+operation. The lifetime function \cft{ta} (lines 42--44) simply returns the
+value \cft{[Inf, 0]} (\defi{infinity}), since the state of the component is
+changed only by incoming events. The \cft{delta} function (lines 21--28) only
+stores any incoming values, while the \cft{lambda} function (lines 30--40)
+outputs the maximum of the input values, using stored values, where no current
+input is available.
+
+Comparing this listing to the actual file \cft{am\_max2.m} in the tutorial
+examples, one finds three differences:
+\begin{itemize}
+\item A state variable \cft{s}, which is used to store a \defi{macroscopic}
+  state (\defi{phase}) describing the behaviour of a complex component
+  (cf. section \ref{sec9}). In this simple example it has the fixed value
+  \cft{"running"}.
+\item A set of output statements for debugging.
+\item An initial comment describing the ports, (internal) states and (external)
+  parameters of the component.
+\end{itemize}
+All of these features are part of a quality component.
+
+\begin{figure}[ht]
+\centering
+\includegraphics[width=0.40\columnwidth]{images/bild12.pdf}
+\caption{Simulink library block for \cft{am\:max2}.}
+\label{fig_12}
+\end{figure}
+
+To add this new atomic to a Simulink block library, one starts by creating a
+subsystem that only contains the input and output ports (Fig.\ \ref{fig_12}),
+using the names given in the class (cf.\ lines 31f, 39). The library block has
+the same name as the atomic and a mask with an icon, its documentation and
+parameters. The parameters are grouped in two tabs: \cft{General} for the usual
+parameters (empty in the current example) and \cft{Advanced} for special values
+such as \cft{tau} and \cft{debug}.
+
+\begin{figure}[ht]
+\centering
+\includegraphics[width=0.33\columnwidth]{images/bild13.pdf}
+\caption{Model \cft{tut05}.}
+\label{fig_13}
+\end{figure}
+
+To test the component, one creates a small model such as \cft{tut05}
+(Fig.\ \ref{fig_13}). Fig.\ \ref{fig_14} displays the simulation results, if
+everything is correct. If not: Proceed to section \ref{sec8}.
+
+
+\begin{figure}[ht]
+\centering
+\includegraphics[width=0.32\columnwidth]{images/bild14.pdf}
+\caption{Output plot of Model \cft{tut05}.}
+\label{fig_14}
+\end{figure}
+
+
+\chapter{Debugging} \label{sec8}
+
+The last two sections will dive deeper into the internals of ND4M modeling and
+simulation. Therefore it is advisable to proceed further only after one has
+read the \defi{internal information} parts of the previous sections.
+
+Discrete-event models can easily contain very hard to find errors. To support
+the debugging process, ND4M contains several debugging options at different
+levels of the simulation process, which will be briefly explained and then
+applied to solve a problem with the test model \cft{tut06}.
+
+On the highest level, one can use two additional parameters of the model
+simulator:
+\begin{verbatim}
+  out = model_simulator(model, tEnd,  clearFlag, displayFlag);
+\end{verbatim}
+If the \cft{clearFlag} is set to \cft{false}, the intermediate Matlab files
+created by the model generator for coupled models are not deleted after use
+(cf.\ section \ref{sec6}). This is helpful to identify errors in the Simulink
+models. If the \cft{displayFlag} is set to \cft{true}, the simulator outputs
+time stamps on the fine-grained infinitesimal level during simulation. This can
+be useful, if the simulator is caught in a loop, or together with block-level
+debugging.
+
+On the block level, every atomic component has (or should have!) a debug flag
+as parameter. It can be set to \cft{true} in the Simulink model for each
+component individually, giving fine grained control to prevent a flood of debug
+messages.  Armed components should output their input and output values and all
+state changes during the simulation run. This is best used together with
+\cft{displayFlag = true} to get corresponding time stamps.
+
+Two different methods are especially useful for detecting problems with the
+order of concurrent events: The model simulator defines a global variable
+\cft{mu}, which is usually set to $0$. If it is larger, it will be used as a
+small time interval instead of the inifinitesimal $\epsi$. This makes the order
+of formerly concurrent events directly visible in plots. On the other hand, it
+could lead to a different behaviour of a model, therefore it has to be used
+with extra care. A non-intrusive way to see concurrent events is to change the
+value of the \cft{tau} parameter of an \cft{am\_toWorkspace} atomic. By
+default, it is set to \cft{[0,5]}, which usually is larger than the
+infinitesimal time delays appearing at the block. In this case it gets only the
+last event of an infinitesimal series of events. Changing \cft{tau} to a value
+smaller than the appearing delays (usually \cft{[0,0.5]} should work), the
+block registers all incoming events, which will be plotted at the same time.
+
+This feature of the \cft{am\_toWorkspace} atomic is the consequence of the
+fundamental behaviour of the model simulator: When an event arrives at an input
+during the delay time of a previous input event at the same port, the previous
+event will be overwritten completely and the delay time starts afresh. 
+  
+Finally, the model simulator provides the global variable \cft{DEBUGLEVEL}. If
+it is set to $1$, all internal simulator messages will be collected and
+displayed graphically (cf. \cite{nsaSimulator2}) utilizing the Sequence Diagram
+tool available from Matlab File Exchange. This feature is mainly used to debug
+the simulator itself, but it might be useful for very weird timing problems in
+a model -- for \emph{small} models! \\
+
+\begin{figure}[ht]
+\centering
+\includegraphics[width=0.88\columnwidth]{images/bild15.pdf}
+\caption{Model \cft{tut06a}.}
+\label{fig_15}
+\end{figure}
+
+The tutorial example \cft{tut06} mainly consists of a standard queue-server
+model with fixed intergeneration and service times, both equal to $1$
+(Fig.\ \ref{fig_15}). The service process, actually a manufacturing process, is
+imperfect: About 50\% of the parts have to be reworked. Therefore the entities
+have a new attribute \cft{outPort}, which is set randomly to $1$ or $2$ by
+\cft{am\_writedata}. The following \cft{am\_distribute2} component uses this
+attribute to decide, where to route an entity. The imperfect entities are
+routed back to the queue through an \cft{am\_combine2} atomic. We define the
+behaviour of the model precisely by requiring that parts to be reworked should
+take precedence, whenever a new and a processed part arrive at the combiner
+simultaneously.
+
+The output of the simulation is shown in Fig.\ \ref{fig_16}. While the basic
+behaviour is ok -- all parts are generated correctly and finally leave the
+system --, it is hard to see, what is going on in detail: The plot \cft{Queue
+  in} never shows parts $5$ and $6$ and seems to be in conflict with the
+\cft{Queue out} plot.
+
+\begin{figure}[ht]
+\centering
+\includegraphics[width=0.48\columnwidth]{images/bild16.pdf}
+\caption{Output plot of Model \cft{tut06a}.}
+\label{fig_16}
+\end{figure}
+
+Obviously, \cft{Queue in} is missing some events. Since the input of the
+queue is the only port, where entities can arrive simultaneously, the behaviour
+is becoming more transparent, when setting the \cft{tau} parameter of the
+corresponding \cft{am\_toWorkspace} block to \cft{[0,0.5]}. The new result is
+displayed in Fig.\ \ref{fig_17}.
+
+\begin{figure}[ht]
+\centering
+\includegraphics[width=0.24\columnwidth]{images/bild17.pdf}
+\caption{ \cft{Queue in} plot of Model \cft{tut06b}.}
+\label{fig_17}
+\end{figure}
+
+Now everything seems to be clear: At $t = 2$ both the processed part $1$ and
+the new part $2$ concurrently arrive at the input of the queue, and part $2$
+appears at the output -- in violation of our precedence rule. A fix seems to be
+easy: To delay the incoming new part, the \cft{tau} parameter of
+\cft{am\_adddata} is enlarged to \cft{[0,2]}. A quick run shows that -- against
+our expectation -- the simulation results haven't changed! And increasing
+\cft{tau} to \cft{[0,3]} doesn't change anything either. Instead of further
+fiddling around with parameters, we set the \cft{debug} flag of
+\cft{am\_combine2} and set \cft{displayFlag = true} to see precisely, what is
+going on. A simulation run (with the original \cft{tau} value of
+\cft{am\_adddata}) produces a lot of output in the command window. To precisely
+understand, what is going, we first have a look at the behaviour, when only a
+new part arrives:
+
+\begin{verbatim}
+-----------------------------------------------
+t: 1.00 + 2.00 ε
+am_combine2 lambda
+  in: in1=[ id:1.000 outPort:0.000 ] , out: 
+am_combine2 entering delta
+  phase=idle q=[] 
+am_combine2 leaving delta
+  phase=go q=[ id:1.000 outPort:0.000 ]
+-----------------------------------------------
+t: 1.00 + 4.00 ε
+am_combine2 lambda
+  in: , out: [ id:1.000 outPort:0.000 ]
+am_combine2 entering delta
+  phase=go q=[ id:1.000 outPort:0.000 ]
+am_combine2 leaving delta
+  phase=idle q=[]
+-----------------------------------------------
+\end{verbatim}
+
+Due to the delay from the \cft{am\_adddata} component, part $1$ arrives at the
+combiner at $t = 1 + \epsi$, where it is delayed by another $\epsi$. It is not
+output immediately, but stored in the internal queue \cft{q} and the phase
+changes from \cft{idle} to \cft{go}. After a delay of $\tau_D = 2\epsi$
+(defined as parameter in \cft{am\_combine2}) the part is sent to the \cft{out}
+port, the queue is emptied and the phase returns to \cft{idle}. Let's now
+proceed to $t = 2$, when the next part arrives.
+
+
+\begin{verbatim}
+-------------------------------------------------------------------------
+t: 2.00 + 2.00 ε
+am_combine2 lambda
+  in: in1=[ id:2.000 outPort:0.000 ] , out: 
+-------------------------------------------------------------------------
+t: 2.00 + 3.00 ε
+am_combine2 lambda
+  in: in1=[ id:2.000 outPort:0.000 ] in2=[ id:1.000 outPort:2.000 ], out:
+am_combine2 entering delta
+  phase=idle q=[] 
+am_combine2 leaving delta
+  phase=go q=[ id:2.000 outPort:0.000 , id:1.000 outPort:2.000 ]
+-------------------------------------------------------------------------
+t: 2.00 + 5.00 ε
+am_combine2 lambda
+  in: , out: [ id:2.000 outPort:0.000 ]
+am_combine2 entering delta
+  phase=go q=[ id:2.000 outPort:0.000 , id:1.000 outPort:2.000 ]
+am_combine2 leaving delta
+  phase=go q=[ id:1.000 outPort:2.000 ]
+-------------------------------------------------------------------------
+t: 2.00 + 5.50 ε
+-------------------------------------------------------------------------
+t: 2.00 + 6.00 ε
+-------------------------------------------------------------------------
+t: 2.00 + 7.00 ε
+am_combine2 lambda
+  in: , out: [ id:1.000 outPort:2.000 ]
+am_combine2 entering delta
+  phase=go q=[ id:1.000 outPort:2.000 ]
+am_combine2 leaving delta
+  phase=idle q=[] 
+-------------------------------------------------------------------------
+\end{verbatim}
+
+Part $2$ arrives at the first port of the combiner at $t = 2 + \epsi$, while
+part $1$ has been sent back and arrives at the other port of the combiner at $t
+= 2 + 2\epsi$. This is during (ok, at the end of) the waiting time from the
+first input port, therefore the call of the $\delta$-function is delayed. At $t
+= 2 + 3\epsi$, both input entities are stored in \cft{q} and the phase is
+changed to \cft{go}. This change takes $2\epsi$, then part $2$ is sent to the
+\cft{out} port, while the queue is shortened accordingly. Again $2\epsi$ later
+part $1$ is output, the queue emptied and the block returns to phase
+\cft{idle}.
+
+This analysis makes clear, why a delay of the incoming part of \cft{tau =
+  [0,2]} from \cft{am\_adddata} doesn't help: In this case part $1$ and $2$
+arrive at the same time $2 + 3\epsi$ at the combiner. But even \cft{tau =
+  [0,3]} doesn't change the output order: Now part $2$ arrives during the
+waiting time of the incoming part $1$, the $\delta$ call is delayed and
+everything proceeds as before. But a larger delay, e.\ g.\ \cft{tau = [0,4]}
+does the trick: The debug output shows that the combiner is already in the
+\cft{go} phase, when part $2$ arrives. Therefore, part $1$ is output and part
+$2$ is stored in \cft{q} to be output $2\epsi$ later, at last coming behind
+part $1$ in the queue component.  The output plot (Fig.\ \ref{fig_18}) shows
+the new behaviour with the required ordering of events.
+
+\begin{figure}[ht]
+\centering
+\includegraphics[width=0.48\columnwidth]{images/bild18.pdf}
+\caption{Output plot of Model \cft{tut06d}.}
+\label{fig_18}
+\end{figure}
+
+
+\chapter{Creating a Complex Atomic Component} \label{sec9}
+
+The behaviour of many atomic components is much more complex than the simple
+component built in section \ref{sec7}. A very typical example is the queue,
+which can best be described by introducing several phases that combine states
+with a similar behaviour. The implementation of the basic atomic
+\cft{am\_queue} will be described in some detail, before it is extended to
+\cft{am\_finiteQueue}, a queue with a finite capacity. More background
+information, especially about the concrete mathematical formulation, can be
+found in \cite{nsaExamples}.
+
+\begin{figure}[ht]
+\centering
+\includegraphics[width=0.76\columnwidth]{images/bild21.pdf}
+\caption{State diagram of \cft{am\_queue}.}
+\label{fig_21}
+\end{figure}
+
+The behaviour of the queue can be described using four phases according to the
+blocking status and the size of the queue length (empty or not). It is
+visualized using an NSA-DEVS diagram (cf.\ Fig.\ \ref{fig_21}) as described in
+\cite{nsaDiagram}. All phases except \emph{QueueingFree} are passive states,
+i.\ e.\ they have infinite lifetime and change only, when inputs arrive. The
+queue always starts in the phase \emph{EmptyFree}, it changes to
+\emph{EmptyBlocked}, when the input port \cft{bl} receives a value $1$, and to
+\emph{QueuingFree}, when an entity arrives at input \cft{in}.  The most
+interesting phase is \emph{QueuingFree} being the only one, where the queue
+outputs entities. It is a transitory state, which means in NSA-DEVS that it has
+an infinitesimal delay time $\tau_D$. Fig.\ \ref{fig_21} is simplified for
+clarity, it doesn't show outputs of \cft{nq} or state transitions, when both
+inputs receive events simultaneously. A complete version is shown in
+\cite{nsaDiagram}.
+
+The implementation of \cft{am\_queue} closely follows the diagram: The lifetime
+function \cft{ta} and the output function $\lambda$ can be read off easily, the
+more complex state change function $\delta$ is structured using the phases at
+the outer level and the input value at an inner level:
+\begin{lstlisting}[caption={$\delta$ function of \cft{am\_queue.m}.},captionpos=b,label=lst4]
+    function delta(obj,e,x)
+      [bl, in] = getInput(obj, x);
+      switch obj.s
+        case "emptyFree"
+          if ~isempty(bl) && bl == "1" && isempty(in)
+            obj.s = "emptyBlocked";
+          elseif ~isempty(bl) && bl == "1" && ~isempty(in)
+            obj.s = "queuingBlocked";
+            obj.q = [obj.q, in];
+          elseif ~isempty(in)
+            obj.s = "queuingFree";
+            obj.q = [obj.q, in];
+          else  % no entities, bl status remains
+          end
+        case "emptyBlocked"
+          if ~isempty(bl) && bl == "0" && isempty(in)
+            obj.s = "emptyFree";
+          elseif ~isempty(bl) && bl == "0" && ~isempty(in)
+            obj.s = "queuingFree";
+            obj.q = [obj.q, in];
+          elseif ~isempty(in)
+            obj.s = "queuingBlocked";
+            obj.q = [obj.q, in];
+          else % no entities, bl status remains
+          end
+        case "queuingFree"
+          if isempty(x)     % internal event
+            if (isscalar(obj.q))
+              obj.s = "emptyFree";
+            else
+              obj.s = "queuingFree";
+            end
+            obj.q = obj.q(2:end);
+          else             % confluent event
+            if ~isempty(bl) && bl == "1"
+              % blocking has precedence, no entity leaves!
+              obj.s = "queuingBlocked";
+              obj.q = [obj.q, in];
+            else
+              obj.q = [obj.q(2:end), in];
+              if isempty(obj.q)
+                obj.s = "emptyFree";
+              else
+                obj.s = "queuingFree";
+              end
+            end
+          end
+        case "queuingBlocked"
+          obj.q = [obj.q, in];
+          if isequal(bl, "0")
+            obj.s = "queuingFree";
+          end
+      end
+    end
+\end{lstlisting}
+
+It is now easy to include a finite capacity: First one introduces the capacity
+as a new system parameter and state variable and adds a new output
+\cft{isFull}. Next, the $\lambda$-function is extended to send the correct
+value to \cft{isFull}. Finally, the $\delta$-function checks, whether there is
+still room for an incoming entity. If not, the entity is lost and a warning
+displayed. A typical code snippet looks like this:
+\begin{lstlisting}[caption={Part of the $\delta$ function of \cft{am\_finiteQueue.m}.},captionpos=b,label=lst5]
+        case "queuingBlocked"
+          if ~isempty(in)
+            if length(obj.q) < obj.capacity
+              obj.q = [obj.q, in];
+            else
+              fprintf("%s, in delta, phase %s - dropping input %s\n", ...
+                obj.name, obj.s, getDescription(x.in))           
+            end
+          end
+\end{lstlisting}
+One problem with the warning message is the wide range of possible types of
+income entities: It could be a simple number, a struct variable or even
+something different. The auxiliary function \cft{getDescription} tries hard to
+create a string description of its argument.
+
+The example model \cft{tut07} shows the new component in action. Since the loss
+of entities usually is not an option for a meaningful model -- as it isn't in
+reality! --, one has to make sure that this case doesn't happen. A simple
+procedure is to stop the generator process as soon as the queue has reached its
+capacity (cf.\ Fig.\ \ref{fig_19}).
+
+\begin{figure}[ht]
+\centering
+\includegraphics[width=0.58\columnwidth]{images/bild19.pdf}
+\caption{Model \cft{tut07}.}
+\label{fig_19}
+\end{figure}
+
+The output plot in Fig.\ \ref{fig_20} shows that this approach works: The
+\cft{isFull} signal stops the \cft{am\_enabledGenerator}, until the queue has
+room for another entity.
+
+\begin{figure}[ht]
+\centering
+\includegraphics[width=0.65\columnwidth]{images/bild20.pdf}
+\caption{Output plot of Model \cft{tut07}.}
+\label{fig_20}
+\end{figure}
+
+
+\chapter{References}
+
+The order of the entries follows the logical order of the NSA-DEVS
+papers. Unfortunately, this does not always correspond to the order of
+publication date.
+
+\printbibliography[heading=none]
+
+
+\end{document}

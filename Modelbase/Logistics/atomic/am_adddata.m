@@ -65,8 +65,8 @@ classdef am_adddata < handle
 
       if obj.debug
         fprintf("%-8s lambda\n", obj.name);
-        fprintf("     in=%s\n", getDescription(x.in));
-        fprintf("    out=%s\n", getDescription(y.out));
+        fprintf("  in: [ %s], out: [ %s]\n", ...
+          getDescription(x.in), getDescription(y.out));
       end
     end
     

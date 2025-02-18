@@ -52,7 +52,7 @@ classdef am_combine3 < handle
 
       switch obj.s
         case "go"
-          if length(obj.q) == 1
+          if isscalar(obj.q)
             obj.s = "idle";
           else
             obj.s = "go";
@@ -81,7 +81,7 @@ classdef am_combine3 < handle
       if obj.debug
         fprintf("%-8s lambda, ", obj.name)
         if isfield(y, "out")
-          fprintf("out=%2d\n", y.out)
+          fprintf("out=%s\n", getDescription(y.out));
         else
           fprintf("\n")
         end
@@ -102,7 +102,15 @@ classdef am_combine3 < handle
     function showState(obj)
       % debug function, prints current state
       fprintf("  phase=%s q=", obj.s)
-      fprintf("%2d ", obj.q)
+      if isempty(obj.q)
+        fprintf("[] ");
+      else
+        fprintf("[ ");
+        for I = 1:length(obj.q)-1
+          fprintf("%s, ", getDescription(obj.q(I)));
+        end
+        fprintf("%s]", getDescription(obj.q(end)));
+      end
       fprintf("\n")
     end
 

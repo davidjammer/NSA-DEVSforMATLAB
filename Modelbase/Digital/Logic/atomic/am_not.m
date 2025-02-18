@@ -7,7 +7,8 @@ classdef am_not < handle
 %  outputs: 
 %    out
 %% States
-%  s: running
+%  s:    running
+%  in1:  last input value
 %% System Parameters
 %  name:  object name
 %  tau:   input delay
@@ -15,7 +16,7 @@ classdef am_not < handle
 
   properties
     s
-    i1
+    in1
     name
     debug
     tau
@@ -25,29 +26,37 @@ classdef am_not < handle
     function obj = am_not(name, tau, debug)
       obj.s = "running";
       obj.name = name;
-      obj.i1 = "U";
+      obj.in1 = "U";
       obj.debug = debug;
       obj.tau = tau;
     end
         
     function delta(obj,e, x)
       if obj.debug
-        fprintf("%-8s entering int, being in phase %s\n", obj.name, obj.s)
+        fprintf("%-8s entering delta\n", obj.name)
+        showState(obj);
       end
       if isfield(x, "in")
-        obj.i1 = x.in;
+        obj.in1 = x.in;
+      end
+
+      if obj.debug
+        fprintf("%-8s leaving delta\n", obj.name)
+        showState(obj);
       end
     end
    
     function y = lambda(obj, e, x)
-      s = obj.i1;
+      s = obj.in1;
       if isfield(x, "in")
         s = x.in;
       end
       y.out = ieee1164_not(s);
 
       if obj.debug
-        fprintf("%-8s OUT, q=%1d\n", obj.name, y.out)
+        fprintf("%-8s lambda\n", obj.name)
+        showInput(obj, x)
+        showOutput(obj, y)
       end
     end
     
@@ -55,5 +64,26 @@ classdef am_not < handle
       t = inf;
     end
         
+    function showState(obj)
+      % debug function, prints current state
+      fprintf("  phase=%4s in1=%s \n", obj.s, obj.in1)
+    end
+
+    function showInput(obj, x)
+      % debug function, prints current input
+      fprintf("  in: ");
+      if isfield(x, "in")
+        fprintf("%s", x.in);
+      end
+    end
+
+    function showOutput(obj, y)
+      % debug function, prints current output
+      fprintf(", out: ")
+      if isfield(y, "out")
+        fprintf("%s", y.out);
+      end
+      fprintf("\n")
+    end
   end
 end

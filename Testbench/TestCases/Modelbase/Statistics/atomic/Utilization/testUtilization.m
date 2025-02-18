@@ -6,7 +6,7 @@ function [out] = testUtilization(showPlot)
     global simout
     global epsilon
     global DEBUGLEVEL
-    global mi
+    global mu
     
     
     tEnd = 1000;
@@ -22,8 +22,8 @@ function [out] = testUtilization(showPlot)
     nG = 1000;
     tG = 6;
     tS = 1.5;
-    disp(mi);
-    get_mi();
+    disp(mu);
+    get_mu();
     N1 = coordinator("N1");
     
     Generator = devs(am_generator("Generator", tG, 1, nG, [0,1], mdebug));

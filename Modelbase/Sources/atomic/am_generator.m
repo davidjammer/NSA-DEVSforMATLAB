@@ -6,26 +6,27 @@ classdef am_generator < handle
 %  outputs: 
 %    out  generated entities
 %% States
-%  s:     prod  (fix)  
-%  id:    number of next generated entity 
+%  s:       running
+%  id:      number of next entity generated
+%  epsilon: accuracy of real number comparisons
 %% System Parameters
+%  name:  object name
 %  tG:    time interval between new entities
 %  n0:    id of first entity
 %  nG:    total number of entities created
-%  name:  object name
 %  tD:    delay between entities, when tG = 0
 %  debug: flag to enable debug information
 
   properties
     s
     id
+    epsilon
     name
     tG
     n0
     nG
     tD
     debug
-    epsilon
   end
   
   methods
@@ -35,7 +36,7 @@ classdef am_generator < handle
       obj.n0 = n0;
       obj.nG = nG;
       obj.debug = debug;
-      obj.s = "prod";
+      obj.s = "running";
       obj.id = n0;
       obj.epsilon = get_epsilon();
       obj.tD = tD;
@@ -44,7 +45,6 @@ classdef am_generator < handle
     function delta(obj,e,x)
       tr = ta(obj);
      	if abs(e(1) - tr(1)) <= obj.epsilon
-        obj.s = "prod";  
         obj.id = obj.id + 1;
       end
     end
@@ -55,7 +55,7 @@ classdef am_generator < handle
         y.out = obj.id;
       end
       if obj.debug
-        fprintf("%-8s lambda, out=%2d\n", obj.name, y.out)
+        fprintf("%-8s lambda\n  out: %2d\n", obj.name, y.out)
       end
     end
     

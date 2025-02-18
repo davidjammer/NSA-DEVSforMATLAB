@@ -27,7 +27,7 @@ classdef am_terminator < handle
   methods
     function obj = am_terminator(name, tau, debug)
       obj.name = name;
-      obj.s = "idle";
+      obj.s = "running";
       obj.n = 0;
       obj.debug = debug;
       obj.tau = tau;
@@ -35,15 +35,18 @@ classdef am_terminator < handle
 
     function delta(obj,e,x)
       if obj.debug
-        fprintf("%-8s delta in, E=%2d\n", obj.name, obj.E)
+        fprintf("%-8s entering delta,", obj.name)
+        showState(obj);
       end
+
       if ~isempty(x) && isfield(x,"in") && ~isempty(x.in)
         obj.n = obj.n + 1;
         obj.E = x.in;
       end
 
       if obj.debug
-        fprintf("%-8s delta out, E=%2d\n", obj.name, obj.E)
+        fprintf("%-8s leaving delta,", obj.name)
+        showState(obj);
       end
     end
 
@@ -54,7 +57,9 @@ classdef am_terminator < handle
       end
 
       if obj.debug
-        fprintf("%-8s lambda, in=%2d, out=[]\n", obj.name, x.in);
+        fprintf("%-8s lambda\n", obj.name)
+        showInput(obj, x)
+        showOutput(obj, y)
       end
     end
 
@@ -62,5 +67,30 @@ classdef am_terminator < handle
       t = [Inf,0];
     end
 
-  end
+    function showState(obj)
+      % debug function, prints current state
+      fprintf("  phase=%s", obj.s)
+      fprintf(" n=%1d", obj.n);
+      if ~isempty(obj.E)
+        fprintf(" E=[ %s] ", getDescription(obj.E));
+      end
+      fprintf("\n")
+    end
+
+    function showInput(obj, x)
+      % debug function, prints current input
+      fprintf("  in: ");
+      if isfield(x, "in")
+        fprintf("[ %s] ", getDescription(x.in));
+      end
+    end
+
+    function showOutput(obj, y)
+      % debug function, prints current output
+      fprintf(", out: ")
+      if isfield(y, "n")
+        fprintf("n=%1d", y.n);
+      end
+      fprintf("\n")
+    end  end
 end

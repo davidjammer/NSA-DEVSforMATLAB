@@ -6,8 +6,8 @@ function [out] = testComparator(showPlot)
     global simout
     global epsilon
     global DEBUGLEVEL
-    global mi
-    mi = 0.0;
+    global mu
+    mu = 0.0;
     simout = [];
     DEBUGLEVEL = 0;           % simulator debug level
     epsilon = 1e-6;

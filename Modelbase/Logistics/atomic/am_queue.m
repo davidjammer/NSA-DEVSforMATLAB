@@ -24,7 +24,6 @@ classdef am_queue < handle
     tau
     tD
     debug
-    epsilon
   end
 
   methods
@@ -33,18 +32,17 @@ classdef am_queue < handle
       obj.q = [];
       obj.name = name;
       obj.debug = debug;
-      obj.epsilon = get_epsilon();
       obj.tau = tau;
       obj.tD = tD;
     end
 
     function delta(obj,e,x)
       if obj.debug
-        fprintf("%-8s entering delta,", obj.name)
+        fprintf("%-8s entering delta\n", obj.name)
         showState(obj);
       end
 
-      [bl, in] = readInputBag(obj, x);
+      [bl, in] = getInput(obj, x);
 
       switch obj.s
         case "emptyFree"
@@ -73,7 +71,7 @@ classdef am_queue < handle
           end
         case "queuingFree"
           if isempty(x)     % internal event
-            if (length(obj.q) == 1)
+            if (isscalar(obj.q))
               obj.s = "emptyFree";
             else
               obj.s = "queuingFree";
@@ -97,44 +95,35 @@ classdef am_queue < handle
           obj.q = [obj.q, in];
           if isequal(bl, "0")
             obj.s = "queuingFree";
-          else
-            obj.s = "queuingBlocked";
           end
       end
 
       if obj.debug
-        fprintf("%-8s leaving  delta,", obj.name)
+        fprintf("%-8s leaving  delta\n", obj.name)
         showState(obj);
       end
     end
 
     function y = lambda(obj,e,x)
       y = [];     % necessary dummy value for no-op
-      [bl, in] = readInputBag(obj, x);
+      [bl, in] = getInput(obj, x);
       nIn = length(in);
 
       if obj.s == "queuingFree"
         if isequal(bl, "1")
           y.nq = length(obj.q) + nIn;
-          %y.out = [];   % leads to errors!
         else
           y.out = obj.q(1);
           y.nq = length(obj.q) + nIn - 1;
         end
       else
         y.nq = length(obj.q) + nIn;
-        %y.out = [];   % leads to errors!
       end
 
       if obj.debug
-        fprintf("%-8s lambda, ", obj.name)
-        if isfield(y, "nq")
-          fprintf("nq=%2d ", y.nq)
-        end
-        if isfield(y, "out")
-          fprintf("out=%2d\n", y.out)
-        end
-        fprintf("\n")
+        fprintf("%-8s lambda\n", obj.name)
+        showInput(obj, x)
+        showOutput(obj, y)
       end
     end
 
@@ -148,7 +137,7 @@ classdef am_queue < handle
     end
 
     %-------------------------------------------------------
-    function [bl, in] = readInputBag(obj, x)
+    function [bl, in] = getInput(obj, x)
       % returns input values of bl and in
       % value = [], if there is no input at a port
       if isfield(x, "bl")
@@ -166,10 +155,40 @@ classdef am_queue < handle
 
     function showState(obj)
       % debug function, prints current state
-      fprintf("  phase=%8s n=%1d queue=", obj.s, length(obj.q))
-      fprintf("%2d ", obj.q)
+      fprintf("  phase=%s q=", obj.s)
+      if isempty(obj.q)
+        fprintf("[] ");
+      else
+        fprintf("[ ");
+        for I = 1:length(obj.q)-1
+          fprintf("%s, ", getDescription(obj.q(I)));
+        end
+        fprintf("%s]", getDescription(obj.q(end)));
+      end
       fprintf("\n")
     end
 
+    function showInput(obj, x)
+      % debug function, prints current input
+      fprintf("  in: ");
+      if isfield(x, "in")
+        fprintf("[ %s] ", getDescription(x.in));
+      end
+      if isfield(x, "bl")
+        fprintf("bl=%1d", str2double(x.bl));
+      end
+    end
+
+    function showOutput(obj, y)
+      % debug function, prints current output
+      fprintf(", out: ")
+      if isfield(y, "out")
+        fprintf("[ %s] ", getDescription(y.out));
+      end
+      if isfield(y, "nq")
+        fprintf("nq=%1d", y.nq);
+      end
+      fprintf("\n")
+    end
   end
 end

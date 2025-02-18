@@ -5,10 +5,13 @@ function [] = create_build_file(name,names)
     fprintf(fid,"function " +get_param(name,'Name')+ " = build_"+get_param(name,'Name')+"(name");
     
     if(isfield(get_param(name,'ObjectParameters'),'DialogParameters'))
-        parameters = fieldnames(get_param(name,'DialogParameters'));
+      params = get_param(name,'DialogParameters');
+      if isstruct(params)
+        parameters = fieldnames(params);
         for k=1:length(parameters)
-            fprintf(fid,",%s",parameters{k});
+          fprintf(fid,",%s",parameters{k});
         end
+      end
     end
     fprintf(fid,")\n");
     
@@ -42,9 +45,12 @@ function [] = create_build_file(name,names)
             fprintf(fid, "addpath(""%s/%s"");\n",pwd,names{i});
             fprintf(fid, "%s = build_%s(""%s""", get_param(names{i},'Name'),get_param(names{i},'Name'),get_param(names{i},'Name'));
             if(isfield(get_param(names{i},'ObjectParameters'),'DialogParameters'))
-                parameters = fieldnames(get_param(names{i},'DialogParameters'));
-                for k=1:length(parameters)
+                params = get_param(names{i},'DialogParameters');
+                if isstruct(params)
+                  parameters = fieldnames(params);
+                  for k=1:length(parameters)
                     fprintf(fid,",%s",get_param(names{i},parameters{k}));
+                  end
                 end
             end
             fprintf(fid,");\n");

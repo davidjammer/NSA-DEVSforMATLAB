@@ -6,8 +6,8 @@ function [out] = testDistribute3(showPlot)
     global simout
     global epsilon
     global DEBUGLEVEL
-    global mi
-    mi = 0.0;
+    global mu
+    mu = 0.0;
     simout = [];
     DEBUGLEVEL = 0;           % simulator debug level
     epsilon = 1e-6;
@@ -28,7 +28,7 @@ function [out] = testDistribute3(showPlot)
 
     Generator1 = devs(am_generator("Generator1", tG, 1, nG, [0, 1], mdebug));
     Vectorgen = devs(am_vectorgen("Vectorgen", tVec, yVec, [0, 1], mdebug));
-    Distribute3 = devs(am_distribute3("Distribute3", 1, [0, 1], mdebug));
+    Distribute3 = devs(am_distribute3("Distribute3", 1, "", [0, 1], mdebug));
     Terminator1 = devs(am_terminator("Terminator1", [0, 1], mdebug));
     Terminator2 = devs(am_terminator("Terminator2", [0, 1], mdebug));
     Terminator3 = devs(am_terminator("Terminator3", [0, 1], mdebug));

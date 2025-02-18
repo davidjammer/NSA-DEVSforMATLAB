@@ -6,8 +6,8 @@ function [out] = test_am_bin_to_double(showPlot)
     global simout
     global epsilon
     global DEBUGLEVEL
-    global mi
-    mi = 0.001;
+    global mu
+    mu = 0.001;
     simout = [];
     DEBUGLEVEL = 0;           % simulator debug level
     epsilon = 1e-6;

@@ -6,7 +6,7 @@ function [out] = testBatch(showPlot)
 	global simout
     global epsilon
     global DEBUGLEVEL
-    global mi
+    global mu
    
   	tend = 40;
     model_generator("Batch_Model");

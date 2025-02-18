@@ -1,7 +1,8 @@
 classdef am_enabledgenerator < handle
 %% Description
-%  generates entities with fixed interarrival times
+%  generates entities with fixed interarrival times and increasing id's
 %  stops, while enable input = false
+%  enables becomes true -> waiting time tG begins at 0
 %% Ports
 %  inputs: 
 %    enable   "1" -> generator runs
@@ -17,6 +18,7 @@ classdef am_enabledgenerator < handle
 %  tG:    time interval between new entities
 %  n0:    id of first entity
 %  nG:    total number of entities created
+%  tD:    delay between entities, when tG = 0
 %  tau:   input delay
 %  debug: flag to enable debug information
 
@@ -29,12 +31,13 @@ classdef am_enabledgenerator < handle
     tG
     n0
     nG
+    tD
     tau
     debug
   end
   
   methods
-    function obj = am_enabledgenerator(name, tG, n0, nG, tau, debug)
+    function obj = am_enabledgenerator(name, tG, n0, nG, tD, tau, debug)
       obj.name = name;
       obj.tG = tG;
       obj.n0 = n0;
@@ -43,6 +46,7 @@ classdef am_enabledgenerator < handle
       obj.id = n0;
       obj.sigma = tG;
       obj.epsilon = get_epsilon();
+      obj.tD = tD;
       obj.tau = tau;
       obj.debug = debug;
     end
@@ -72,13 +76,17 @@ classdef am_enabledgenerator < handle
       end
    
       if obj.debug
-        fprintf("%-8s lambda, out=%2d\n", obj.name, y.out)
+        fprintf("%-8s lambda\n  out: %2d\n", obj.name, y.out)
       end   
     end
     
     function t = ta(obj)
       if obj.id - obj.n0 < obj.nG && obj.s == "running"
-        t = [obj.sigma, 0];
+        if obj.tG == 0
+          t = obj.tD;
+        else
+          t = [obj.sigma, 0];
+        end
       else
         t = [inf, 0];
       end

@@ -25,7 +25,7 @@ classdef am_toworkspace < handle
     varname
     format
     epsilon
-    mi
+    mu
     tau
     debug
   end
@@ -37,7 +37,7 @@ classdef am_toworkspace < handle
       obj.name = name;
       obj.varname = varname;
       obj.tau = tau;
-      obj.mi = get_mi();
+      obj.mu = get_mu();
       obj.epsilon = get_epsilon();
       obj.debug = debug;
       obj.format = format;
@@ -48,7 +48,7 @@ classdef am_toworkspace < handle
       global simout
       fun = @(x) strcmp(x,obj.varname);
 
-      obj.t = obj.t(1) + e(1) + e(2) * obj.mi;
+      obj.t = obj.t(1) + e(1) + e(2) * obj.mu;
       if ~isempty(x) && isfield(x,"in") && ~isempty(x.in)
         if isempty(simout) || ~any(fun(fieldnames(simout)))
           simout.(obj.varname).y = x.in(end);

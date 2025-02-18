@@ -7,8 +7,8 @@ function [out] = testConst(showPlot)
   	global simin
   	global epsilon
   	global DEBUGLEVEL
-  	global mi
-  	mi = 0.000;
+  	global mu
+  	mu = 0.000;
   	simout = [];
   	DEBUGLEVEL = 0;
   	epsilon = 1e-6;

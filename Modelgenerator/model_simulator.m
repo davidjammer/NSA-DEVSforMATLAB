@@ -10,6 +10,8 @@ function out = model_simulator(model, tEnd, clearFlag, displayFlag)
 if nargin == 2
   clearFlag = true;
   displayFlag = false;
+elseif nargin == 3
+  displayFlag = false;
 end
 
 global simout

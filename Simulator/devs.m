@@ -9,7 +9,7 @@ classdef devs < handle
         x
         debug_level
         epsilon
-        mi
+        mu
         r      %default input delay
     end
     
@@ -21,7 +21,7 @@ classdef devs < handle
             obj.x = [];
             obj.epsilon = get_epsilon();
             obj.debug_level = get_debug_level();
-            obj.mi = get_mi();
+            obj.mu = get_mu();
             obj.r = get_defdelay();
         end
 %% set methods
@@ -125,10 +125,10 @@ classdef devs < handle
                   tb = [0,obj.r];
                end
                if (tb(1) == 0)
-                    if obj.mi == 0
+                    if obj.mu == 0
                          obj.tn = [t(1), t(2) + tb(2)];
                     else
-                         obj.tn = [t(1) + tb(2) * obj.mi, 0];
+                         obj.tn = [t(1) + tb(2) * obj.mu, 0];
                     end
                else
                     obj.tn = [t(1) + tb(1), 0];
@@ -146,10 +146,10 @@ classdef devs < handle
                     obj.x = x;
                 end
                 
-                if obj.mi == 0
+                if obj.mu == 0
                      obj.tn = [t(1) + obj.DEVS.tau(1), t(2) + obj.DEVS.tau(2)];
                 else
-                     obj.tn = [t(1) + obj.DEVS.tau(1) + obj.mi * obj.DEVS.tau(2), 0];
+                     obj.tn = [t(1) + obj.DEVS.tau(1) + obj.mu * obj.DEVS.tau(2), 0];
                 end
             end
             
