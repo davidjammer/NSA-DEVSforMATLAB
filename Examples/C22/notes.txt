@@ -1,0 +1,20 @@
+Notizen zur C22-Implementierung
+===============================
+
+Basisblock GeneralQueue:
+- hat zusätzlich zu Entity In/Out je einen weiteren Eingang und Ausgang
+  Input control für Control-Messages
+  Output outExtra für "abzweigende" Entities
+- Grundidee
+  Block hat 3 Funktionen unlinkExtC, unlinkExtE, unlinkInt
+  können Reihenfolge innerhalb der Queue ändern
+  können Entities nach outExtra schicken
+  können Internal Event schedulen
+- unlinkExtE
+  wird aufgerufen bei external Event an in
+  nutzt control-Attribut in eingehender Entity
+- unlinkExtC
+  wird aufgerufen bei external Event an control
+  nutzt dazu Info aus Control-Entity
+- unlinkInt
+  wird aufgerufen bei internal Event

@@ -1,0 +1,102 @@
+Erstellen der PDF-Dateien
+-------------------------
+
+Farbe -> SW mit Gimp:
+- Farben/Farbton: Sättigung raus
+- Farben/Werte: Gamma = 0,8
+
+PNG -> PDF:
+- convert bild02.png bild02.pdf
+PDF -> PNG:
+- convert -density 300 bild02.pdf bild02.png
+
+pdfcrop --margins '-50 -50 -50 -50' input.pdf output.pdf
+crops 50 pts from the left, top, right, bottom (in this order).
+
+------------------------------------------------------------------------------
+
+lupe:
+- export from xfig
+
+bild01:
+- saveas(gcf, "bild01.pdf")
+- pdfcrop --margins "2 2 2 2" bild01.pdf
+
+bild02:
+- model with 200%, 
+- screenshot, converted to pdf with convert
+
+bild03:
+- saveas(gcf, "bild03.pdf")
+- pdfcrop --margins "2 2 2 2" bild03.pdf
+
+bild04:
+- model with 200%, 
+- screenshot, converted to pdf with convert
+
+bild05:
+- saveas(gcf, "bild05.pdf")
+- pdfcrop --margins "2 2 2 2" bild05.pdf
+
+bild06:
+- model with 200%, 
+- screenshot, converted to pdf with convert
+
+bild07:
+- saveas(gcf, "bild07.pdf")
+- pdfcrop --margins "2 2 2 2" bild07.pdf
+
+bild08:
+- model with 200%, 
+- screenshot, converted to pdf with convert
+
+bild09:
+- saveas(gcf, "bild09.pdf")
+- pdfcrop --margins "2 2 2 2" bild09.pdf
+
+bild10:
+- model with 200%, 
+- screenshot, converted to pdf with convert
+
+bild11:
+- export from xfig
+
+bild12:
+- model with 200%, 
+- screenshot, converted to pdf with convert
+
+bild13:
+- model with 200%, 
+- screenshot, converted to pdf with convert
+
+bild14:
+- saveas(gcf, "bild14.pdf")
+- pdfcrop --margins "2 2 2 2" bild14.pdf
+
+bild15:
+- model with 200%, 
+- screenshot, converted to pdf with convert
+
+bild16:
+- saveas(gcf, "bild16.pdf")
+- pdfcrop --margins "2 2 2 2" bild16.pdf
+
+bild17:
+- plot with 200%, 
+- screenshot, converted to pdf with convert
+
+bild18:
+- saveas(gcf, "bild18.pdf")
+- pdfcrop --margins "2 2 2 2" bild18.pdf
+
+bild19:
+- model with 200%, 
+- screenshot, converted to pdf with convert
+
+bild20:
+- saveas(gcf, "bild20.pdf")
+- pdfcrop --margins "2 2 2 2" bild20.pdf
+
+bild21:
+- export from queue.dia
+- pdfcrop --margins "2 2 2 2" bild21.pdf

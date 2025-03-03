@@ -93,7 +93,7 @@ classdef grinding_controller < handle
       end
 
       if obj.s == "idle"
-        if ~isempty(x) && isfield(x, "entered") && x.entered == "1"
+        if ~isempty(x) && isfield(x, "entered") && x.entered
           obj.s = "startup";
           obj.sigma = 20;
         end
@@ -127,7 +127,7 @@ classdef grinding_controller < handle
     function y = lambda(obj,e,x)
       y = [];
       if obj.s == "idle"
-        if ~isempty(x) && isfield(x, "entered") && x.entered == "1"
+        if ~isempty(x) && isfield(x, "entered") && x.entered
           y.on = 1;
           y.phase = "startup";
         end
@@ -148,7 +148,7 @@ classdef grinding_controller < handle
         end
       elseif obj.s == "wait"
         if abs(obj.sigma - e(1)) <= obj.epsilon
-          y.leaving = "1";
+          y.leaving = true;
           y.phase = "idle";
         end
       end

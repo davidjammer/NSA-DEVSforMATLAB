@@ -11,6 +11,7 @@ end
 
 tEnd = 17.5;
 
+addpath("atomics");
 model_generator(model); 
 out = model_simulator(model, tEnd);
 plotResults(out, tEnd)

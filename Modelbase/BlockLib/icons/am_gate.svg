@@ -1,25 +1,25 @@
-<?xml-stylesheet href="defaultstyles.css" type="text/css"?>
-<svg xmlns="http://www.w3.org/2000/svg" xmlns:d="http://www.mathworks.com/blockgraphics" xmlns:xlink="http://www.w3.org/1999/xlink" version="1.1" id="svg_3" width="400" height="168" d:options="PreserveAspect:On;ScalingOnResizeMax:2.0;Rotate:Off;Resize:FitToBlock">
+<svg xmlns="http://www.w3.org/2000/svg" xmlns:d="http://www.mathworks.com/blockgraphics" xmlns:xlink="http://www.w3.org/1999/xlink" version="1.1" id="svg_3" width="400" height="168" d:options="PreserveAspect:On;ScalingOnResizeMax:2.0;Resize:FitToBlock;">
 	<defs>
 		<style>
 			.font-size-default {
-				font-size:40px;}
+				font-size: 17px; stroke-width: 0.44px;
+			}
 					</style>
 	</defs>
-	<g id="layer_4" title="layer_0">
-		<line id="line_24" class="line" x1="0" y1="84" x2="157" y2="84"/>
-		<line id="line_25" class="line" x1="243" y1="84" x2="400" y2="84"/>
+	<g id="layer_4" title="layer_0" ie-ports="left:simulink,top:simulink,right:simulink,bottom:">
+		<line id="line_24" class="line" style="stroke-opacity: 1;stroke-width: 3;" x1="0" y1="84" x2="157" y2="84"/>
+		<line id="line_25" class="line" style="stroke-width: 3;" x1="243" y1="84" x2="400" y2="84"/>
 		<ellipse id="ellipse_31" class="ellipse" style="fill:#000000;" cx="157" cy="84" rx="5" ry="5"/>
 		<ellipse id="ellipse_32" class="ellipse" style="fill:#000000;" cx="238" cy="84" rx="5" ry="5"/>
-		<line id="line_48" class="line" x1="157" y1="42.5" x2="238" y2="42.5"/>
+		<line id="line_48" class="line" style="stroke-width: 3;" x1="157" y1="42.5" x2="238" y2="42.5"/>
 		<ellipse id="ellipse_49" class="ellipse" style="fill:#000000;" cx="157" cy="42.5" rx="5" ry="5"/>
 		<ellipse id="ellipse_50" class="ellipse" style="fill:#000000;" cx="238" cy="42.5" rx="5" ry="5"/>
-		<line id="line_74" class="line" x1="200" y1="0" x2="200" y2="42.5"/>
+		<line id="line_74" class="line" style="stroke-width: 3;" x1="200" y1="0" x2="200" y2="42.5"/>
 		<text id="text_75" class="text font-size-default" x="13" y="42.5">
-			<tspan dx="0" dy="36" x="13">in</tspan>
+			<tspan dx="0" dy="15" x="13">in</tspan>
 		</text>
 		<text id="text_76" class="text font-size-default" x="321.5" y="42.5">
-			<tspan dx="0" dy="36" x="321.5">out</tspan>
+			<tspan dx="0" dy="15" x="321.5">out</tspan>
 		</text>
 	</g>
 </svg>
