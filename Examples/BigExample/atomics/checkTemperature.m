@@ -66,11 +66,7 @@ classdef checkTemperature < handle
       end
 
       if p == "heatup"
-        if T >= Tset
-          y.heatupready = "1";
-        else
-          y.heatupready = "0";
-        end
+        y.heatupready = (T >= Tset);
       else
         y=[];
       end

@@ -50,9 +50,9 @@ classdef am_finiteQueue < handle
 
       switch obj.s
         case "emptyFree"
-          if ~isempty(bl) && bl == "1" && isempty(in)
+          if ~isempty(bl) && bl && isempty(in)
             obj.s = "emptyBlocked";
-          elseif ~isempty(bl) && bl == "1" && ~isempty(in)
+          elseif ~isempty(bl) && bl && ~isempty(in)
             obj.s = "queuingBlocked";
             obj.q = [obj.q, in];
           elseif ~isempty(in)
@@ -62,9 +62,9 @@ classdef am_finiteQueue < handle
             % no entities, bl status remains
           end
         case "emptyBlocked"
-          if ~isempty(bl) && bl == "0" && isempty(in)
+          if ~isempty(bl) && ~bl && isempty(in)
             obj.s = "emptyFree";
-          elseif ~isempty(bl) && bl == "0" && ~isempty(in)
+          elseif ~isempty(bl) && ~bl && ~isempty(in)
             obj.s = "queuingFree";
             obj.q = [obj.q, in];
           elseif ~isempty(in)
@@ -82,7 +82,7 @@ classdef am_finiteQueue < handle
             end
             obj.q = obj.q(2:end);
           else             % confluent event
-            if ~isempty(bl) && bl == "1"
+            if ~isempty(bl) && bl
               % blocking has precedence, no entity leaves!
               obj.s = "queuingBlocked";
               if length(obj.q) < obj.capacity
@@ -110,7 +110,7 @@ classdef am_finiteQueue < handle
                 obj.name, obj.s, getDescription(x.in))           
             end
           end
-          if isequal(bl, "0")
+          if ~bl
             obj.s = "queuingFree";
           end
       end
@@ -127,17 +127,17 @@ classdef am_finiteQueue < handle
       nIn = length(in);
 
       if obj.s == "queuingFree"
-        if isequal(bl, "1")
+        if bl
           y.nq = min(length(obj.q) + nIn, obj.capacity);
-          y.isFull = string(double(y.nq == obj.capacity));
+          y.isFull = (y.nq == obj.capacity);
         else
           y.out = obj.q(1);
           y.nq = length(obj.q) + nIn - 1;
-          y.isFull = "0";
+          y.isFull = false;
         end
       else
         y.nq = min(length(obj.q) + nIn, obj.capacity);
-        y.isFull = string(double(y.nq == obj.capacity));
+        y.isFull = (y.nq == obj.capacity);
       end
 
       if obj.debug
@@ -195,7 +195,7 @@ classdef am_finiteQueue < handle
         fprintf("[ %s] ", getDescription(x.in));
       end
       if isfield(x, "bl")
-        fprintf("bl=%1d", str2double(x.bl));
+        fprintf("bl=%1d", x.bl);
       end
     end
 
@@ -209,7 +209,7 @@ classdef am_finiteQueue < handle
         fprintf("nq=%1d", y.nq);
       end
       if isfield(y, "isFull")
-        fprintf(" isFull=%1d", str2double(y.isFull));
+        fprintf(" isFull=%1d", y.isFull);
       end
       fprintf("\n")
     end

@@ -47,7 +47,7 @@ title("Generator out");
 xlabel("t")
 
 nexttile(2)
-stairs(out.isFull.t,str2double(out.isFull.y));
+stairs(out.isFull.t,out.isFull.y);
 grid("on");
 xlim([0, tEnd])
 title("Queue isFull");
@@ -58,7 +58,7 @@ nexttile(5)
 idxLo = find(out.isFull.t < tMin, 1, "last");
 idxHi = find(out.isFull.t > tMax, 1);
 idx = idxLo:idxHi;
-stairs(out.isFull.t(idx),str2double(out.isFull.y(idx)));
+stairs(out.isFull.t(idx),out.isFull.y(idx));
 grid("on");
 title("Queue isFull");
 xlabel("t")

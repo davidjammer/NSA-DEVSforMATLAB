@@ -20,6 +20,8 @@ function sDesc = getValDescription(val)
     sDesc = sprintf("%5.3f ", val);
   elseif isstring(val)
     sDesc = sprintf("%s ", val);
+  elseif islogical(val)
+    sDesc = sprintf("%s ", mat2str(val));
   else
     sDesc = sprintf("%s ", class(val));
   end

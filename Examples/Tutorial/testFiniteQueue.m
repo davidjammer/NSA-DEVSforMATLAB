@@ -29,13 +29,13 @@ function [out] = testFiniteQueue(showPlot)
     title("Generator");
 
     nexttile;
-    plot_ieee1164(out.vgenOut.t, out.vgenOut.y); grid on;
+    stairs(out.vgenOut.t, out.vgenOut.y); grid on;
     xlim([0 tEnd]);
     ylabel("in");
     title("Blocking in");
 
     nexttile;
-    stem(out.queOut.t,out.queOut.y); grid on;
+    stem(out.queOut.t,[out.queOut.y.id]); grid on;
     xlim([0 tEnd]);
     ylabel("out");
     title("Queue out");
@@ -48,9 +48,10 @@ function [out] = testFiniteQueue(showPlot)
     title("Queue length");
 
     nexttile;
-    stairs(out.queFull.t,str2double(out.queFull.y)); grid on;
-    hold("on");plot(out.queFull.t,str2double(out.queFull.y), "*");hold("off");
+    stairs(out.queFull.t,out.queFull.y); grid on;
+    hold("on");plot(out.queFull.t,out.queFull.y, "*");hold("off");
     xlim([0 tEnd]);
+    ylim([-0.1,1.1])
     ylabel("nq");
     title("Queue full");
   end

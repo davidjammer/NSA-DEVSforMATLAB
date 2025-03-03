@@ -54,5 +54,4 @@ grid("on");
 xlim([0, tEnd])
 title("System out");
 xlabel("t")
-
 end
