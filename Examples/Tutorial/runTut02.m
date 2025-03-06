@@ -24,21 +24,21 @@ end
 
 tiledlayout("vertical")
 nexttile
-stem(out.gen.t,out.gen.y);
+stem(out.gen.t, out.gen.y);
 grid("on");
 xlim([0, tEnd])
 title("Generator out");
 xlabel("t")
 
 nexttile
-stem(out.srvIn.t,out.srvIn.y);
+stem(out.srvIn.t, out.srvIn.y);
 grid("on");
 xlim([0, tEnd])
 title("Queue out");
 xlabel("t")
 
 nexttile
-stem(out.srvOut.t,out.srvOut.y);
+stem(out.srvOut.t, out.srvOut.y);
 grid("on");
 xlim([0, tEnd])
 title("Server out");

@@ -562,6 +562,27 @@ function test_blocklib_add6(testCase)
   verifyEqual(testCase, act_out, testAdd6_out)
   rmpath("TestCases/Blocklib/MathOperations/Add6");
 end
+function test_blocklib_addN4(testCase)
+  addpath("TestCases/Blocklib/MathOperations/AddN");
+  act_out = testAddN4();
+  load('testAddN4_out.mat');
+  verifyEqual(testCase, act_out, testAddN4_out)
+  rmpath("TestCases/Blocklib/MathOperations/AddN");
+end
+function test_blocklib_addN4a(testCase)
+  addpath("TestCases/Blocklib/MathOperations/AddN");
+  act_out = testAddN4a();
+  load('testAddN4a_out.mat');
+  verifyEqual(testCase, act_out, testAddN4a_out)
+  rmpath("TestCases/Blocklib/MathOperations/AddN");
+end
+function test_blocklib_addN(testCase)
+  addpath("TestCases/Blocklib/MathOperations/AddN");
+  act_out = testAddN();
+  load('testAddN_out.mat');
+  verifyEqual(testCase, act_out, testAddN_out)
+  rmpath("TestCases/Blocklib/MathOperations/AddN");
+end
 function test_blocklib_comparator(testCase)
   addpath("TestCases/Blocklib/MathOperations/Comparator");
   act_out = testComparator();
@@ -622,6 +643,20 @@ function test_blocklib_combine4(testCase)
   verifyEqual(testCase, act_out, testCombine4_out)
   rmpath("TestCases/Blocklib/Routing/Combine4");
 end
+function test_blocklib_combineN4(testCase)
+  addpath("TestCases/Blocklib/Routing/CombineN");
+  act_out = testCombineN4();
+  load('testCombineN4_out.mat');
+  verifyEqual(testCase, act_out, testCombineN4_out)
+  rmpath("TestCases/Blocklib/Routing/CombineN");
+end
+function test_blocklib_combineN(testCase)
+  addpath("TestCases/Blocklib/Routing/CombineN");
+  act_out = testCombineN();
+  load('testCombineN_out.mat');
+  verifyEqual(testCase, act_out, testCombineN_out)
+  rmpath("TestCases/Blocklib/Routing/CombineN");
+end
 function test_blocklib_distribute2(testCase)
   addpath("TestCases/Blocklib/Routing/Distribute2");
   act_out = testDistribute2();
@@ -650,6 +685,13 @@ function test_blocklib_distribute4(testCase)
   verifyEqual(testCase, act_out, testDistribute4_out)
   rmpath("TestCases/Blocklib/Routing/Distribute4");
 end
+function test_blocklib_distributeN4(testCase)
+  addpath("TestCases/Blocklib/Routing/DistributeN");
+  act_out = testDistributeN4();
+  load('testDistributeN4_out.mat');
+  verifyEqual(testCase, act_out, testDistributeN4_out)
+  rmpath("TestCases/Blocklib/Routing/DistributeN");
+end
 function test_blocklib_outputswitch(testCase)
   addpath("TestCases/Blocklib/Routing/Outputswitch");
   act_out = testOutputswitch();
@@ -670,6 +712,13 @@ function test_blocklib_smallestin4(testCase)
   load('testSmallestin4_out.mat');
   verifyEqual(testCase, act_out, testSmallestin4_out)
   rmpath("TestCases/Blocklib/Routing/Smallestin4");
+end
+function test_blocklib_smallestinN4(testCase)
+  addpath("TestCases/Blocklib/Routing/SmallestinN");
+  act_out = testSmallestinN4();
+  load('testSmallestinN4_out.mat');
+  verifyEqual(testCase, act_out, testSmallestinN4_out)
+  rmpath("TestCases/Blocklib/Routing/SmallestinN");
 end
 
 %%%%%%%%%%%%%%%%%%%%Sinks%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%

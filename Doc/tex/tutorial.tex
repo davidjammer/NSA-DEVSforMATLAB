@@ -153,15 +153,14 @@ model is shown in Fig.\ \ref{fig_2}.
 \end{figure}
 
 To build the model \cft{tut01}, open the Simulink Library Browser and locate
-the NSA-DEVS library that contains a few sublibraries. In \cft{Sources/Atomic}
-you will find the source block \cft{am\_vectorgen} that generates given output
+the NSA-DEVS library that contains a few sublibraries. In \cft{Sources} you
+will find the source block \cft{am\_vectorgen} that generates given output
 values at given times. Add two of them to the new model. The sublibrary
-\cft{Math Operations/Atomic} contains the block \cft{am\_add2} that adds two
-incoming numbers. Add one to the model. Finally, add three blocks
-\cft{am\_toworkspace} from \cft{Sinks/Atomic}. They are output blocks that
-store time and value of incoming events in a global output variable that can be
-accessed after the simulation. Now connect all blocks according to
-Fig.\ \ref{fig_2}.
+\cft{Math Operations} contains the block \cft{am\_add2} that adds two incoming
+numbers. Add one to the model. Finally, add three blocks \cft{am\_toworkspace}
+from \cft{Sinks}. They are output blocks that store time and value of incoming
+events in a global output variable that can be accessed after the
+simulation. Now connect all blocks according to Fig.\ \ref{fig_2}.
 
 All blocks contain parameters, which can be accessed after a double-click on
 the block. Change the parameter \cft{vector of output times} of the upper
@@ -200,7 +199,7 @@ function runTut01
 model = "tut01";
 tEnd = 6;
 
-model_generator(model); 
+model_generator(model);
 out = model_simulator(model, tEnd);
 plotResults01(out, tEnd)
 end
@@ -232,21 +231,21 @@ end
 
 tiledlayout("vertical")
 nexttile
-stem(out.in1.t,out.in1.y);
+stem(out.in1.t, out.in1.y);
 grid("on");
 xlim([0, tEnd])
 title("in_1");
 xlabel("t")
 
 nexttile
-stem(out.in2.t,out.in2.y);
+stem(out.in2.t, out.in2.y);
 grid("on");
 xlim([0, tEnd])
 title("in_2");
 xlabel("t")
 
 nexttile
-stem(out.out1.t,out.out1.y);
+stem(out.out1.t, out.out1.y);
 grid("on");
 xlim([0, tEnd])
 title("out_1");
@@ -379,7 +378,7 @@ The model \cft{tut03} extends the queue-server model by adding the following
 statistical outputs:
 \begin{itemize}
 \item the current queue length,
-\item the current utilization of the queue,
+\item the current utilization of the server,
 \item the total throughput time of the entities.
 \end{itemize}
 The first value is given explicitely as an output of the queue. For the second
@@ -523,7 +522,7 @@ value of its two inputs will illustrate the basic procedure.
 \begin{figure}[ht]
 \centering
 \includegraphics[width=0.40\columnwidth]{images/bild11.pdf}
-\caption{Basic structure of an NSA-DEVS atomics model.}
+\caption{Basic structure of an NSA-DEVS atomic model.}
 \label{fig_11}
 \end{figure}
 
@@ -796,8 +795,8 @@ combiner at $t = 1 + \epsi$, where it is delayed by another $\epsi$. It is not
 output immediately, but stored in the internal queue \cft{q} and the phase
 changes from \cft{idle} to \cft{go}. After a delay of $\tau_D = 2\epsi$
 (defined as parameter in \cft{am\_combine2}) the part is sent to the \cft{out}
-port, the queue is emptied and the phase returns to \cft{idle}. Let's now
-proceed to $t = 2$, when the next part arrives.
+port, the internal queue is emptied and the phase returns to \cft{idle}. Let's
+now proceed to $t = 2$, when the next part arrives.
 
 
 \begin{verbatim}
@@ -836,19 +835,19 @@ am_combine2 leaving delta
 -------------------------------------------------------------------------
 \end{verbatim}
 
-Part $2$ arrives at the first port of the combiner at $t = 2 + \epsi$, while
-part $1$ has been sent back and arrives at the other port of the combiner at $t
-= 2 + 2\epsi$. This is during (ok, at the end of) the waiting time from the
-first input port, therefore the call of the $\delta$-function is delayed. At $t
-= 2 + 3\epsi$, both input entities are stored in \cft{q} and the phase is
-changed to \cft{go}. This change takes $2\epsi$, then part $2$ is sent to the
-\cft{out} port, while the queue is shortened accordingly. Again $2\epsi$ later
-part $1$ is output, the queue emptied and the block returns to phase
-\cft{idle}.
+Part $2$ arrives at the first port of the combiner at $t = 2 + \epsi$
+(before the internal delay), while part $1$ has been sent back and arrives
+at the other port of the combiner at $t = 2 + 2\epsi$. This is during (ok, at
+the end of) the waiting time from the first input port, therefore the call of
+the $\delta$-function is delayed. At $t = 2 + 3\epsi$, both input entities are
+stored in \cft{q} and the phase is changed to \cft{go}. This change takes
+$2\epsi$, then part $2$ is sent to the \cft{out} port, while the queue is
+shortened accordingly. Again $2\epsi$ later part $1$ is output, the queue
+emptied and the block returns to phase \cft{idle}.
 
 This analysis makes clear, why a delay of the incoming part of \cft{tau =
   [0,2]} from \cft{am\_adddata} doesn't help: In this case part $1$ and $2$
-arrive at the same time $2 + 3\epsi$ at the combiner. But even \cft{tau =
+arrive at the same time $2 + 2\epsi$ at the combiner. But even \cft{tau =
   [0,3]} doesn't change the output order: Now part $2$ arrives during the
 waiting time of the incoming part $1$, the $\delta$ call is delayed and
 everything proceeds as before. But a larger delay, e.\ g.\ \cft{tau = [0,4]}
@@ -895,8 +894,8 @@ queue always starts in the phase \emph{EmptyFree}, it changes to
 interesting phase is \emph{QueuingFree} being the only one, where the queue
 outputs entities. It is a transitory state, which means in NSA-DEVS that it has
 an infinitesimal delay time $\tau_D$. Fig.\ \ref{fig_21} is simplified for
-clarity, it doesn't show outputs of \cft{nq} or state transitions, when both
-inputs receive events simultaneously. A complete version is shown in
+clarity, it doesn't show outputs at \cft{nq} or state transitions, when
+both inputs receive events simultaneously. A complete version is shown in
 \cite{nsaDiagram}.
 
 The implementation of \cft{am\_queue} closely follows the diagram: The lifetime

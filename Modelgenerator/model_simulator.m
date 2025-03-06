@@ -27,7 +27,6 @@ root.sim();
 
 out = simout;
 
-
 if clearFlag
   rmdir(model, "s")
 end

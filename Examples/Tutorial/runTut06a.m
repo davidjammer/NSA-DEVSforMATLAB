@@ -28,28 +28,28 @@ t.TileSpacing = "compact";
 t.Padding = "compact";
 
 nexttile()
-stem(out.gen.t,out.gen.y);
+stem(out.gen.t, out.gen.y);
 grid("on");
 xlim([0, tEnd])
 title("Generator out");
 xlabel("t")
 
 nexttile()
-stem(out.qIn.t,[out.qIn.y.id]);
+stem(out.qIn.t, [out.qIn.y.id]);
 grid("on");
 xlim([0, tEnd])
 title("Queue in");
 xlabel("t")
 
 nexttile()
-stem(out.qOut.t,[out.qOut.y.id]);
+stem(out.qOut.t, [out.qOut.y.id]);
 grid("on");
 xlim([0, tEnd])
 title("Queue out");
 xlabel("t")
 
 nexttile()
-stem(out.sysOut.t,[out.sysOut.y.id]);
+stem(out.sysOut.t, [out.sysOut.y.id]);
 grid("on");
 xlim([0, tEnd])
 title("System out");

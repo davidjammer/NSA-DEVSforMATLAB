@@ -24,21 +24,21 @@ end
 
 tiledlayout("vertical")
 nexttile
-stem(out.in1.t,out.in1.y);
+stem(out.in1.t, out.in1.y);
 grid("on");
 xlim([0, tEnd])
 title("in_1");
 xlabel("t")
 
 nexttile
-stem(out.in2.t,out.in2.y);
+stem(out.in2.t, out.in2.y);
 grid("on");
 xlim([0, tEnd])
 title("in_2");
 xlabel("t")
 
 nexttile
-stem(out.out1.t,out.out1.y);
+stem(out.out1.t, out.out1.y);
 grid("on");
 xlim([0, tEnd])
 title("out_1");
