@@ -3,7 +3,7 @@ function runTut01
 model = "tut01";
 tEnd = 6;
 
-model_generator(model); 
+model_generator(model);
 out = model_simulator(model, tEnd);
 plotResults01(out, tEnd)
 end

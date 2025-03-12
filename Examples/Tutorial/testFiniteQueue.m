@@ -23,7 +23,7 @@ function [out] = testFiniteQueue(showPlot)
     t.Padding = "compact";
 
     nexttile;
-    stem(out.genOut.t,out.genOut.y); grid on;
+    stem(out.genOut.t, out.genOut.y); grid on;
     xlim([0 tEnd]);
     ylabel("out");
     title("Generator");
@@ -35,20 +35,20 @@ function [out] = testFiniteQueue(showPlot)
     title("Blocking in");
 
     nexttile;
-    stem(out.queOut.t,[out.queOut.y.id]); grid on;
+    stem(out.queOut.t, [out.queOut.y.id]); grid on;
     xlim([0 tEnd]);
     ylabel("out");
     title("Queue out");
 
     nexttile;
-    stairs(out.queNOut.t,out.queNOut.y); grid on;
+    stairs(out.queNOut.t, out.queNOut.y); grid on;
     hold("on");plot(out.queNOut.t,out.queNOut.y, "*");hold("off");
     xlim([0 tEnd]);
     ylabel("nq");
     title("Queue length");
 
     nexttile;
-    stairs(out.queFull.t,out.queFull.y); grid on;
+    stairs(out.queFull.t, out.queFull.y); grid on;
     hold("on");plot(out.queFull.t,out.queFull.y, "*");hold("off");
     xlim([0 tEnd]);
     ylim([-0.1,1.1])
