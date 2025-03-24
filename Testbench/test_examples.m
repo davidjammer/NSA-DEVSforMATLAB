@@ -4,8 +4,8 @@ end
 
 % Run the models in the Example directory and compare the results 
 % with the saved results.
-%
-% run with TestBrowser app or: run(test_examples)
+% run with:
+%    run(test_examples)
 
 %% PaperExamples
 function test_PaperExamples_compswitch(testCase)

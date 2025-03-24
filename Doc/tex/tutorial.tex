@@ -304,7 +304,7 @@ Fig.\ \ref{fig_4} shows the basic queue-server model \cft{tut02}. It starts
 with a simple generator that outputs events with increasing integer values in
 fixed time intervals (\cft{am\_generator}). They reach a queue
 (\cft{am\_queue}), where they wait, until the server (\cft{am\_expserver}) is
-ready for them. After a random, exponentially distributed process time they
+ready for them. After a random, exponentially distributed service time they
 leave the server and proceed to the terminator (\cft{am\_terminator}), where
 they leave the system. Three output blocks \cft{am\_toworkspace} collect the
 output values of the generator, the queue and the server. The parameter
@@ -404,8 +404,8 @@ it in the \cft{startTime} attribute. More explicitely, its parameter
 \cft{changing function}, which contains a Matlab command that always stores its
 result in a variable named \cft{out}, has the value \cft{"out = get\_time();"}
 and the \cft{output field name} is \cft{"startTime"}. After the entity has left
-the server, another \cft{am\_adddata} component changes \cft{"startTime"} using
-the command \cft{"out = get\_time() - in(1);"} as its \cft{changing
+the server, another \cft{am\_writedata} component changes \cft{"startTime"}
+using the command \cft{"out = get\_time() - in(1);"} as its \cft{changing
   function}. The variable \cft{in(1)} refers to the first attribute name given
 in the parameter \cft{input field names}, which could be a vector of attributes
 to use in the computation. Finally the \cft{am\_readdata} outputs the current
@@ -415,7 +415,7 @@ The final simulation results are shown in Fig.\ \ref{fig_7}. The corresponding
 plot function has two new features: Firstly, one can't use \cft{out.srvOut.y}
 to reference the output vector of the server, because \cft{y} itself is now a
 vector of \cft{struct} variables. The vector of its \cft{id} fields has to be
-specified as \cft{[out.srvOut.y.id]}. The complete plot function therefore is
+specified as \cft{[out.srvOut.y.id]}. The complete plot statement therefore is
 \begin{verbatim}
   stem(out.srvOut.t,[out.srvOut.y.id]);
 \end{verbatim}
@@ -454,8 +454,8 @@ created easily, as is shown in the next example \cft{tut04a}
 \end{figure}
 
 The exponential generator consists of four components: An \cft{am\_generator}
-(named \cft{initialEntity}) creates a single output $1$ at time $t = 0$, which
-is sent through an \cft{am\_combine2} block to a server with mean service time
+(named \cft{initialEvent}) creates a single output $1$ at time $t = 0$, which
+is sent through an \cft{am\_collect2} block to a server with mean service time
 $t_S = 1.1$. It is delayed by the \cft{am\_expserver} and leaves the
 generator. A copy is routed through an \cft{am\_bias} block, which increments
 its value, and sent back to the server resulting in a permanent output stream.
@@ -549,8 +549,8 @@ classdef am_max2 < handle
   %% Description
   %  outputs maximal value of two inputs (simplified)
   properties
-    in1
-    in2
+    u1
+    u2
     name
     tau
     debug
@@ -558,8 +558,8 @@ classdef am_max2 < handle
 
   methods
     function obj = am_max2(name, tau, debug)
-      obj.in1 = -Inf;
-      obj.in2 = -Inf;
+      obj.u1 = -Inf;
+      obj.u2 = -Inf;
       obj.name = name;
       obj.debug = debug;
       obj.tau = tau;
@@ -567,16 +567,16 @@ classdef am_max2 < handle
 
     function delta(obj,e,x)
       if isfield(x, "in1")
-        obj.in1 = x.in1;
+        obj.u1 = x.in1;
       end
       if isfield(x, "in2")
-        obj.in2 = x.in2;
+        obj.u2 = x.in2;
       end
     end
 
     function y = lambda(obj,e,x)
-      s1 = obj.in1;
-      s2 = obj.in2;
+      s1 = obj.u1;
+      s2 = obj.u2;
       if isfield(x, "in1")
         s1 = x.in1;
       end
@@ -622,17 +622,18 @@ All of these features are part of a quality component.
 \begin{figure}[ht]
 \centering
 \includegraphics[width=0.40\columnwidth]{images/bild12.pdf}
-\caption{Simulink library block for \cft{am\:max2}.}
+\caption{Simulink library block for \cft{am\_max2}.}
 \label{fig_12}
 \end{figure}
 
 To add this new atomic to a Simulink block library, one starts by creating a
-subsystem that only contains the input and output ports (Fig.\ \ref{fig_12}),
-using the names given in the class (cf.\ lines 31f, 39). The library block has
-the same name as the atomic and a mask with an icon, its documentation and
-parameters. The parameters are grouped in two tabs: \cft{General} for the usual
-parameters (empty in the current example) and \cft{Advanced} for special values
-such as \cft{tau} and \cft{debug}.
+local Simulink library and adding a subsystem that only contains the input and
+output ports (Fig.\ \ref{fig_12}), using the names given in the class
+(cf.\ lines 31f, 39). The library block has the same name as the atomic and a
+mask with an icon, its documentation and parameters. The parameters are grouped
+in two tabs: \cft{General} for the usual parameters (empty in the current
+example) and \cft{Advanced} for special values such as \cft{tau} and
+\cft{debug}.
 
 \begin{figure}[ht]
 \centering
@@ -648,7 +649,7 @@ everything is correct. If not: Proceed to section \ref{sec8}.
 
 \begin{figure}[ht]
 \centering
-\includegraphics[width=0.32\columnwidth]{images/bild14.pdf}
+\includegraphics[width=0.30\columnwidth]{images/bild14.pdf}
 \caption{Output plot of Model \cft{tut05}.}
 \label{fig_14}
 \end{figure}
@@ -720,15 +721,15 @@ a model -- for \emph{small} models! \\
 
 The tutorial example \cft{tut06} mainly consists of a standard queue-server
 model with fixed intergeneration and service times, both equal to $1$
-(Fig.\ \ref{fig_15}). The service process, actually a manufacturing process, is
-imperfect: About 50\% of the parts have to be reworked. Therefore the entities
-have a new attribute \cft{outPort}, which is set randomly to $1$ or $2$ by
-\cft{am\_writedata}. The following \cft{am\_distribute2} component uses this
-attribute to decide, where to route an entity. The imperfect entities are
-routed back to the queue through an \cft{am\_combine2} atomic. We define the
-behaviour of the model precisely by requiring that parts to be reworked should
-take precedence, whenever a new and a processed part arrive at the combiner
-simultaneously.
+(Fig.\ \ref{fig_15}). But now the service process, actually a manufacturing
+process, is assumed to be imperfect: About 50\% of the parts have to be
+reworked. Therefore the entities have a new attribute \cft{outPort}, which is
+set randomly to $1$ or $2$ by \cft{am\_writedata}. The following
+\cft{am\_distribute2} component uses this attribute to decide, where to route
+an entity. The imperfect entities are routed back to the queue through an
+\cft{am\_collect2} atomic. We define the behaviour of the model precisely by
+requiring that parts to be reworked should take precedence, whenever a new and
+a processed part arrive at the collector simultaneously.
 
 The output of the simulation is shown in Fig.\ \ref{fig_16}. While the basic
 behaviour is ok -- all parts are generated correctly and finally leave the
@@ -764,37 +765,37 @@ easy: To delay the incoming new part, the \cft{tau} parameter of
 our expectation -- the simulation results haven't changed! And increasing
 \cft{tau} to \cft{[0,3]} doesn't change anything either. Instead of further
 fiddling around with parameters, we set the \cft{debug} flag of
-\cft{am\_combine2} and set \cft{displayFlag = true} to see precisely, what is
+\cft{am\_collect2} and set \cft{displayFlag = true} to see precisely, what is
 going on. A simulation run (with the original \cft{tau} value of
 \cft{am\_adddata}) produces a lot of output in the command window. To precisely
 understand, what is going, we first have a look at the behaviour, when only a
-new part arrives:
-
+new part arrives: 
+\newpage
 \begin{verbatim}
 -----------------------------------------------
 t: 1.00 + 2.00 ε
-am_combine2 lambda
+am_collect2 lambda
   in: in1=[ id:1.000 outPort:0.000 ] , out: 
-am_combine2 entering delta
+am_collect2 entering delta
   phase=idle q=[] 
-am_combine2 leaving delta
+am_collect2 leaving delta
   phase=go q=[ id:1.000 outPort:0.000 ]
 -----------------------------------------------
 t: 1.00 + 4.00 ε
-am_combine2 lambda
+am_collect2 lambda
   in: , out: [ id:1.000 outPort:0.000 ]
-am_combine2 entering delta
+am_collect2 entering delta
   phase=go q=[ id:1.000 outPort:0.000 ]
-am_combine2 leaving delta
-  phase=idle q=[]
+am_collect2 leaving delta
+  phase=idle q=[] 
 -----------------------------------------------
 \end{verbatim}
 
 Due to the delay from the \cft{am\_adddata} component, part $1$ arrives at the
-combiner at $t = 1 + \epsi$, where it is delayed by another $\epsi$. It is not
+collector at $t = 1 + \epsi$, where it is delayed by another $\epsi$. It is not
 output immediately, but stored in the internal queue \cft{q} and the phase
 changes from \cft{idle} to \cft{go}. After a delay of $\tau_D = 2\epsi$
-(defined as parameter in \cft{am\_combine2}) the part is sent to the \cft{out}
+(defined as parameter in \cft{am\_collect2}) the part is sent to the \cft{out}
 port, the internal queue is emptied and the phase returns to \cft{idle}. Let's
 now proceed to $t = 2$, when the next part arrives.
 
@@ -802,23 +803,23 @@ now proceed to $t = 2$, when the next part arrives.
 \begin{verbatim}
 -------------------------------------------------------------------------
 t: 2.00 + 2.00 ε
-am_combine2 lambda
+am_collect2 lambda
   in: in1=[ id:2.000 outPort:0.000 ] , out: 
 -------------------------------------------------------------------------
 t: 2.00 + 3.00 ε
-am_combine2 lambda
+am_collect2 lambda
   in: in1=[ id:2.000 outPort:0.000 ] in2=[ id:1.000 outPort:2.000 ], out:
-am_combine2 entering delta
+am_collect2 entering delta
   phase=idle q=[] 
-am_combine2 leaving delta
+am_collect2 leaving delta
   phase=go q=[ id:2.000 outPort:0.000 , id:1.000 outPort:2.000 ]
 -------------------------------------------------------------------------
 t: 2.00 + 5.00 ε
-am_combine2 lambda
+am_collect2 lambda
   in: , out: [ id:2.000 outPort:0.000 ]
-am_combine2 entering delta
+am_collect2 entering delta
   phase=go q=[ id:2.000 outPort:0.000 , id:1.000 outPort:2.000 ]
-am_combine2 leaving delta
+am_collect2 leaving delta
   phase=go q=[ id:1.000 outPort:2.000 ]
 -------------------------------------------------------------------------
 t: 2.00 + 5.50 ε
@@ -826,18 +827,18 @@ t: 2.00 + 5.50 ε
 t: 2.00 + 6.00 ε
 -------------------------------------------------------------------------
 t: 2.00 + 7.00 ε
-am_combine2 lambda
+am_collect2 lambda
   in: , out: [ id:1.000 outPort:2.000 ]
-am_combine2 entering delta
+am_collect2 entering delta
   phase=go q=[ id:1.000 outPort:2.000 ]
-am_combine2 leaving delta
+am_collect2 leaving delta
   phase=idle q=[] 
 -------------------------------------------------------------------------
 \end{verbatim}
 
-Part $2$ arrives at the first port of the combiner at $t = 2 + \epsi$
+Part $2$ arrives at the first port of the collector at $t = 2 + \epsi$
 (before the internal delay), while part $1$ has been sent back and arrives
-at the other port of the combiner at $t = 2 + 2\epsi$. This is during (ok, at
+at the other port of the collector at $t = 2 + 2\epsi$. This is during (ok, at
 the end of) the waiting time from the first input port, therefore the call of
 the $\delta$-function is delayed. At $t = 2 + 3\epsi$, both input entities are
 stored in \cft{q} and the phase is changed to \cft{go}. This change takes
@@ -847,11 +848,11 @@ emptied and the block returns to phase \cft{idle}.
 
 This analysis makes clear, why a delay of the incoming part of \cft{tau =
   [0,2]} from \cft{am\_adddata} doesn't help: In this case part $1$ and $2$
-arrive at the same time $2 + 2\epsi$ at the combiner. But even \cft{tau =
+arrive at the same time $2 + 2\epsi$ at the collector. But even \cft{tau =
   [0,3]} doesn't change the output order: Now part $2$ arrives during the
 waiting time of the incoming part $1$, the $\delta$ call is delayed and
 everything proceeds as before. But a larger delay, e.\ g.\ \cft{tau = [0,4]}
-does the trick: The debug output shows that the combiner is already in the
+does the trick: The debug output shows that the collector is already in the
 \cft{go} phase, when part $2$ arrives. Therefore, part $1$ is output and part
 $2$ is stored in \cft{q} to be output $2\epsi$ later, at last coming behind
 part $1$ in the queue component.  The output plot (Fig.\ \ref{fig_18}) shows
