@@ -8,11 +8,17 @@ function sDesc = getDescription(s)
       val = s.(fields{I});
       sDesc = sDesc + fields{I} + ":" + getValDescription(val);
     end
+  elseif iscell(s)
+    sDesc = "{ ";
+    for I=1:length(s)
+      val = s{I};
+      sDesc = sDesc + getValDescription(val);
+    end
+    sDesc = sDesc + "}";
   else
     sDesc = getValDescription(s);
   end
 end
-
 
 function sDesc = getValDescription(val)
   % returns string description of a simple value s

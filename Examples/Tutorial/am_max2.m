@@ -8,7 +8,7 @@ classdef am_max2 < handle
   %    out      max of input values
   %% States
   %  s:        running
-  %  in1,in2:  current input values
+  %  u1,u2:  current input values
   %% System Parameters
   %  name:  object name
   %  tau:   input delay
@@ -16,8 +16,8 @@ classdef am_max2 < handle
 
   properties
     s
-    in1
-    in2
+    u1
+    u2
     name
     tau
     debug
@@ -26,8 +26,8 @@ classdef am_max2 < handle
   methods
     function obj = am_max2(name, tau, debug)
       obj.s = "running";
-      obj.in1 = -Inf;
-      obj.in2 = -Inf;
+      obj.u1 = -Inf;
+      obj.u2 = -Inf;
       obj.name = name;
       obj.debug = debug;
       obj.tau = tau;
@@ -40,10 +40,10 @@ classdef am_max2 < handle
       end
 
       if isfield(x, "in1")
-        obj.in1 = x.in1;
+        obj.u1 = x.in1;
       end
       if isfield(x, "in2")
-        obj.in2 = x.in2;
+        obj.u2 = x.in2;
       end
 
       if obj.debug
@@ -53,8 +53,8 @@ classdef am_max2 < handle
     end
 
     function y = lambda(obj,e,x)
-      s1 = obj.in1;
-      s2 = obj.in2;
+      s1 = obj.u1;
+      s2 = obj.u2;
       if isfield(x, "in1")
         s1 = x.in1;
       end
@@ -76,7 +76,7 @@ classdef am_max2 < handle
 
     function showState(obj)
       % debug function, prints current state
-      fprintf("  phase=%4s in1=%4.2f in2=%4.2f\n", obj.s, obj.in1, obj.in2)
+      fprintf("  phase=%4s in1=%4.2f in2=%4.2f\n", obj.s, obj.u1, obj.u2)
     end
 
     function showInput(obj, x)

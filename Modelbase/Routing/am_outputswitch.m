@@ -41,7 +41,7 @@ classdef am_outputswitch < handle
       end
       
       if isfield(x, "sw")
-        obj.nextPort = str2num(x.sw) + 1;
+        obj.nextPort = double(x.sw) + 1;
       end
         
       if obj.debug
@@ -53,7 +53,7 @@ classdef am_outputswitch < handle
       if isfield(x, "in")
         curPort = obj.nextPort;
         if isfield(x, "sw")
-          curPort = str2num(x.sw) + 1;
+          curPort = double(x.sw) + 1;
         end
         
         switch curPort

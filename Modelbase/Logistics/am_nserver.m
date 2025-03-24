@@ -57,9 +57,9 @@ classdef am_nserver < handle
     
 		function delta(obj,e,x)
       if obj.debug
-        fprintf("%-8s entering delta,", obj.name)
+        fprintf("%-8s entering delta\n", obj.name)
         showState(obj);
-      end      
+      end
 
       nE = sum(~cellfun(@ismissing, obj.E));  % number of entities in processing
       obj.sig = obj.sig - e;      % reduce waiting times
@@ -90,9 +90,9 @@ classdef am_nserver < handle
       end   % external event
 
       if obj.debug
-        fprintf("%-8s leaving  delta,", obj.name)
+        fprintf("%-8s leaving  delta\n", obj.name)
         showState(obj);
-      end      
+      end
     end
     
     function y = lambda(obj,e,x)
@@ -119,17 +119,9 @@ classdef am_nserver < handle
       end
 
       if obj.debug
-        fprintf("%-8s lambda, ", obj.name);
-        if isfield(y, "out")
-          fprintf("out=%2d ", y.out);
-        end
-        if isfield(y, "full")
-          fprintf("full=%1d ", y.full);
-        end
-        if isfield(y, "n")
-          fprintf("n=%1d", y.n);
-        end
-        fprintf("\n")
+        fprintf("%-8s lambda\n", obj.name)
+        showInput(obj, x)
+        showOutput(obj, y)
       end
     end
     
@@ -183,9 +175,50 @@ classdef am_nserver < handle
 
     function showState(obj)
       % debug function, prints current state
-      fprintf("  phase=%4s ", obj.s)
-      fprintf("E=%1d sig=[%4.2f,%4.2f]\n", obj.E, obj.sig(:,1), obj.sig(:,2))
+      fprintf("  phase=%s E=", obj.s)
+      if isempty(obj.E)
+        fprintf("{} ");
+      else
+        fprintf("{ ");
+        for I = 1:length(obj.E)-1
+          fprintf("%s, ", getDescription(obj.E{I}));
+        end
+        fprintf("%s} ", getDescription(obj.E{end}));
+      end
+      fprintf("sig=%.2f+%.2f\x00b7\x03b5 ", obj.sig(1), obj.sig(2))
+      if isempty(obj.qOut)
+        fprintf("qOut=[] ");
+      else
+        fprintf("qOut=[ ");
+        for I = 1:length(obj.qOut)-1
+          fprintf("%s, ", getDescription(obj.qOut(I)));
+        end
+        fprintf("%s] ", getDescription(obj.qOut(end)));
+      end
+      fprintf("\n")
     end
    
+    function showInput(obj, x)
+      % debug function, prints current input
+      fprintf("  in: ");
+      if isfield(x, "in")
+        fprintf("[ %s] ", getDescription(x.in));
+      end
+    end
+
+    function showOutput(obj, y)
+      % debug function, prints current output
+      fprintf(", out: ")
+      if isfield(y, "out")
+        fprintf("[ %s] ", getDescription(y.out));
+      end
+      if isfield(y, "full")
+        fprintf("full=%1d ", y.full);
+      end
+      if isfield(y, "n")
+        fprintf("n=%1d", y.n);
+      end
+      fprintf("\n")
+    end
   end
 end
