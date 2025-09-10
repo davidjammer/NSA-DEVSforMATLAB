@@ -4,8 +4,8 @@ function out = testNserver1(showPlot)
   end
 
   tEnd = 10;
-	model_generator("Nserver_Model1");
-	out = model_simulator("Nserver_Model1", tEnd);
+	model_generator("Nserver1_Model");
+	out = model_simulator("Nserver1_Model", tEnd);
 
   if showPlot
     figure("name", "testNserver1", "NumberTitle", "off")

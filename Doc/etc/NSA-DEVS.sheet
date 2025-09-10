@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<sheet xmlns="http://www.lysator.liu.se/~alla/dia/dia-sheet-ns">
+<!--Dia-Version: 0.98.0-->
+<!--Datei: /home/peter/.dia/sheets/NSA-DEVS.sheet-->
+<!--Datum: Fri Mar  7 12:27:54 2025-->
+<!--Für: Peter Junglas-->
+
+<name>NSA-DEVS</name>
+<description>Shapes for NSA-DEVS diagrams</description>
+  <contents>
+	 <object name="NSA-DEVS - IOPort">
+		<description>I/O Port</description>
+	 </object>
+	 <object name="NSA-DEVS - State">
+		<description>Simple State</description>
+	 </object>
+	 <object name="NSA-DEVS - SuperState">
+		<description>State with internal substates</description>
+	 </object>
+  </contents>
+</sheet>

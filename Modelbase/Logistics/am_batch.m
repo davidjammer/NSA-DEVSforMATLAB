@@ -39,6 +39,11 @@ classdef am_batch < handle
     end
 
     function delta(obj,e,x)
+      if obj.debug
+        fprintf("%-8s entering delta\n", obj.name)
+        showState(obj);
+      end
+
       if ~isempty(x)
    		  obj.E = [obj.E, x.in];
         obj.n = obj.n + 1;
@@ -47,6 +52,11 @@ classdef am_batch < handle
       if obj.n == obj.N
         obj.n = 0;
         obj.E = [];
+      end
+
+      if obj.debug
+        fprintf("%-8s leaving  delta\n", obj.name)
+        showState(obj);
       end
     end
 
@@ -61,11 +71,31 @@ classdef am_batch < handle
         y.n = obj.n;
       end
 
+      if obj.debug
+        fprintf("%-8s lambda\n", obj.name)
+        showInput(obj, x)
+        showOutput(obj, y)
+      end
     end
 
     function t = ta(obj)
       t = [inf, 0];
     end
     
+    %-------------------------------------------------------
+    function showState(obj)
+      % debug function, prints current state
+      fprintf("  E=%s\n", getDescription(obj.E));
+    end
+
+    function showInput(obj, x)
+      % debug function, prints current input
+      fprintf("  input:  %s\n", getDescription(x))
+    end
+
+    function showOutput(obj, y)
+      % debug function, prints current output
+      fprintf("  output: %s\n", getDescription(y))
+    end
   end
 end

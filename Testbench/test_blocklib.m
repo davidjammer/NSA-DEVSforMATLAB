@@ -127,6 +127,27 @@ function test_blocklib_unbatch(testCase)
   verifyEqual(testCase, act_out, testUnbatch_out)
   rmpath("TestBlocklib/Logistics/Unbatch");
 end
+function test_blocklib_unbatch1_case1(testCase)
+  addpath("TestBlocklib/Logistics/Unbatch");
+  act_out = testUnbatch1(1);
+  load("testUnbatch1_out1.mat");
+  verifyEqual(testCase, act_out, testUnbatch1_out1)
+  rmpath("TestBlocklib/Logistics/Unbatch");
+end
+function test_blocklib_unbatch1_case2(testCase)
+  addpath("TestBlocklib/Logistics/Unbatch");
+  act_out = testUnbatch1(2);
+  load("testUnbatch1_out2.mat");
+  verifyEqual(testCase, act_out, testUnbatch1_out2)
+  rmpath("TestBlocklib/Logistics/Unbatch");
+end
+function test_blocklib_unbatch2(testCase)
+  addpath("TestBlocklib/Logistics/Unbatch");
+  act_out = testUnbatch2();
+  load("testUnbatch2_out.mat");
+  verifyEqual(testCase, act_out, testUnbatch2_out)
+  rmpath("TestBlocklib/Logistics/Unbatch");
+end
 function test_blocklib_writedata(testCase)
   addpath("TestBlocklib/Logistics/Writedata");
   act_out = testWritedata();

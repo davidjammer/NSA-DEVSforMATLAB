@@ -1,0 +1,46 @@
+Create NSA-DEVS diagrams with Dia
+=================================
+
+Files for Dia: 
+- NSA-DEVS.sheet
+  sheet file for Dia
+  linked to ~/.dia/sheets
+- dia/
+  directory with shapes for Dia
+  all files linked to ~/.dia/shapes
+
+XXX translate, use english dia version
+
+Grundelemente:
+- Standardwerte
+  Schrift: sans, Normal
+  Schriftgröße: 24 pt
+  Linienbreite: 0.05 cm
+- oberer und unterer Kasten: Flowchart-Box
+- seitlicher Rahmen: Line
+- Zustands-Boxen: Flowchart-Box
+  Eckenradius: 0.50
+  Textabstand: 0,50
+- Transitionen
+  Arc (Bogen),  extern = rot/-, intern = blau/-.
+  Beschriftung: Text
+- Init-Pfeil
+  Kreis, schwarz gefüllt
+  Linie mit Pfeil, schwarz
+- Inputs/Outputs
+  Polygon + Beschriftung rechts/links
+  gruppiert
+- Zustands-Boxen höherer Hierarchie: Box + Test für Namen
+  Hintergrund zeichnen: no
+  Eckenradius: 1,0
+  Problem: hat zu wenig Anschlusspunkte!
+
+Eigene Dia-Bibliothek NSA-DEVS:
+- neues Sheet NSA-DEVS anlegen
+  File/Sheets and Objects/New, Sheet Name + Description
+  landet in ~/.dia/sheets/NSA_DEVS.sheet
+- IO-Port hinzufügen
+  entsprechendes Diagramm erstellen (als Polygon)
+  Exportieren als Dia-shape (.shape) -> io-port.shape und io-port.png
+  File/Sheets and Objects/New, SVG Shape + Description
+-   

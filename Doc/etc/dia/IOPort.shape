@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<shape xmlns="http://www.daa.com.au/~james/dia-shape-ns" xmlns:svg="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+  <name>NSA-DEVS - IOPort</name>
+  <icon>IOPort.png</icon>
+  <connections>
+    <point x="5.03779" y="5.02135"/>
+    <point x="6.23779" y="5.02135"/>
+    <point x="7.03779" y="5.42135"/>
+    <point x="6.23779" y="5.82135"/>
+    <point x="5.03779" y="5.82135"/>
+    <point x="5.63779" y="5.02135"/>
+    <point x="6.63779" y="5.22135"/>
+    <point x="6.63779" y="5.62135"/>
+    <point x="5.63779" y="5.82135"/>
+  </connections>
+  <aspectratio type="fixed"/>
+  <svg:svg>
+    <svg:polygon style="fill: #ffffff; fill-opacity: 1; stroke-opacity: 1; stroke-width: 0.05; stroke: #000000" points="5.03779,5.02135 6.23779,5.02135 7.03779,5.42135 6.23779,5.82135 5.03779,5.82135 "/>
+  </svg:svg>
+</shape>
