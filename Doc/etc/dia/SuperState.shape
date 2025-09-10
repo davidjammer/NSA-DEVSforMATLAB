@@ -1,0 +1,44 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<shape xmlns="http://www.daa.com.au/~james/dia-shape-ns" xmlns:svg="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+  <name>NSA-DEVS - SuperState</name>
+  <icon>SuperState.png</icon>
+  <connections>
+    <point x="5.29289" y="5.29289"/>
+    <point x="7.5" y="5"/>
+    <point x="10" y="5"/>
+    <point x="12.5" y="5"/>
+    <point x="15" y="5"/>
+    <point x="17.5" y="5"/>
+    <point x="20" y="5"/>
+    <point x="22.5" y="5"/>
+    <point x="24.7071" y="5.29289"/>
+    <point x="25" y="7"/>
+    <point x="25" y="9"/>
+    <point x="25" y="11"/>	 
+    <point x="25" y="13"/>
+    <point x="25" y="15"/>
+    <point x="25" y="17"/>
+    <point x="25" y="19"/>	 
+    <point x="24.7071" y="20.7071"/>
+    <point x="7.5" y="21"/>
+    <point x="10" y="21"/>
+    <point x="12.5" y="21"/>
+    <point x="15" y="21"/>
+    <point x="17.5" y="21"/>
+    <point x="20" y="21"/>
+    <point x="22.5" y="21"/>
+    <point x="5.29289" y="20.7071"/>
+    <point x="5" y="19"/>	 
+    <point x="5" y="17"/>
+    <point x="5" y="15"/>
+    <point x="5" y="13"/>
+    <point x="5" y="11"/>	 
+    <point x="5" y="9"/>
+    <point x="5" y="7"/>
+    <point x="15" y="13"/>
+  </connections>
+  <aspectratio type="free"/>
+  <svg:svg>
+    <svg:rect style="fill: none; stroke-opacity: 1; stroke-width: 0.05; stroke-linejoin: round; stroke: #000000" x="5" y="5" width="20" height="16" rx="1" ry="1"/>
+  </svg:svg>
+</shape>

@@ -372,6 +372,83 @@ function test_getmax(testCase)
 end
 %%%%%%%%%%%%%%%%%%%%Utilities%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
+function test_getDescription_case1(testCase)
+  addpath("TestAtomics/Utilities/GetDescription");
+  act_out = testGetDescription(1);
+  load("testGetDescription_out1.mat");
+  verifyEqual(testCase, act_out, testGetDescription_out)
+  rmpath("TestAtomics/Utilities/GetDescription");
+end
+function test_getDescription_case2(testCase)
+  addpath("TestAtomics/Utilities/GetDescription");
+  act_out = testGetDescription(2);
+  load("testGetDescription_out2.mat");
+  verifyEqual(testCase, act_out, testGetDescription_out)
+  rmpath("TestAtomics/Utilities/GetDescription");
+end
+function test_getDescription_case3(testCase)
+  addpath("TestAtomics/Utilities/GetDescription");
+  act_out = testGetDescription(3);
+  load("testGetDescription_out3.mat");
+  verifyEqual(testCase, act_out, testGetDescription_out)
+  rmpath("TestAtomics/Utilities/GetDescription");
+end
+function test_getDescription_case4(testCase)
+  addpath("TestAtomics/Utilities/GetDescription");
+  act_out = testGetDescription(4);
+  load("testGetDescription_out4.mat");
+  verifyEqual(testCase, act_out, testGetDescription_out)
+  rmpath("TestAtomics/Utilities/GetDescription");
+end
+function test_getDescription_case5(testCase)
+  addpath("TestAtomics/Utilities/GetDescription");
+  act_out = testGetDescription(5);
+  load("testGetDescription_out5.mat");
+  verifyEqual(testCase, act_out, testGetDescription_out)
+  rmpath("TestAtomics/Utilities/GetDescription");
+end
+function test_getDescription_case6(testCase)
+  addpath("TestAtomics/Utilities/GetDescription");
+  act_out = testGetDescription(6);
+  load("testGetDescription_out6.mat");
+  verifyEqual(testCase, act_out, testGetDescription_out)
+  rmpath("TestAtomics/Utilities/GetDescription");
+end
+function test_getDescription_case7(testCase)
+  addpath("TestAtomics/Utilities/GetDescription");
+  act_out = testGetDescription(7);
+  load("testGetDescription_out7.mat");
+  verifyEqual(testCase, act_out, testGetDescription_out)
+  rmpath("TestAtomics/Utilities/GetDescription");
+end
+function test_getDescription_case8(testCase)
+  addpath("TestAtomics/Utilities/GetDescription");
+  act_out = testGetDescription(8);
+  load("testGetDescription_out8.mat");
+  verifyEqual(testCase, act_out, testGetDescription_out)
+  rmpath("TestAtomics/Utilities/GetDescription");
+end
+function test_getDescription_case9(testCase)
+  addpath("TestAtomics/Utilities/GetDescription");
+  act_out = testGetDescription(9);
+  load("testGetDescription_out9.mat");
+  verifyEqual(testCase, act_out, testGetDescription_out)
+  rmpath("TestAtomics/Utilities/GetDescription");
+end
+function test_getDescription_case10(testCase)
+  addpath("TestAtomics/Utilities/GetDescription");
+  act_out = testGetDescription(10);
+  load("testGetDescription_out10.mat");
+  verifyEqual(testCase, act_out, testGetDescription_out)
+  rmpath("TestAtomics/Utilities/GetDescription");
+end
+function test_getDescription_case11(testCase)
+  addpath("TestAtomics/Utilities/GetDescription");
+  act_out = testGetDescription(11);
+  load("testGetDescription_out11.mat");
+  verifyEqual(testCase, act_out, testGetDescription_out)
+  rmpath("TestAtomics/Utilities/GetDescription");
+end
 function test_minHR_case1(testCase)
   addpath("TestAtomics/Utilities/MinHR");
   act_out = testMinHR(1);

@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<shape xmlns="http://www.daa.com.au/~james/dia-shape-ns" xmlns:svg="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+  <name>NSA-DEVS - State</name>
+  <icon>State.png</icon>
+  <connections>
+    <point x="6.04645" y="6.24811"/>
+    <point x="7.575" y="6.10167"/>
+    <point x="9.10355" y="6.24811"/>
+    <point x="9.25" y="7.60083"/>
+    <point x="9.10355" y="8.95355"/>
+    <point x="7.575" y="9.1"/>
+    <point x="6.04645" y="8.95355"/>
+    <point x="5.9" y="7.60083"/>
+    <point x="7.575" y="7.60083"/>
+  </connections>
+  <aspectratio type="fixed"/>
+  <svg:svg>
+    <svg:rect style="fill: #ffffff; fill-opacity: 1; stroke-opacity: 1; stroke-width: 0.05; stroke: #000000" x="5.9" y="6.10167" width="3.35" height="2.99833" rx="0.5" ry="0.5"/>
+    <svg:text style="fill: #000000; fill-opacity: 1; stroke: none; text-anchor:middlefont-family: sans; font-style: normal; font-weight: normal" x="7.575" y="7.36917" font-size="0.846667" textLength="0.4525">A</svg:text>
+    <svg:text style="fill: #000000; fill-opacity: 1; stroke: none; text-anchor:middlefont-family: sans; font-style: normal; font-weight: normal" x="7.575" y="8.21583" font-size="0.846667" textLength="1.2525">@ta</svg:text>
+  </svg:svg>
+</shape>
