@@ -6,7 +6,7 @@ classdef am_batch < handle
   %    in        incoming entities
   %  outputs:
   %    out       batch of entities
-  %    n         current internal batch size
+  %    n         current number of entities in batch
   %% States
   %  s:   running
   %  E:   collection of incoming entities
