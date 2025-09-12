@@ -59,6 +59,10 @@ classdef am_unbatch < handle
             obj.n = 0;
             obj.s = "idle";
           end
+          if ~isempty(x) && isfield(x, "in")
+            fprintf("%s, in delta, phase %s - dropping input %s\n", ...
+                obj.name, obj.s, getDescription(x.in))
+          end
       end
 
       if obj.debug
