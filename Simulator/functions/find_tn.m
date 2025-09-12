@@ -1,5 +1,4 @@
-function id=find_tn(eventlist,tn)
-    %x=find(eventlist(:,2) == tn(1));   
+function id=find_tn(eventlist,tn)  
     x=find(abs(eventlist(:,2)-tn(1)) < get_epsilon() == 1);
     id=[];
     for i=1:numel(x)
