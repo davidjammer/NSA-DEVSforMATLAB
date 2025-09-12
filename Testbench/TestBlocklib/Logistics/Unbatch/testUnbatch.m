@@ -8,7 +8,13 @@ function [out] = testUnbatch(showPlot)
   out = model_simulator("Unbatch_Model", tEnd);
 
   if showPlot
-    figure
+    width = 600;
+    height = 400;
+    fig = figure("name", "testReleaseQueue", "NumberTitle", "off");
+    pos = get(fig, "Position");
+    pos(3:4) = [width, height];
+    set(fig, "Position", pos)
+
     stem(out.out.t,out.out.y); grid on;
     xlim([0 tEnd]);
     xlabel('simulation time');

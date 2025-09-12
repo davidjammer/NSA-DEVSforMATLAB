@@ -148,6 +148,13 @@ function test_blocklib_unbatch2(testCase)
   verifyEqual(testCase, act_out, testUnbatch2_out)
   rmpath("TestBlocklib/Logistics/Unbatch");
 end
+function test_blocklib_unbatch3(testCase)
+  addpath("TestBlocklib/Logistics/Unbatch");
+  act_out = testUnbatch3();
+  load("testUnbatch3_out.mat");
+  verifyEqual(testCase, act_out, testUnbatch3_out)
+  rmpath("TestBlocklib/Logistics/Unbatch");
+end
 function test_blocklib_writedata(testCase)
   addpath("TestBlocklib/Logistics/Writedata");
   act_out = testWritedata();
