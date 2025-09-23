@@ -29,7 +29,7 @@ set_param(hBlock, "value", string(NJ))
 
 % create and run model
 model_generator(model); 
-out = model_simulator(model, tEnd, true, displayFlag);
+out = model_simulator(model, tEnd, "clearFlag", true, "displayFlag", displayFlag);
 plotResults(out, tEnd)
 showStatistics(out, tEnd)
 end
