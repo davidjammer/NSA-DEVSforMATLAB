@@ -2,10 +2,9 @@ function runTut06d
 % makes and runs the model and plots the results
 model = "tut06d";
 tEnd = 13;
-rng(3);
 
 model_generator(model); 
-out = model_simulator(model, tEnd, true, true);
+out = model_simulator(model, tEnd, "clearFlag", true, "displayFlag", true, "seed", 3);
 plotResults(out, tEnd)
 end
 

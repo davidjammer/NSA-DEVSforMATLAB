@@ -4,7 +4,7 @@ function runTimeSharedS
 %   set global DEBUGLEVEL
 %   model_simulator(model, tEnd, false)
 model = "timeSharedS";
-rng(3);     % set seed for random generator
+seed = 3;     % set seed for random generator
 tEnd = 100;
 displayFlag = false;     % show timestamps
 
@@ -29,7 +29,7 @@ set_param(hBlock, "value", string(NJ))
 
 % create and run model
 model_generator(model); 
-out = model_simulator(model, tEnd, true, displayFlag);
+out = model_simulator(model, tEnd, "clearFlag", true, "displayFlag", displayFlag, "seed", seed);
 plotResults(out, tEnd)
 end
 
