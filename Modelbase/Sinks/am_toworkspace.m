@@ -39,7 +39,7 @@ classdef am_toworkspace < handle
       obj.mu = get_mu();
       obj.debug = debug;
       obj.format = format;
-      
+
     end
 
     function delta(obj,e,x)
@@ -63,9 +63,9 @@ classdef am_toworkspace < handle
       end
 
       if obj.debug
-       if isfield(x, "in")
-          fprintf("%-8s delta, in=%f\n", obj.name, x.in)
-        end
+        fprintf("%-8s leaving  delta\n", obj.name)
+        showInput(obj, x)
+        showState(obj);
       end
     end
 
@@ -75,6 +75,17 @@ classdef am_toworkspace < handle
 
     function t = ta(obj)
       t = [Inf,0];
+    end
+
+    %-------------------------------------------------------
+    function showInput(obj, x)
+      % debug function, prints current input
+      fprintf("  input:  %s\n", getDescription(x))
+    end
+
+    function showState(obj)
+      % debug function, prints current state
+      fprintf("  t=%s\n", getDescription(obj.t));
     end
 
   end

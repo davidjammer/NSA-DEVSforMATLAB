@@ -56,7 +56,7 @@
     A Matlab-based Tool for Discrete-Event Simulation\\[2em]
     A Tutorial Introduction}
   \author{Peter Junglas}
-  \date{2025-02-25}
+  \date{2025-09-25}
 \end{titlepage}
 \maketitle
 
@@ -308,23 +308,20 @@ ready for them. After a random, exponentially distributed service time they
 leave the server and proceed to the terminator (\cft{am\_terminator}), where
 they leave the system. Three output blocks \cft{am\_toworkspace} collect the
 output values of the generator, the queue and the server. The parameter
-\cft{mean service time} of the server is set to $0.9$, \cft{use seed} to
-\cft{true} and \cft{seed} to $3$. As always, the output blocks have different
-and meaningful names for their \cft{varname}. And just to get nicer looking
-plots, the parameter \cft{id of the first entity} of the generator is set to
-$1$.
+\cft{mean service time} of the server is set to $0.9$. As always, the output
+blocks have different and meaningful names for their \cft{varname}. And just to
+get nicer looking plots, the parameter \cft{id of the first entity} of the
+generator is set to $1$.
 
 \infopar{ The names of blocks in Simulink can be chosen arbitrarily. In ND4M
   they have to be proper variable names, therefore they can't contain spaces or
   other special characters.  }
 
-Setting the seed guarantees a reproducible outcome of the simulation, whereas
-\cft{use seed = false} leads to a different output with each run. An unusual
-feature is the line running back from the server to the queue. It is needed
-here due to the semantics of the queue, which outputs entities unless it is
-blocked. Its blocking status is given by an additional input, which is
-connected to the output \cft{working} of the server. It is true, when the server
-is busy.
+An unusual feature is the line running back from the server to the queue. It is
+needed here due to the semantics of the queue, which outputs entities unless it
+is blocked. Its blocking status is given by an additional input, which is
+connected to the output \cft{working} of the server. It is true, when the
+server is busy.
 
 \infopar{ The exact timing of the signaling loop and the internal behaviour of
   server and queue are of paramount importance here! Unfortunately, in the
@@ -344,10 +341,12 @@ is busy.
   careful analysis of the queue-server model can be found in
   \cite{nsaExamples}.  }
 
-The run and plot functions are standard, the results are shown in
-Fig.\ \ref{fig_5}. The seed has been chosen carefully to create a result that
-can be easily analyzed: Except for a short period after $t = 3$, the queue is
-empty before $t = 6$ and after $t = 10$.
+The run function sets the \cft{seed} parameter of the simulator, which
+guarantees a reproducible outcome of the simulation. Otherweise, one gets a
+different output with each run. The value of the seed has been chosen carefully
+to create results that can be easily analyzed (cf.\ Fig.\ \ref{fig_5}): Except
+for a short period after $t = 3$, the queue is empty before $t = 6$ and after
+$t = 10$.
 
 \begin{figure}[ht]
 \centering
@@ -468,13 +467,11 @@ its value, and sent back to the server resulting in a permanent output stream.
 \end{figure}
 
 Fig.\ \ref{fig_9} displays the simulation results, which show the typical
-lumpiness of an exponential distribution. To fix the random numbers, one can
-set the seed parameters of the two servers to different values. For larger
-models, this can be a nuisance, therefore the random generator is set globally
-in the run script with the line
-\begin{verbatim}
-  rng(16);
-\end{verbatim}
+lumpiness of an exponential distribution. To get an impression of the large
+variability of the results, one should try different values of the seed
+parameter. Statistical variables such as the mean queue length have a large
+standard deviation here, therefore one needs a lot of runs (with different
+seeds) to get good approximations.
 
 In Simulink, the four components of the exponential generator can be combined
 in a subsystem. To make the model generator work, this subsystem needs a
@@ -493,10 +490,10 @@ documentation and defines some block parameters. The corresponding model
 \infopar{ The model generator creates a Matlab description of the main model --
   and recursively of all subsystems contained in the model -- using its
   Simulink description. To have a look at these files, one can call the model
-  simulator with \cft{out = model\_simulator(model, tEnd, false)}, which stops
-  it from removing them after the simulation. One now finds the directory
-  \cft{tut04c} containing the main Matlab file \cft{build\_tut04c}. It consists
-  of five sections:
+  simulator with \cft{out = model\_simulator(model, tEnd, "clearFlag", false)},
+  which stops it from removing them after the simulation. One now finds the
+  directory \cft{tut04c} containing the main Matlab file
+  \cft{build\_tut04c}. It consists of five sections:
   \begin{itemize}
   \item create atomics,
   \item add atomics to simulators,
@@ -537,7 +534,7 @@ Listing \ref{lst3} shows a (slightly simplified version of) the class
 definition of \cft{am\_max2}. As has been noted for the \cft{am\_add2}
 component in section \ref{sec3}, the \cft{am\_max2} component has to store
 incoming values internally. For this purpose, the \cft{properties} section in
-the class definition contains the two fields \cft{in1} and \cft{in2} (lines
+the class definition contains the two fields \cft{u1} and \cft{u2} (lines
 5f). The three additional properties in lines 7--9 are mandatory for ND4M
 atomics: \cft{name} stores the name of the component, usually defined in the
 Simulink description of the coupled model containing this atomic, \cft{tau} is
@@ -666,10 +663,10 @@ the debugging process, ND4M contains several debugging options at different
 levels of the simulation process, which will be briefly explained and then
 applied to solve a problem with the test model \cft{tut06}.
 
-On the highest level, one can use two additional parameters of the model
+On the highest level, one can use two additional options of the model
 simulator:
 \begin{verbatim}
-  out = model_simulator(model, tEnd,  clearFlag, displayFlag);
+  out = model_simulator(model, tEnd, "clearFlag", false, "displayFlag", false);
 \end{verbatim}
 If the \cft{clearFlag} is set to \cft{false}, the intermediate Matlab files
 created by the model generator for coupled models are not deleted after use
