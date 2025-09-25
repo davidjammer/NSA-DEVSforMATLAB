@@ -2,10 +2,11 @@ function runTut04c
 % makes and runs the model and plots the results
 model = "tut04c";
 tEnd = 15;
-rng(16);
+seed = 16;
+clear = true;
 
 model_generator(model); 
-out = model_simulator(model, tEnd);
+out = model_simulator(model, tEnd, "seed", seed, "clearFlag", clear);
 plotResults(out, tEnd)
 end
 

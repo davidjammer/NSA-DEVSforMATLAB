@@ -17,8 +17,6 @@ classdef am_expserver < handle
 %% System Parameters
 %  name:     object name
 %  tS:       mean service time
-%  useSeed:  true -> seed is used in constructor
-%  seed:     seed of random generator
 %  tau:      input delay
 %  debug:    model debug level
 
@@ -29,29 +27,21 @@ classdef am_expserver < handle
     tSNext
     name
     tS
-    useSeed
-    seed
     tau
     debug
     epsilon
   end
   
   methods
-    function obj = am_expserver(name, tS, useSeed, seed, tau, debug)
+    function obj = am_expserver(name, tS, tau, debug)
       obj.s = "idle";
       obj.E = [];
       obj.sig = [inf,0];
       obj.name = name;
       obj.tS = tS;
-      obj.useSeed = useSeed;
-      obj.seed = seed;
       obj.debug = debug;
       obj.epsilon = get_epsilon();
       obj.tau = tau;
-
-      if useSeed
-        rng(seed);
-      end
       obj.tSNext = -obj.tS*log(rand());
     end
     

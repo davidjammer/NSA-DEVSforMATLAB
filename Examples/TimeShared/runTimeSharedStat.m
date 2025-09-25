@@ -4,9 +4,8 @@ function runTimeSharedStat()
 %   set global DEBUGLEVEL
 %   model_simulator(model, tEnd, false)
 model = "timeSharedStat";
-rng(3);     % set seed for random generator
 tEnd = 1400;
-displayFlag = false;     % show timestamps
+rng(3);     % reset random stream only once at the beginning!
 
 % set parameters
 tW = 25;
@@ -32,7 +31,7 @@ for N = 10:10:80
   set_param(hBlock, "N", string(N))
   model_generator(model);
   tic;
-  out = model_simulator(model, tEnd, true, displayFlag);
+  out = model_simulator(model, tEnd);  % don't set seed option!
   tCPU = toc;
   showStatistics(out, N, tCPU)
 end

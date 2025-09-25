@@ -7,7 +7,7 @@ function out = testExpserver(showPlot)
 
 	load_system("Expserver_Model");
 	model_generator("Expserver_Model");
-	out = model_simulator("Expserver_Model", tEnd);
+	out = model_simulator("Expserver_Model", tEnd, "seed", 3);
 
   if showPlot
     figure("name", "testExpserver", "NumberTitle", "off")
