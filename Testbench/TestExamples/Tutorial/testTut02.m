@@ -7,7 +7,7 @@ function out = testTut02(showPlot)
   tEnd = 15;
 
   model_generator(model);
-  out = model_simulator(model, tEnd);
+  out = model_simulator(model, tEnd, "seed", 3);
   if showPlot
     plotResults(out, tEnd)
   end

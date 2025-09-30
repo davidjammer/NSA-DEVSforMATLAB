@@ -77,34 +77,22 @@ classdef am_smallestinN < handle
       t = [inf, 0];
     end
 
-    %-------------------------------------------------------------------------   
+    %-------------------------------------------------------
     function showState(obj)
       % debug function, prints current state
-      fprintf("  phase=%s n=[", obj.s)
-      for I=1:obj.N-1
-        fprintf("%.2f, ", obj.n(I))
-      end
-      fprintf("%.2f]", obj.n(end))
-      fprintf("\n")
-     end
+      fprintf("  n=%s\n", getDescription(obj.n));
+   end
 
     function showInput(obj, x)
       % debug function, prints current input
-      fprintf("  in: ");
-      [idx, val] = splitInput(x);
-      for I=1:length(idx)
-        fprintf("in%d=%.2f ", idx(I), val(I));
-      end
+      fprintf("  input:  %s\n", getDescription(x))
     end
 
     function showOutput(obj, y)
       % debug function, prints current output
-      fprintf(", out: ")
-      if isfield(y, "out")
-        fprintf("out=%d", y.out);
-      end
-      fprintf("\n")
+      fprintf("  output: %s\n", getDescription(y))
     end
+
 
   end
 end

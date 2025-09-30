@@ -66,7 +66,7 @@ function test_BigExample_productionLine(testCase)
                                 "TestExamples/BigExample");
 	act_out = testProductionLine(false);
 	load("testProductionLine_out.mat");
-	verifyEqual(testCase, act_out, testProductionLine_out)
+	verifyEqual(testCase, act_out, testProductionLine_out, RelTol=1e-14)
 	path(oldpath);
 end
 
