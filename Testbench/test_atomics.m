@@ -50,14 +50,14 @@ function test_comparator(testCase)
   verifyEqual(testCase, act_out, testComparator_out)
   rmpath("TestAtomics/MathOperations/Comparator");
 end
-function test_Gain(testCase)
+function test_gain(testCase)
   addpath("TestAtomics/MathOperations/Gain");
   act_out = testGain();
   load("testGain_out.mat");
   verifyEqual(testCase, act_out, testGain_out)
   rmpath("TestAtomics/MathOperations/Gain");
 end
-function test_Div(testCase)
+function test_div(testCase)
   addpath("TestAtomics/MathOperations/Div");
   act_out = testDiv();
   load("testDiv_out.mat");
@@ -218,7 +218,7 @@ function test_fromworkspace(testCase)
   verifyEqual(testCase, act_out, testFromworkspace_out)
   rmpath("TestAtomics/Sources/Fromworkspace");
 end
-function test_Generator(testCase)
+function test_generator(testCase)
   addpath("TestAtomics/Sources/Generator");
   act_out = testGenerator();
   load("testGenerator_out.mat");
@@ -239,7 +239,7 @@ function test_bingenerator(testCase)
   verifyEqual(testCase, act_out, testBingenerator_out)
   rmpath("TestAtomics/Sources/Bingenerator");
 end
-function test_Const(testCase)
+function test_const(testCase)
   addpath("TestAtomics/Sources/Const");
   act_out = testConst();
   load("testConst_out.mat");

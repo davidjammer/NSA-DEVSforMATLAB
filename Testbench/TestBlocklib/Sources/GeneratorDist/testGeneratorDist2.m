@@ -1,16 +1,19 @@
-function [out]=testGenerator(showPlot)
+function out = testGeneratorDist2(showPlot)
   if nargin == 0
     showPlot = false;
   end
 
-  tEnd = 8;
-  model_generator("Generator_Model");
-  out = model_simulator("Generator_Model", tEnd);
+  model = "GeneratorDist2_Model";
+  tEnd = 10;
+  seed = 3;
+
+  model_generator(model);
+  out = model_simulator(model, tEnd, "seed", seed);
 
   if showPlot
     width = 500;
     height = 300;
-    fig = figure("name", "testGenerator1", "NumberTitle", "off");
+    fig = figure("name", "testGeneratorDist2", "NumberTitle", "off");
     pos = get(fig, "Position");
     pos(3:4) = [width, height];
     set(fig, "Position", pos)
@@ -20,6 +23,6 @@ function [out]=testGenerator(showPlot)
     ylim([0 9]);
     xlabel("simulation time");
     ylabel("out");
-    title("testGenerator1");
+    title("testGeneratorDist2");
   end
 end
