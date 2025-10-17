@@ -29,6 +29,13 @@ function test_blocklib_delay(testCase)
   verifyEqual(testCase, act_out, testDelay_out)
   rmpath("TestBlocklib/Logistics/Delay");
 end
+function test_blocklib_delay1(testCase)
+  addpath("TestBlocklib/Logistics/Delay");
+  act_out = testDelay1();
+  load("testDelay1_out.mat");
+  verifyEqual(testCase, act_out, testDelay1_out)
+  rmpath("TestBlocklib/Logistics/Delay");
+end
 function test_blocklib_expserver(testCase)
   addpath("TestBlocklib/Logistics/Expserver");
   act_out = testExpserver();
@@ -254,7 +261,7 @@ function test_blocklib_comparator(testCase)
   verifyEqual(testCase, act_out, testComparator_out)
   rmpath("TestBlocklib/MathOperations/Comparator");
 end
-function test_blocklib_Gain(testCase)
+function test_blocklib_gain(testCase)
   addpath("TestBlocklib/MathOperations/Gain");
   act_out = testGain();
   load("testGain_out.mat");
@@ -430,12 +437,33 @@ function test_blocklib_fromworkspace(testCase)
   verifyEqual(testCase, act_out, testFromworkspace_out)
   rmpath("TestBlocklib/Sources/Fromworkspace");
 end
-function test_blocklib_Generator(testCase)
+function test_blocklib_generator(testCase)
   addpath("TestBlocklib/Sources/Generator");
   act_out = testGenerator();
   load("testGenerator_out.mat");
   verifyEqual(testCase, act_out, testGenerator_out)
   rmpath("TestBlocklib/Sources/Generator");
+end
+function test_blocklib_generatorDist(testCase)
+  addpath("TestBlocklib/Sources/GeneratorDist");
+  act_out = testGeneratorDist();
+  load("testGeneratorDist_out.mat");
+  verifyEqual(testCase, act_out, testGeneratorDist_out)
+  rmpath("TestBlocklib/Sources/GeneratorDist");
+end
+function test_blocklib_generatorDist1(testCase)
+  addpath("TestBlocklib/Sources/GeneratorDist");
+  act_out = testGeneratorDist1();
+  load("testGeneratorDist1_out.mat");
+  verifyEqual(testCase, act_out, testGeneratorDist1_out)
+  rmpath("TestBlocklib/Sources/GeneratorDist");
+end
+function test_blocklib_generatorDist2(testCase)
+  addpath("TestBlocklib/Sources/GeneratorDist");
+  act_out = testGeneratorDist2();
+  load("testGeneratorDist2_out.mat");
+  verifyEqual(testCase, act_out, testGeneratorDist2_out)
+  rmpath("TestBlocklib/Sources/GeneratorDist");
 end
 function test_blocklib_vectorgen(testCase)
   addpath("TestBlocklib/Sources/Vectorgen");
@@ -451,7 +479,7 @@ function test_blocklib_bingenerator(testCase)
   verifyEqual(testCase, act_out, testBingenerator_out)
   rmpath("TestBlocklib/Sources/Bingenerator");
 end
-function test_blocklib_Const(testCase)
+function test_blocklib_const(testCase)
   addpath("TestBlocklib/Sources/Const");
   act_out = testConst();
   load("testConst_out.mat");
@@ -570,14 +598,14 @@ function cm_xor2blocklib_test(testCase)
   verifyEqual(testCase, act_out, test_cm_xor2_out)
   rmpath("TestBlocklib/Digital/Logic/Xor2");
 end
-function cm_Mux2to1blocklib_test(testCase)
+function cm_mux2to1blocklib_test(testCase)
   addpath("TestBlocklib/Digital/Logic/Mux2to1");
   act_out = test_cm_Mux2to1();
   load("test_cm_Mux2to1_out.mat");
   verifyEqual(testCase, act_out, test_cm_Mux2to1_out)
   rmpath("TestBlocklib/Digital/Logic/Mux2to1");
 end
-function cm_Mux4to1blocklib_test(testCase)
+function cm_mux4to1blocklib_test(testCase)
   addpath("TestBlocklib/Digital/Logic/Mux4to1");
   act_out = test_cm_Mux4to1();
   load("test_cm_Mux4to1_out.mat");
