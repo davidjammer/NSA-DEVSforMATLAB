@@ -9,7 +9,6 @@ classdef am_comparator < handle
   %% States
   %  s:   running
   %  in1/2: current input values
-  %  compop: compare operation
   %% System Parameters
   %  name:  object name
   %  compop: compare operation (<,>,<=,>=,==,~=)
@@ -18,9 +17,9 @@ classdef am_comparator < handle
 
   properties
     s
-    name
     in1
     in2
+    name
     compop
     debug
     tau
@@ -52,38 +51,51 @@ classdef am_comparator < handle
     end
 
     function y = lambda(obj,e,x)
-      in1 = obj.in1;
-      in2 = obj.in2;
+      i1 = obj.in1;
+      i2 = obj.in2;
       if ~isempty(x)
         if isfield(x, "in1")
-          in1 = x.in1;
+          i1 = x.in1;
         end
         if isfield(x, "in2")
-          in2 = x.in2;
+          i2 = x.in2;
         end
       end
       switch obj.compop
         case ">"
-          y.out = (in1 > in2);
+          y.out = (i1 > i2);
         case "<"
-          y.out = (in1 < in2);
+          y.out = (i1 < i2);
         case ">="
-          y.out = (in1 >= in2);
+          y.out = (i1 >= i2);
         case "<="
-          y.out = (in1 <= in2);
+          y.out = (i1 <= i2);
         case "=="
-          y.out = (in1 == in2);
+          y.out = (i1 == i2);
         case "~="
-          y.out = (in1 ~= in2);
+          y.out = (i1 ~= i2);
       end
 
       if obj.debug
-        fprintf("%-8s lambda, in=%2d, out=%2d\n", obj.name, x.in, y.out);
+        fprintf("%-8s lambda\n", obj.name)
+        showInput(obj, x)
+        showOutput(obj, y)
       end
     end
 
     function t = ta(obj)
       t = [inf,0];
+    end
+    %-------------------------------------------------------
+
+    function showInput(obj, x)
+      % debug function, prints current input
+      fprintf("  input:  %s\n", getDescription(x))
+    end
+
+    function showOutput(obj, y)
+      % debug function, prints current output
+      fprintf("  output: %s\n", getDescription(y))
     end
   end
 end

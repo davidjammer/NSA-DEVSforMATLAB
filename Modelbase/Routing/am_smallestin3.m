@@ -8,7 +8,7 @@ classdef am_smallestin3 < handle
 %    out      index of smallest input
 %% States
 %  s: running
-%  n1,n2,n3: arrived values
+%  n: vector of arrived values
 %% System Parameters
 %  name:  object name
 %  val0:  initial value of all inputs
@@ -17,9 +17,7 @@ classdef am_smallestin3 < handle
  
   properties
     s
-    n1
-    n2
-    n3
+    n
     name
     val0
     debug
@@ -29,9 +27,7 @@ classdef am_smallestin3 < handle
   methods
     function obj = am_smallestin3(name, val0, tau, debug)
       obj.s = "running";
-      obj.n1 = val0;
-      obj.n2 = val0;
-      obj.n3 = val0;
+      obj.n = zeros(1,3) + val0;
       obj.name = name;
       obj.val0 = val0;
       obj.debug = debug;
@@ -45,13 +41,13 @@ classdef am_smallestin3 < handle
       end
       
       if isfield(x, "in1")
-        obj.n1 = x.in1;
+        obj.n(1) = x.in1;
       end
       if isfield(x, "in2")
-        obj.n2 = x.in2;
+        obj.n(2) = x.in2;
       end
       if isfield(x, "in3")
-        obj.n3 = x.in3;
+        obj.n(3) = x.in3;
       end
         
       if obj.debug
@@ -61,7 +57,7 @@ classdef am_smallestin3 < handle
     end
     
     function y = lambda(obj,e,x)
-      vals = [obj.n1, obj.n2, obj.n3];
+      vals = obj.n;
       if isfield(x, "in1")
         vals(1) = x.in1;
       end
@@ -74,7 +70,9 @@ classdef am_smallestin3 < handle
       [~, y.out] = min(vals);
       
       if obj.debug
-        fprintf("%-8s lambda, out=%2d\n", obj.name, y.out)
+        fprintf("%-8s lambda\n", obj.name)
+        showInput(obj, x)
+        showOutput(obj, y)
       end
     end
     
@@ -82,11 +80,23 @@ classdef am_smallestin3 < handle
       t = [inf, 0];
     end
  
+    %-------------------------------------------------------
     function showState(obj)
       % debug function, prints current state
-      fprintf("  phase=%s n1/2/3=%2d/%2d/%2d\n", ...
-        obj.s, obj.n1, obj.n2, obj.n3);
-    end  
+      fprintf("  n=%s\n", getDescription(obj.n));
+     % fprintf("  phase=%s n1/2/3/4=%2d/%2d/%2d/%2d\n", ...
+     %   obj.s, obj.n1, obj.n2, obj.n3, obj.n4);
+   end
+
+    function showInput(obj, x)
+      % debug function, prints current input
+      fprintf("  input:  %s\n", getDescription(x))
+    end
+
+    function showOutput(obj, y)
+      % debug function, prints current output
+      fprintf("  output: %s\n", getDescription(y))
+    end
 
   end
 end

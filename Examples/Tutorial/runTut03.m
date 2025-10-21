@@ -2,9 +2,10 @@ function runTut03
 % makes and runs the model and plots the results
 model = "tut03";
 tEnd = 15;
+seed = 3;
 
 model_generator(model); 
-out = model_simulator(model, tEnd);
+out = model_simulator(model, tEnd, "seed", seed);
 plotResults(out, tEnd)
 end
 
