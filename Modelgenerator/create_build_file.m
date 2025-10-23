@@ -3,16 +3,17 @@ function [] = create_build_file(name,names)
 
     fid = fopen(name+"/build_" + get_param(name,'Name') + ".m", 'w');
     fprintf(fid,"function " +get_param(name,'Name')+ " = build_"+get_param(name,'Name')+"(name");
-    
-    if(isfield(get_param(name,'ObjectParameters'),'DialogParameters'))
-      params = get_param(name,'DialogParameters');
-      if isstruct(params)
-        parameters = fieldnames(params);
-        for k=1:length(parameters)
-          fprintf(fid,",%s",parameters{k});
-        end
-      end
-    end
+    if(get_param(name, 'Type') == "block")
+    	if(get_param(name,'Mask') == "on")
+      	params = get_param(name,'DialogParameters');
+      	if isstruct(params)
+        	parameters = fieldnames(params);
+        	for k=1:length(parameters)
+          	fprintf(fid,",%s",parameters{k});
+        	end
+      	end
+    	end
+	end
     fprintf(fid,")\n");
     
 
@@ -44,7 +45,7 @@ function [] = create_build_file(name,names)
         if is_atomic(names(i)) == false && types(i) == "SubSystem"
             fprintf(fid, "addpath(""%s/%s"");\n",pwd,names{i});
             fprintf(fid, "%s = build_%s(""%s""", get_param(names{i},'Name'),get_param(names{i},'Name'),get_param(names{i},'Name'));
-            if(isfield(get_param(names{i},'ObjectParameters'),'DialogParameters'))
+            if(get_param(names{i},'Mask') == "on")
                 params = get_param(names{i},'DialogParameters');
                 if isstruct(params)
                   parameters = fieldnames(params);
